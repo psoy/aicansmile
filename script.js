@@ -17,7 +17,7 @@ const menuData = {
     ],
     'jurins-theme': [
         {
-            name: 'JurinsTheme (주린스테마)',
+            name: 'Jurin\'s Theme (주린스테마)',
             description: '초보 투자자를 위한 감성 분석 기반 주식 길라잡이',
             subtitle: 'FinTech',
             logo: 'KakaoTalk_20251209_200717706_01.jpg',
@@ -59,6 +59,90 @@ const menuData = {
             ],
             tech: 'TTS (Text-to-Speech), Image Recognition, NLP, Edge AI',
             detail: 'Snap&Speak은 사진 한 장으로 내 수준에 맞는 AI 원어민 대화(TTS)를 생성하는 실전 회화 앱입니다. 글로벌 K-Culture 커뮤니티를 타겟으로 하며, 광고 및 구독 모델로 수익화합니다. Impact Lab에서는 경량화 버전을 개발도상국 교육 현장에 제공합니다.'
+        }
+    ],
+    'miriface': [
+        {
+            name: 'MiriFace (미리페이스)',
+            description: '시술 전 AI/AR로 보톡스 결과를 미리 시뮬레이션',
+            subtitle: 'BeautyTech / Medical',
+            features: [
+                'AI/AR 시뮬레이션: 보톡스 시술 전 결과를 미리 확인',
+                '고객 불안 해소: 시술 전 시각적 결과로 신뢰도 향상',
+                '병원 B2B 솔루션: 의료진과 고객 간 소통 도구'
+            ],
+            tech: 'Computer Vision, AR (Augmented Reality), Face Recognition',
+            detail: 'MiriFace는 시술 전 AI/AR로 보톡스 결과를 미리 시뮬레이션하여 고객의 불안을 해소하는 병원 B2B 솔루션입니다. 시각적 결과를 통해 고객과 의료진 간의 신뢰를 구축합니다.'
+        }
+    ],
+    'aihunjang': [
+        {
+            name: 'AIHUNJANG (AI훈장)',
+            description: '복잡한 매뉴얼을 학습한 RAG 기반 사내 Q&A 에이전트',
+            subtitle: 'Enterprise / Knowledge Management',
+            features: [
+                'RAG 기반 Q&A: 복잡한 매뉴얼과 문서를 학습한 지능형 에이전트',
+                '사내 지식 관리: 조직 내 지식 자산의 효율적 활용',
+                'B2B SaaS: 기업 내부 지식 공유 플랫폼'
+            ],
+            tech: 'RAG (Retrieval-Augmented Generation), NLP, Knowledge Graph',
+            detail: 'AIHUNJANG은 복잡한 매뉴얼을 학습한 RAG 기반 사내 Q&A 에이전트입니다. 기업의 지식 자산을 AI로 활용하여 직원들의 업무 효율성을 극대화하는 B2B SaaS 솔루션입니다.'
+        }
+    ],
+    'vallyway': [
+        {
+            name: 'VallyWay (밸리웨이)',
+            description: '기술과 인문학을 결합한 테크 순례 여행 프로그램',
+            subtitle: 'Travel / Experience',
+            features: [
+                '테크 순례: 기술과 인문학을 결합한 특별한 여행 경험',
+                '교육 프로그램: 기술 기업 방문 및 인문학적 통찰 제공',
+                '커뮤니티 형성: 참가자 간 네트워킹 및 지식 공유'
+            ],
+            tech: 'Platform, Community Management, Content Curation',
+            detail: 'VallyWay는 기술과 인문학을 결합한 테크 순례 여행 프로그램입니다. 기술 기업 방문과 인문학적 통찰을 통해 참가자들에게 특별한 경험과 네트워킹 기회를 제공합니다.'
+        }
+    ],
+    'choicecafe': [
+        {
+            name: 'ChoiceCafe (초이스카페)',
+            description: '중년 여성을 위한 하이퍼-퍼스널 AI 카페 검색',
+            subtitle: 'Lifestyle / B2C',
+            features: [
+                '하이퍼-퍼스널 추천: 개인 취향에 맞는 카페 추천',
+                '중년 여성 타겟: 특정 연령대와 성별에 최적화된 서비스',
+                '라이프스타일 맞춤: 분위기, 메뉴, 위치 등 종합 고려'
+            ],
+            tech: 'Recommendation System, Personalization AI, Location-based Services',
+            detail: 'ChoiceCafe는 중년 여성을 위한 하이퍼-퍼스널 AI 카페 검색 서비스입니다. 개인의 취향과 라이프스타일을 분석하여 최적의 카페를 추천합니다.'
+        }
+    ],
+    'doljob': [
+        {
+            name: 'Doljob (돌잡)',
+            description: 'AI 기반 첫돌 성장 영상 제작 서비스',
+            subtitle: 'Memory / Recording',
+            features: [
+                'AI 영상 제작: 첫돌 아이의 성장 과정을 자동으로 영상화',
+                '추억 보존: 소중한 순간들을 체계적으로 기록',
+                '개인화된 콘텐츠: 가족의 스토리를 담은 맞춤형 영상'
+            ],
+            tech: 'Video Generation AI, Image Processing, Storytelling AI',
+            detail: 'Doljob은 AI 기반 첫돌 성장 영상 제작 서비스입니다. 아이의 성장 과정을 자동으로 분석하고 편집하여 가족만의 특별한 추억 영상을 만들어드립니다.'
+        }
+    ],
+    'mypa': [
+        {
+            name: 'MYPA (마이파)',
+            description: '과거 댓글을 삭제하고 디지털 발자국을 관리하는 에이전트',
+            subtitle: 'Privacy / Digital Footprint',
+            features: [
+                '디지털 발자국 관리: 과거 온라인 활동 추적 및 관리',
+                '자동 댓글 삭제: 불필요한 댓글과 게시물 자동 정리',
+                '프라이버시 보호: 개인 정보 보호 및 디지털 신원 관리'
+            ],
+            tech: 'Web Scraping, Privacy AI, Data Management',
+            detail: 'MYPA는 과거 댓글을 삭제하고 디지털 발자국을 관리하는 프라이버시 에이전트입니다. 개인의 온라인 활동을 추적하고 관리하여 프라이버시를 보호합니다.'
         }
     ]
 };
