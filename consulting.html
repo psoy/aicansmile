@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컨설팅 신청 - AICANSMILE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="consulting.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="AICANSMILE.jpg" alt="AICANSMILE Logo" class="logo-img">
+                    <span class="logo-text">AICANSMILE</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">홈</a></li>
+                <li><a href="index.html#about">소개</a></li>
+                <li><a href="index.html#ceo">CEO 인사말</a></li>
+                <li><a href="index.html#products">사업 포트폴리오</a></li>
+                <li><a href="index.html#location">연락처</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="메뉴 토글">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 컨설팅 신청 섹션 -->
+    <section class="consulting-section">
+        <div class="container">
+            <div class="consulting-header" data-aos="fade-up">
+                <h1 class="consulting-title">📝 AI 컨설팅 신청</h1>
+                <p class="consulting-subtitle">전문 컨설턴트와의 상담을 거쳐 진행됩니다.</p>
+                <p class="consulting-note"><strong>*표시</strong>는 <strong>필수 입력 내용</strong>입니다.</p>
+            </div>
+
+            <form class="consulting-form" id="consultingForm" data-aos="fade-up" data-aos-delay="100">
+                <!-- 사업자 정보 -->
+                <div class="form-section">
+                    <h2 class="form-section-title">👤 사업자 정보</h2>
+                    <div class="form-group">
+                        <label for="businessType">사업자 유형 <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="businessType" value="개인" required>
+                                <span>개인</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="businessType" value="개인사업" required>
+                                <span>개인사업</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="businessType" value="법인사업" required>
+                                <span>법인사업</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessNumber">사업자등록번호 <span class="required">*</span></label>
+                        <input type="text" id="businessNumber" name="businessNumber" placeholder="사업자등록번호를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">회사명 <span class="required">*</span></label>
+                        <input type="text" id="companyName" name="companyName" placeholder="회사명을 입력하세요" required>
+                    </div>
+                </div>
+
+                <!-- 담당자 정보 및 연락처 -->
+                <div class="form-section">
+                    <h2 class="form-section-title">📞 담당자 정보 및 연락처</h2>
+                    <div class="form-group">
+                        <label for="contactName">담당자명 <span class="required">*</span></label>
+                        <input type="text" id="contactName" name="contactName" placeholder="담당자명을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobilePhone">휴대 전화번호 <span class="required">*</span></label>
+                        <div class="phone-input-group">
+                            <select id="mobilePrefix" name="mobilePrefix" required>
+                                <option value="">선택</option>
+                                <option value="010">010</option>
+                                <option value="011">011</option>
+                                <option value="016">016</option>
+                                <option value="017">017</option>
+                                <option value="018">018</option>
+                                <option value="019">019</option>
+                            </select>
+                            <span class="phone-separator">-</span>
+                            <input type="text" id="mobileMiddle" name="mobileMiddle" placeholder="0000" maxlength="4" required>
+                            <span class="phone-separator">-</span>
+                            <input type="text" id="mobileLast" name="mobileLast" placeholder="0000" maxlength="4" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">일반 전화번호</label>
+                        <div class="phone-input-group">
+                            <select id="phonePrefix" name="phonePrefix">
+                                <option value="">선택</option>
+                                <option value="02">02</option>
+                                <option value="031">031</option>
+                                <option value="032">032</option>
+                                <option value="033">033</option>
+                                <option value="041">041</option>
+                                <option value="042">042</option>
+                                <option value="043">043</option>
+                                <option value="044">044</option>
+                                <option value="051">051</option>
+                                <option value="052">052</option>
+                                <option value="053">053</option>
+                                <option value="054">054</option>
+                                <option value="055">055</option>
+                                <option value="061">061</option>
+                                <option value="062">062</option>
+                                <option value="063">063</option>
+                                <option value="064">064</option>
+                                <option value="070">070</option>
+                            </select>
+                            <span class="phone-separator">-</span>
+                            <input type="text" id="phoneMiddle" name="phoneMiddle" placeholder="0000" maxlength="4">
+                            <span class="phone-separator">-</span>
+                            <input type="text" id="phoneLast" name="phoneLast" placeholder="0000" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="이메일 주소를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">소재지 <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" placeholder="소재지를 입력하세요" required>
+                    </div>
+                </div>
+
+                <!-- 컨설팅 신청 내용 -->
+                <div class="form-section">
+                    <h2 class="form-section-title">💡 컨설팅 신청 내용</h2>
+                    <div class="form-group">
+                        <label for="consultingContent">컨설팅 신청 내용 <span class="required">*</span></label>
+                        <textarea id="consultingContent" name="consultingContent" rows="6" placeholder="컨설팅을 원하는 내용(예: 마이그레이션, 인프라 구축 등)을 상세히 입력해주세요" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="source">신청경로 <span class="required">*</span></label>
+                        <select id="source" name="source" required>
+                            <option value="">선택하세요</option>
+                            <option value="영업직원">영업직원</option>
+                            <option value="웨비나">웨비나</option>
+                            <option value="뉴스레터">뉴스레터</option>
+                            <option value="e-DM">e-DM</option>
+                            <option value="세미나/박람회">세미나/박람회</option>
+                            <option value="언론기사">언론기사</option>
+                            <option value="유튜브">유튜브</option>
+                            <option value="블로그">블로그</option>
+                            <option value="AICANSMILE 포털">AICANSMILE 포털</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 개인정보 수집/이용 동의 -->
+                <div class="form-section">
+                    <h2 class="form-section-title">✅ 개인정보 수집/이용 동의 (필수)</h2>
+                    <div class="privacy-info">
+                        <table class="privacy-table">
+                            <tr>
+                                <th>수집 항목</th>
+                                <td>신청인의 업체명, 담당자명, 휴대전화번호, 일반전화번호, e-mail 주소, 소재지, 사업자등록번호</td>
+                            </tr>
+                            <tr>
+                                <th>수집 목적</th>
+                                <td>컨설팅 요청 응대를 위한 신청자 정보확인 및 요청 내용 확인</td>
+                            </tr>
+                            <tr>
+                                <th>수집 기간</th>
+                                <td>
+                                    가. 이용기간 : 컨설팅 진행 기간<br>
+                                    나. 보유기간 : 컨설팅 요청 이후 6개월 간
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="privacy-note">
+                            ※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 원활한 서비스 제공에 일부 제한을 받을 수 있습니다.
+                        </p>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="privacyAgree" name="privacyAgree" required>
+                            <span><strong>개인정보 수집/이용에 동의합니다.</strong> (필수 동의)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 유의사항 -->
+                <div class="form-section notice-section">
+                    <h2 class="form-section-title">⚠️ 유의사항</h2>
+                    <ul class="notice-list">
+                        <li><strong>회신 메일 및 휴대 번호</strong>를 정확하게 입력하셨나요? 부정확한 정보 기입 시 회신되지 않습니다.</li>
+                        <li>컨설팅 신청 시 <strong>영업일 기준 1~2일</strong> 소요될 수 있습니다.</li>
+                    </ul>
+                </div>
+
+                <!-- 버튼 -->
+                <div class="form-buttons">
+                    <button type="button" class="btn-cancel" onclick="window.location.href='index.html'">취소하기</button>
+                    <button type="submit" class="btn-submit">컨설팅 신청하기</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AICANSMILE. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="링크드인">LinkedIn</a>
+                <a href="#" aria-label="깃허브">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="consulting.js"></script>
+</body>
+</html>
+
