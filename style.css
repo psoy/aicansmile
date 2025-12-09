@@ -70,20 +70,8 @@ body {
     color: inherit;
 }
 
-.logo-img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-}
-
 .logo-text {
-    display: none;
-}
-
-@media (min-width: 769px) {
-    .logo-text {
-        display: inline;
-    }
+    display: inline;
 }
 
 .nav-menu {
@@ -149,70 +137,21 @@ body {
     padding: 2rem;
 }
 
-.hero-logo-wrapper {
-    max-width: 300px;
-    width: 100%;
-    margin: 0 auto 2rem;
-    background: linear-gradient(135deg, var(--purple-bg) 0%, var(--primary-color) 100%);
-    border-radius: 12px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeInUp 1s ease 0.1s both;
-}
-
-.hero-logo {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    border-radius: 8px;
-    background: transparent;
-    mix-blend-mode: multiply;
-}
-
 .hero-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 300;
-    letter-spacing: 8px;
-    margin-bottom: 1rem;
+    letter-spacing: 6px;
+    margin-bottom: 2rem;
     color: var(--white);
     animation: fadeInUp 1s ease;
 }
 
-.hero-slogan {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--gold-gradient-start);
-    margin-bottom: 0.5rem;
-    font-style: italic;
-    animation: fadeInUp 1s ease 0.2s both;
-}
-
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     font-weight: 300;
-    animation: fadeInUp 1s ease 0.3s both;
-}
-
-.hero-tagline {
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--gold-gradient-start);
-    margin: 1.5rem 0 0.5rem;
-    animation: fadeInUp 1s ease 0.4s both;
-}
-
-.hero-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    animation: fadeInUp 1s ease 0.5s both;
+    animation: fadeInUp 1s ease 0.2s both;
 }
 
 .btn-primary {
@@ -275,42 +214,6 @@ body {
     opacity: 1;
     z-index: 1;
     overflow: hidden;
-}
-
-.hero-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
-        linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
-    background-size: 100px 100px;
-    animation: gridMove 20s linear infinite;
-}
-
-.hero-image::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
-    transform: translate(-50%, -50%);
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(100px, 100px); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
 }
 
 /* 섹션 공통 스타일 */
@@ -961,12 +864,13 @@ section {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
         letter-spacing: 4px;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
 
     .section-title {
@@ -1018,11 +922,6 @@ section {
         font-size: 0.9rem;
     }
 
-    .hero-logo-wrapper {
-        max-width: 200px;
-        margin-bottom: 1.5rem;
-        padding: 10px;
-    }
 
     .hero-buttons {
         flex-direction: column;

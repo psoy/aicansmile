@@ -20,6 +20,7 @@ const menuData = {
             name: 'JurinsTheme (주린스테마)',
             description: '초보 투자자를 위한 감성 분석 기반 주식 길라잡이',
             subtitle: 'FinTech',
+            logo: 'KakaoTalk_20251209_200717706_01.jpg',
             features: [
                 '뉴스 감성 분석: 방대한 금융 뉴스를 분석하여 긍정/부정 시그널 포착',
                 '맞춤형 종목 추천: 투자 성향에 따른 테마별 유망 종목 큐레이션',
@@ -49,6 +50,7 @@ const menuData = {
             name: 'Snap&Speak (스냅앤스피크)',
             description: '사진 한 장으로 내 수준에 맞는 AI 원어민 대화',
             subtitle: 'EdTech / B2C',
+            logo: 'Gemini_Generated_Image_ftg0hxftg0hxftg0.png',
             features: [
                 '사진 기반 대화 생성: 일상 사진으로 실전 회화 연습',
                 '수준별 맞춤형 대화: 사용자 레벨에 맞는 AI 원어민 대화 생성',
