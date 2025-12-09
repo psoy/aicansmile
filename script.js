@@ -11,7 +11,7 @@ const menuData = {
                 '맞춤형 연습 스케줄링: 사용자 실력/목표 기반 데일리 루틴 생성',
                 '음악 이론 통합 검색: 난해한 이론을 연주에 적용 가능하도록 쉽게 풀이'
             ],
-            tech: 'RAG (Retrieval-Augmented Generation), Natural Language Processing (NLP)',
+            tech: 'RAG (Retrieval-Augmented Generation), LangChain / LlamaIndex, OpenAI GPT-4 / Claude, OMR (Optical Music Recognition), Audio Analysis (Librosa, Essentia), Vector Database (Pinecone, Weaviate), NLP (Natural Language Processing)',
             detail: 'Clef.ai는 첼로와 피아노 학습자를 위한 지능형 레슨 보조 서비스입니다. 레슨과 레슨 사이, 혼자 연습할 때 겪는 막막함을 해소합니다. 단순 검색을 넘어 악기 연주법과 음악 이론에 특화된 심층 가이드를 제공합니다.'
         }
     ],
@@ -26,7 +26,7 @@ const menuData = {
                 '맞춤형 종목 추천: 투자 성향에 따른 테마별 유망 종목 큐레이션',
                 '쉬운 시황 브리핑: 어려운 경제 용어를 쉽게 풀어쓴 데일리 리포트'
             ],
-            tech: 'Sentiment Analysis, Big Data Analytics, AI Recommendation System',
+            tech: 'Transformer Models (BERT, FinBERT), Sentiment Analysis, Time Series Forecasting (Prophet, LSTM), Real-time Data Processing (Apache Kafka, Spark Streaming), Graph Neural Networks, Explainable AI (SHAP, LIME), Big Data Analytics, AI Recommendation System',
             detail: '주린스테마는 복잡한 주식 시장에서 길을 잃기 쉬운 초보 투자자(주린이)를 위해 탄생했습니다. 딱딱한 재무 제표뿐만 아니라, 시장의 뉴스 트렌드와 투자자 심리(Sentiment)를 분석하여 이해하기 쉬운 리포트를 제공합니다.'
         }
     ],
@@ -41,7 +41,7 @@ const menuData = {
                 '정밀 카운팅 & 재고 관리: 대량의 물량도 오차 없이 집계',
                 '현장 데이터 시각화: 농장별 생산량 및 재고 현황 대시보드'
             ],
-            tech: 'Computer Vision (Object Detection, YOLO), Edge AI, Image Processing',
+            tech: 'Computer Vision (YOLOv8 / YOLOv10, DETR, Vision Transformer), Edge Computing (TensorFlow Lite, ONNX Runtime), IoT Integration (MQTT, LoRaWAN), Cloud Platforms (AWS IoT, Google Cloud IoT), Edge AI, Image Processing',
             detail: '농축산업 현장의 생산성을 극대화하기 위한 AI 비전 솔루션입니다. 광활한 농지나 적재된 곤포 사일리지(Silage Bales)를 이미지 한 장으로 정확하게 인식하고 카운팅하여, 재고 관리의 자동화와 효율화를 실현합니다.'
         }
     ],
@@ -57,7 +57,7 @@ const menuData = {
                 '글로벌 K-Culture 타겟: K-Culture 팬덤을 위한 실전 회화 앱',
                 '오프라인 작동: 네트워크 없이도 사용 가능한 경량화 버전'
             ],
-            tech: 'TTS (Text-to-Speech), Image Recognition, NLP, Edge AI',
+            tech: 'Multimodal AI (GPT-4V, Claude 3), Neural TTS (ElevenLabs, Google TTS), Speech Recognition (Whisper), Few-shot Learning, On-device ML (Core ML, TensorFlow Lite), TTS (Text-to-Speech), Image Recognition, NLP, Edge AI',
             detail: 'Snap&Speak은 사진 한 장으로 내 수준에 맞는 AI 원어민 대화(TTS)를 생성하는 실전 회화 앱입니다. 글로벌 K-Culture 커뮤니티를 타겟으로 하며, 광고 및 구독 모델로 수익화합니다. Impact Lab에서는 경량화 버전을 개발도상국 교육 현장에 제공합니다.'
         }
     ],
@@ -71,7 +71,7 @@ const menuData = {
                 '고객 불안 해소: 시술 전 시각적 결과로 신뢰도 향상',
                 '병원 B2B 솔루션: 의료진과 고객 간 소통 도구'
             ],
-            tech: 'Computer Vision, AR (Augmented Reality), Face Recognition',
+            tech: '3D Face Reconstruction (MediaPipe, FaceX-Zoo), AR Frameworks (ARKit, ARCore), GANs (StyleGAN, Face Swapping), Computer Vision, AR (Augmented Reality), Face Recognition, Medical AI Ethics, Privacy-preserving AI',
             detail: 'MiriFace는 시술 전 AI/AR로 보톡스 결과를 미리 시뮬레이션하여 고객의 불안을 해소하는 병원 B2B 솔루션입니다. 시각적 결과를 통해 고객과 의료진 간의 신뢰를 구축합니다.'
         }
     ],
@@ -85,7 +85,7 @@ const menuData = {
                 '사내 지식 관리: 조직 내 지식 자산의 효율적 활용',
                 'B2B SaaS: 기업 내부 지식 공유 플랫폼'
             ],
-            tech: 'RAG (Retrieval-Augmented Generation), NLP, Knowledge Graph',
+            tech: 'RAG (Retrieval-Augmented Generation), Vector Databases (Pinecone, Qdrant), Graph Databases (Neo4j, ArangoDB), Multi-agent Systems (AutoGPT, LangGraph), Fine-tuning (LoRA, QLoRA), API Integration (OpenAI, Anthropic), Knowledge Graph, NLP',
             detail: 'AIHUNJANG은 복잡한 매뉴얼을 학습한 RAG 기반 사내 Q&A 에이전트입니다. 기업의 지식 자산을 AI로 활용하여 직원들의 업무 효율성을 극대화하는 B2B SaaS 솔루션입니다.'
         }
     ],
@@ -99,7 +99,7 @@ const menuData = {
                 '교육 프로그램: 기술 기업 방문 및 인문학적 통찰 제공',
                 '커뮤니티 형성: 참가자 간 네트워킹 및 지식 공유'
             ],
-            tech: 'Platform, Community Management, Content Curation',
+            tech: 'Recommendation Systems (Collaborative Filtering, Content-based), Social Network Analysis, Content Generation (GPT-4), Payment Integration (Stripe, Toss), Mobile Apps (React Native, Flutter), Platform, Community Management, Content Curation',
             detail: 'VallyWay는 기술과 인문학을 결합한 테크 순례 여행 프로그램입니다. 기술 기업 방문과 인문학적 통찰을 통해 참가자들에게 특별한 경험과 네트워킹 기회를 제공합니다.'
         }
     ],
@@ -113,7 +113,7 @@ const menuData = {
                 '중년 여성 타겟: 특정 연령대와 성별에 최적화된 서비스',
                 '라이프스타일 맞춤: 분위기, 메뉴, 위치 등 종합 고려'
             ],
-            tech: 'Recommendation System, Personalization AI, Location-based Services',
+            tech: 'Deep Learning Recommenders (Neural Collaborative Filtering), Geospatial AI (Google Maps API, Mapbox), User Behavior Analytics (Mixpanel, Amplitude), Real-time Personalization, Multi-modal Search, Recommendation System, Personalization AI, Location-based Services',
             detail: 'ChoiceCafe는 중년 여성을 위한 하이퍼-퍼스널 AI 카페 검색 서비스입니다. 개인의 취향과 라이프스타일을 분석하여 최적의 카페를 추천합니다.'
         }
     ],
@@ -127,7 +127,7 @@ const menuData = {
                 '추억 보존: 소중한 순간들을 체계적으로 기록',
                 '개인화된 콘텐츠: 가족의 스토리를 담은 맞춤형 영상'
             ],
-            tech: 'Video Generation AI, Image Processing, Storytelling AI',
+            tech: 'Video Generation (Runway ML, Pika Labs), Storytelling AI (GPT-4), Face Recognition (FaceNet, ArcFace), Video Editing (FFmpeg, OpenCV), Cloud Storage (AWS S3, Google Cloud Storage), Video Generation AI, Image Processing, Storytelling AI',
             detail: 'Doljob은 AI 기반 첫돌 성장 영상 제작 서비스입니다. 아이의 성장 과정을 자동으로 분석하고 편집하여 가족만의 특별한 추억 영상을 만들어드립니다.'
         }
     ],
@@ -141,7 +141,7 @@ const menuData = {
                 '자동 댓글 삭제: 불필요한 댓글과 게시물 자동 정리',
                 '프라이버시 보호: 개인 정보 보호 및 디지털 신원 관리'
             ],
-            tech: 'Web Scraping, Privacy AI, Data Management',
+            tech: 'Privacy-preserving ML (Federated Learning, Differential Privacy), Web Scraping (Scrapy, Selenium), Data Anonymization, GDPR Compliance Tools, Blockchain (선택적), Privacy AI, Data Management',
             detail: 'MYPA는 과거 댓글을 삭제하고 디지털 발자국을 관리하는 프라이버시 에이전트입니다. 개인의 온라인 활동을 추적하고 관리하여 프라이버시를 보호합니다.'
         }
     ]

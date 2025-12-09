@@ -266,10 +266,16 @@ textarea {
     font-weight: 600;
 }
 
-.btn-submit:hover {
+.btn-submit:hover:not(:disabled) {
     background: linear-gradient(135deg, var(--gold-gradient-end) 0%, var(--gold-gradient-start) 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* 반응형 디자인 */
