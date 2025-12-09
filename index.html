@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICANSMILE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">AICANSMILE</div>
+            <ul class="nav-menu">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#products">제품/서비스</a></li>
+                <li><a href="#location">연락처</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="메뉴 토글">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero 섹션 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AICANSMILE</h1>
+            <p class="hero-subtitle">AI 응용소프트웨어로 미래를 만들어갑니다</p>
+            <a href="#products" class="btn-primary">제품 보기</a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <!-- 브랜드 소개 섹션 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Us</h2>
+                <p class="section-subtitle">우리의 이야기</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        AICANSMILE은 AI 응용소프트웨어를 개발하고 공급하는 정보통신업 기업입니다.
+                        최신 인공지능 기술을 활용하여 기업과 개인의 업무 효율성을 높이고,
+                        더 나은 디지털 경험을 제공하는 혁신적인 솔루션을 개발합니다.
+                    </p>
+                    <p>
+                        우리는 단순히 소프트웨어를 제공하는 것이 아닌,
+                        고객의 비즈니스 성장을 함께 만들어가는 파트너가 되고자 합니다.
+                        첨단 AI 기술과 전문성을 바탕으로 고객의 성공을 지원합니다.
+                    </p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI 기술</h3>
+                        <p>최신 인공지능 기술을 활용한 혁신적 솔루션</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💼</div>
+                        <h3>엔터프라이즈 솔루션</h3>
+                        <p>기업의 디지털 전환을 지원하는 전문 소프트웨어</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <h3>지속적 혁신</h3>
+                        <p>기술 트렌드를 선도하는 연구개발</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 제품/서비스 섹션 -->
+    <section id="products" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Products & Services</h2>
+                <p class="section-subtitle">다양한 제품과 서비스를 만나보세요</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="ai-solutions">AI 솔루션</button>
+                <button class="tab-btn" data-category="enterprise">엔터프라이즈</button>
+                <button class="tab-btn" data-category="consulting">컨설팅</button>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- 제품 아이템들이 JavaScript로 동적으로 생성됩니다 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 위치 및 연락처 섹션 -->
+    <section id="location" class="location">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">연락처 및 위치</p>
+            </div>
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="info-item">
+                        <h3>주소</h3>
+                        <p>서울특별시 강남구 테헤란로 123</p>
+                        <p>강남타워 10층</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>업무시간</h3>
+                        <p>월-금: 09:00 - 18:00</p>
+                        <p>토-일: 휴무</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>연락처</h3>
+                        <p>전화: 02-1234-5678</p>
+                        <p>이메일: info@aicansmile.com</p>
+                        <p>팩스: 02-1234-5679</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>교통편</h3>
+                        <p>지하철: 2호선 강남역 3번 출구 도보 5분</p>
+                        <p>버스: 간선 146, 241, 지선 3412</p>
+                    </div>
+                </div>
+                <div class="location-map">
+                    <div class="map-placeholder">
+                        <p>📍 지도</p>
+                        <p class="map-note">실제 지도 API를 연동할 수 있습니다</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AICANSMILE. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="링크드인">LinkedIn</a>
+                <a href="#" aria-label="깃허브">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
