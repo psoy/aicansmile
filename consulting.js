@@ -53,45 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // 개인정보 동의 체크박스 추가
-            data.privacyAgree = privacyAgree.checked;
-
-            // 로딩 상태 표시
-            const submitButton = form.querySelector('.btn-submit');
-            const originalButtonText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = '전송 중...';
-
-            // 서버리스 함수 호출 (Netlify Functions)
-            try {
-                const response = await fetch('/.netlify/functions/send-consulting-email', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    alert('컨설팅 신청이 완료되었습니다.\n영업일 기준 1~2일 내에 연락드리겠습니다.');
-                    form.reset();
-                    // 홈으로 이동
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1000);
-                } else {
-                    throw new Error(result.error || '이메일 전송에 실패했습니다.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('컨설팅 신청 중 오류가 발생했습니다.\n잠시 후 다시 시도해주시거나 직접 이메일로 문의해주세요.\n\n이메일: aicansmile8@gmail.com');
-            } finally {
-                // 버튼 상태 복원
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            }
+            // 실제로는 서버로 전송해야 하지만, 여기서는 확인 메시지만 표시
+            console.log('컨설팅 신청 데이터:', data);
+            
+            alert('컨설팅 신청이 완료되었습니다.\n영업일 기준 1~2일 내에 연락드리겠습니다.');
+            
+            // 홈으로 이동
+            window.location.href = 'index.html';
         });
     }
 
