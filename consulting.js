@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 폼 제출
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             // 필수 체크박스 확인
@@ -53,13 +53,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // 실제로는 서버로 전송해야 하지만, 여기서는 확인 메시지만 표시
-            console.log('컨설팅 신청 데이터:', data);
-            
-            alert('컨설팅 신청이 완료되었습니다.\n영업일 기준 1~2일 내에 연락드리겠습니다.');
-            
-            // 홈으로 이동
-            window.location.href = 'index.html';
+            data.privacyAgree = privacyAgree.checked;
+
+            // 로딩 상태 표시
+            const submitButton = form.querySelector('.btn-submit');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = '전송 중...';
+
+            // Netlify Function을 통한 이메일 전송
+            try {
+                const response = await fetch('/api/send-consulting-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    alert('컨설팅 신청이 완료되었습니다.\n영업일 기준 1~2일 내에 연락드리겠습니다.');
+                    form.reset();
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    throw new Error(result.error || '이메일 전송에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('이메일 전송 오류:', error);
+                alert('컨설팅 신청 중 오류가 발생했습니다.\n\n오류: ' + error.message + '\n\n직접 이메일로 문의해주세요.\n이메일: aicansmile8@gmail.com');
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
 

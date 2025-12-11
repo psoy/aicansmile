@@ -35,10 +35,14 @@ exports.handler = async (event, context) => {
         const senderEmail = process.env.SENDER_EMAIL || 'noreply@aicansmile.com';
 
         if (!apiKey) {
+            console.error('SendGrid API key not configured in environment variables');
             return {
                 statusCode: 500,
                 headers,
-                body: JSON.stringify({ error: 'SendGrid API key not configured' })
+                body: JSON.stringify({ 
+                    error: '이메일 서비스가 설정되지 않았습니다. 관리자에게 문의해주세요.',
+                    details: 'SendGrid API key not configured'
+                })
             };
         }
 
