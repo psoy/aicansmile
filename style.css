@@ -212,8 +212,18 @@ body {
         radial-gradient(circle at 80% 70%, rgba(107, 91, 125, 0.2) 0%, transparent 50%),
         linear-gradient(135deg, var(--purple-bg) 0%, var(--primary-color) 100%);
     opacity: 1;
-    z-index: 1;
+    z-index: 0;
     overflow: hidden;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* hero-image is z-index: 1, hero-content is z-index: 2. Let's put canvas at 1 as well but maybe control via order or specificity. Actually hero-image has opacity/background. */
+    opacity: 0.8;
 }
 
 /* 섹션 공통 스타일 */
