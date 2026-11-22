@@ -1,6 +1,24 @@
-# 컨설팅 신청 이메일 전송 기능 설정 가이드
+# 컨설팅 신청 접수 설정 가이드
 
-## 방법 1: Netlify Functions (권장)
+## 현재 방식: Netlify Forms (권장, 별도 API 키 불필요)
+
+`consulting.html`의 폼은 Netlify Forms로 동작합니다.
+(`name="consulting" method="POST" data-netlify="true" netlify-honeypot="bot-field"` + `form-name` hidden 필드)
+
+1. **Netlify UI → Forms → Form detection → Enable form detection** 를 켜 주세요. (사이트 설정에서 꺼져 있으면 폼이 등록되지 않고 제출 시 404가 나옵니다.)
+2. 설정을 바꾼 뒤에는 **사이트를 다시 배포**해야 적용됩니다(빈 커밋 푸시 또는 Deploys → Retry deploy).
+3. 접수된 신청은 **Netlify UI → Forms → consulting → Submissions** 에서 확인합니다.
+4. 메일 알림을 받고 싶다면 **Forms → Settings → Form notifications → Add notification → Email notification** 에 `aicansmile8@gmail.com`을 등록하세요.
+
+자동 접수가 실패하면(네트워크·설정 문제 등) 폼은 자동으로 안내 패널을 띄우고, 작성 내용이 그대로 채워진 **mailto 링크**와 `aicansmile8@gmail.com` **복사 버튼**을 제공합니다.
+
+---
+
+# (참고) 이전 방식: SendGrid / EmailJS
+
+> 아래 내용은 더 이상 사용하지 않습니다. `SENDGRID_API_KEY` 미설정으로 `/api/send-consulting-email`이 500을 반환하여 Netlify Forms로 전환했습니다. `netlify/functions/send-consulting-email.js`는 참고용으로만 남겨 둡니다.
+
+## 방법 1: Netlify Functions (사용 안 함)
 
 ### 1. Netlify에 배포
 - GitHub 저장소를 Netlify에 연결
