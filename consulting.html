@@ -37,9 +37,14 @@
                 <h1 class="consulting-title">📝 AI 컨설팅 신청</h1>
                 <p class="consulting-subtitle">AI 솔루션 도입부터 AI 거버넌스·정보보호 자문, 실무 교육까지 — 전문 컨설턴트와의 상담을 거쳐 진행됩니다.</p>
                 <p class="consulting-note"><strong>*표시</strong>는 <strong>필수 입력 내용</strong>입니다.</p>
+                <p class="consulting-contact">문의: <a href="tel:010-3201-7076">010-3201-7076</a> · <a href="mailto:aicansmile8@gmail.com">aicansmile8@gmail.com</a></p>
             </div>
 
-            <form class="consulting-form" id="consultingForm" data-aos="fade-up" data-aos-delay="100">
+            <form class="consulting-form" id="consultingForm" name="consulting" method="POST" action="/consulting.html" data-netlify="true" netlify-honeypot="bot-field" data-aos="fade-up" data-aos-delay="100">
+                <input type="hidden" name="form-name" value="consulting">
+                <p class="bot-field" hidden aria-hidden="true">
+                    <label>이 필드는 비워 주세요. <input name="bot-field"></label>
+                </p>
                 <!-- 사업자 정보 -->
                 <div class="form-section">
                     <h2 class="form-section-title">👤 사업자 정보</h2>
@@ -208,6 +213,9 @@
                     <button type="submit" class="btn-submit">컨설팅 신청하기</button>
                 </div>
             </form>
+
+            <!-- 접수 결과 / 대체 전송 안내 -->
+            <div class="consulting-result" id="consultingResult" hidden aria-live="polite"></div>
         </div>
     </section>
 

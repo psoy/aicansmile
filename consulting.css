@@ -29,6 +29,101 @@
     color: var(--text-light);
 }
 
+.consulting-contact {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.consulting-contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-gradient-end);
+}
+
+.consulting-contact a:hover {
+    color: var(--gold-gradient-end);
+}
+
+/* 접수 결과 안내 */
+.consulting-result {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    background: var(--secondary-color);
+    text-align: center;
+}
+
+.consulting-result h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.consulting-result p {
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.consulting-result.success {
+    border-color: var(--gold-gradient-end);
+    background: linear-gradient(135deg, rgba(244, 208, 63, 0.12) 0%, rgba(212, 165, 116, 0.12) 100%);
+}
+
+.consulting-result.fallback {
+    border-color: var(--purple-bg);
+    background: linear-gradient(135deg, rgba(107, 91, 125, 0.08) 0%, rgba(107, 91, 125, 0.04) 100%);
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.result-actions .btn-submit {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.result-sub {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.75rem;
+}
+
+.result-preview {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.result-preview summary {
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.result-preview pre {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 320px;
+    overflow: auto;
+}
+
 .consulting-form {
     max-width: 800px;
     margin: 0 auto;
@@ -302,6 +397,10 @@ textarea {
     }
 
     .form-buttons {
+        flex-direction: column;
+    }
+
+    .result-actions {
         flex-direction: column;
     }
 
