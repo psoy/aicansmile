@@ -297,7 +297,7 @@ section {
 
 .hybrid-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -349,6 +349,10 @@ section {
 
 .impact-card {
     border-left: 4px solid #4a90e2;
+}
+
+.advisory-card {
+    border-left: 4px solid var(--purple-bg);
 }
 
 .mission-vision {
@@ -1122,6 +1126,14 @@ html {
     border-radius: 20px;
     font-weight: 500;
     font-size: 0.9rem;
+}
+
+/* 거버넌스·자문 축 하이라이트 */
+.advisory-highlight {
+    margin-top: 3rem;
+    margin-bottom: 0;
+    border-color: var(--purple-bg);
+    background: linear-gradient(135deg, rgba(107, 91, 125, 0.08) 0%, rgba(107, 91, 125, 0.04) 100%);
 }
 
 /* 로드맵 섹션 */
