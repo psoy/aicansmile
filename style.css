@@ -41,6 +41,18 @@
     --shadow-lg: 0 24px 60px rgba(36, 26, 48, 0.16);
     --max: 1180px;
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* legacy aliases — consulting.css 등 기존 페이지가 참조하는 변수명 */
+    --primary-color: var(--plum-800);
+    --secondary-color: var(--plum-050);
+    --accent-color: var(--gold);
+    --gold-gradient-start: #f0dfc8;
+    --gold-gradient-end: var(--gold);
+    --purple-bg: var(--plum-600);
+    --text-color: var(--text);
+    --text-light: var(--muted);
+    --border-color: var(--line);
+    --transition: all 0.3s ease;
 }
 
 html {
