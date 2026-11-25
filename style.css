@@ -1263,6 +1263,36 @@ ul {
     font-size: 0.82rem;
 }
 
+/* 선순환 구조도 */
+.model-figure {
+    margin-top: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--white);
+}
+
+.model-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.model-figure figcaption {
+    padding: 14px 18px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+}
+
+.model-figure figcaption strong {
+    display: inline-block;
+    margin-right: 6px;
+    color: var(--plum-800);
+    font-weight: 700;
+}
+
 /* ---------------------------------------------------------
    Contact
    --------------------------------------------------------- */
