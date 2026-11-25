@@ -252,20 +252,10 @@ ul {
     align-items: center;
     padding: 132px 0 96px;
     background:
-        radial-gradient(900px 520px at 15% 0%, rgba(107, 91, 125, 0.55) 0%, transparent 60%),
-        radial-gradient(700px 480px at 92% 12%, rgba(212, 165, 116, 0.18) 0%, transparent 62%),
-        linear-gradient(160deg, #241a30 0%, #33264a 58%, #1b1425 100%);
+        radial-gradient(760px 460px at 12% -8%, rgba(126, 105, 148, 0.55) 0%, transparent 62%),
+        radial-gradient(620px 420px at 94% 6%, rgba(212, 165, 116, 0.16) 0%, transparent 60%),
+        linear-gradient(158deg, #2b2039 0%, #3a2c50 54%, #221929 100%);
     overflow: hidden;
-}
-
-#hero-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.55;
-    z-index: 0;
-    pointer-events: none;
 }
 
 .hero-inner {
@@ -294,7 +284,7 @@ ul {
 }
 
 .hero-title {
-    font-size: clamp(1.9rem, 3.15vw, 3.05rem);
+    font-size: clamp(1.9rem, 2.85vw, 2.78rem);
     line-height: 1.34;
     font-weight: 700;
     letter-spacing: -0.028em;
@@ -380,17 +370,16 @@ ul {
 }
 
 .hero-chip {
-    position: absolute;
-    left: -14px;
-    bottom: -16px;
-    padding: 9px 16px;
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 14px;
     border-radius: 999px;
-    background: var(--white);
-    color: var(--plum-800);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.45);
+    color: var(--gold-soft);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
 }
 
 .hero-scroll {
@@ -1516,8 +1505,7 @@ ul {
     }
 
     .hero-chip {
-        left: 8px;
-        bottom: -14px;
+        font-size: 0.7rem;
     }
 
     .hero-scroll {
