@@ -637,7 +637,7 @@ ul {
 }
 
 .shot-wide {
-    min-height: 100%;
+    align-self: start;
 }
 
 .shot figcaption {
