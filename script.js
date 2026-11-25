@@ -33,16 +33,17 @@ const menuData = {
     'silo-vision': [
         {
             name: 'SiloVisionX (사일로비전X)',
-            description: '컴퓨터 비전으로 완성하는 스마트 농업의 눈',
-            subtitle: 'AgriTech',
+            description: '드론·AI 비전으로 곤포 사일리지를 자동 탐지·계수',
+            subtitle: 'AgriTech / AI Vision',
             logo: 'Gemini_Generated_Image_gyrce8gyrce8gyrc.png',
             features: [
-                '자동 객체 인식: 드론/모바일 촬영 곤포 사일리지 자동 식별',
-                '정밀 카운팅 & 재고 관리: 대량의 물량도 오차 없이 집계',
-                '현장 데이터 시각화: 농장별 생산량 및 재고 현황 대시보드'
+                '자동 객체 인식: 드론·모바일 촬영 이미지에서 곤포 사일리지 자동 탐지 (YOLOv8m-seg)',
+                '정밀 카운팅 & 일괄 집계: 다중 이미지 동시 처리로 총 개수 자동 산출',
+                '증빙 자동화: 위치·일시 메타데이터가 포함된 PDF 보고서 원클릭 생성',
+                '현장 중심 UI: 모바일 브라우저 카메라 촬영, 4개 국어(한·영·중·일) 지원'
             ],
-            tech: 'Computer Vision (YOLOv8 / YOLOv10, DETR, Vision Transformer), Edge Computing (TensorFlow Lite, ONNX Runtime), IoT Integration (MQTT, LoRaWAN), Cloud Platforms (AWS IoT, Google Cloud IoT), Edge AI, Image Processing',
-            detail: '농축산업 현장의 생산성을 극대화하기 위한 AI 비전 솔루션입니다. 광활한 농지나 적재된 곤포 사일리지(Silage Bales)를 이미지 한 장으로 정확하게 인식하고 카운팅하여, 재고 관리의 자동화와 효율화를 실현합니다.'
+            tech: 'YOLOv8m-seg (mAP50 0.96, CPU 추론 0.42초), Python · Streamlit, OpenCV, ReportLab (PDF 자동 생성), Docker · Railway, 반응형 웹',
+            detail: '서귀포 축산 현장의 수작업 카운팅 병목에서 출발한 AI 비전 솔루션입니다. 촬영한 사진 한 장으로 곤포 사일리지를 자동 탐지·계수하고, 보조금 증빙에 쓸 PDF 보고서까지 자동으로 만들어 냅니다. 같은 객체 인식 엔진을 몽골 초원의 가축 카운팅·목초지 모니터링으로 확장할 수 있습니다.'
         }
     ],
     'snap-speak': [
@@ -174,6 +175,7 @@ if (navToggle) {
 
 // 사업 포트폴리오 아이템 렌더링 함수
 function renderMenu(category) {
+    if (!menuGrid) return;
     const items = menuData[category] || [];
     menuGrid.innerHTML = '';
     
@@ -269,9 +271,9 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// 초기 사업 포트폴리오 렌더링 (Clef.ai)
+// 초기 사업 포트폴리오 렌더링 (SiloVisionX)
 document.addEventListener('DOMContentLoaded', () => {
-    renderMenu('clef-ai');
+    if (menuGrid) renderMenu('silo-vision');
     
     // AOS 초기화
     if (typeof AOS !== 'undefined') {
