@@ -378,7 +378,6 @@
     }
 
     hero.addEventListener('pointermove', function (e) {
-        if (e.pointerType === 'touch') return; // 터치는 아래 touch 이벤트에서 처리
         setPointer(e.clientX, e.clientY);
     }, { passive: true });
 
