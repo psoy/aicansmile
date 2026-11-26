@@ -143,14 +143,10 @@ button { font: inherit; color: inherit; }
 }
 .section-title em {
     font-style: normal;
-    background: var(--gold-grad-deep);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: var(--gold-1);
-    /* 인라인 그라데이션 텍스트가 줄바꿈될 때 생기는 배경 띠 제거 */
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+    /* 인라인 그라데이션 텍스트는 줄바꿈 시 배경 띠가 생겨 단색 포인트로 처리 */
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: #5C41A8;
 }
 
 .section-lead {
