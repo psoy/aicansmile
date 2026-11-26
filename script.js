@@ -148,145 +148,145 @@ const menuData = {
     ]
 };
 
-// DOM 요소 선택
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu');
+// ---------------------------------------------------------
+// DOM
+// ---------------------------------------------------------
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+const navbar = document.getElementById('navbar');
 const tabButtons = document.querySelectorAll('.tab-btn');
 const menuGrid = document.getElementById('menuGrid');
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// 모바일 네비게이션 토글
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        
-        // 햄버거 아이콘 애니메이션
-        const spans = navToggle.querySelectorAll('span');
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translateY(8px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
+// 스크롤 등장 애니메이션 준비 (JS가 있을 때만 숨김 상태 적용)
+if (!reduceMotion) document.documentElement.classList.add('js');
+
+const revealObserver = !reduceMotion && 'IntersectionObserver' in window
+    ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            const delay = entry.target.dataset.delay;
+            if (delay) entry.target.style.transitionDelay = delay + 'ms';
+            entry.target.classList.add('is-in');
+            revealObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+    : null;
+
+function observeReveals(root) {
+    (root || document).querySelectorAll('.reveal:not(.is-in)').forEach(function (el) {
+        if (revealObserver) revealObserver.observe(el);
+        else el.classList.add('is-in');
     });
 }
 
-// 사업 포트폴리오 아이템 렌더링 함수
+// 모바일 네비게이션 토글
+function closeNav() {
+    if (!navMenu || !navToggle) return;
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', '메뉴 열기');
+}
+
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+        const open = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+    });
+
+    navMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeNav);
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+            closeNav();
+            navToggle.focus();
+        }
+    });
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeNav();
+    });
+}
+
+// 스크롤 시 네비게이션 배경 강화
+if (navbar) {
+    const onScroll = function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}
+
+// ---------------------------------------------------------
+// AI 솔루션 포트폴리오 렌더링
+// ---------------------------------------------------------
 function renderMenu(category) {
     if (!menuGrid) return;
     const items = menuData[category] || [];
     menuGrid.innerHTML = '';
-    
-    items.forEach(item => {
+
+    items.forEach(function (item) {
         const menuItem = document.createElement('div');
-        menuItem.className = 'menu-item';
-        
-        const featuresList = item.features.map(feature => `<li>${feature}</li>`).join('');
-        
-        const logoHtml = item.logo ? `<img src="${item.logo}" alt="${item.name} Logo" class="project-logo">` : '';
-        
-        menuItem.innerHTML = `
-            ${logoHtml}
-            <div class="project-header">
-                <h3 class="menu-item-name">${item.name}</h3>
-                <span class="project-subtitle">${item.subtitle}</span>
-            </div>
-            <p class="project-tagline">${item.description}</p>
-            <p class="project-detail">${item.detail}</p>
-            <div class="project-features">
-                <h4>핵심 기능 (Key Features)</h4>
-                <ul>${featuresList}</ul>
-            </div>
-            <div class="project-tech">
-                <h4>기술 스택 (Tech Stack)</h4>
-                <p>${item.tech}</p>
-            </div>
-        `;
-        menuItem.setAttribute('data-aos', 'fade-up');
-        menuItem.setAttribute('data-aos-duration', '800');
+        menuItem.className = 'menu-item reveal';
+
+        const featuresList = item.features.map(function (feature) {
+            return '<li>' + feature + '</li>';
+        }).join('');
+
+        const logoHtml = item.logo
+            ? '<img src="' + item.logo + '" alt="' + item.name + ' 로고" class="project-logo" loading="lazy">'
+            : '';
+
+        menuItem.innerHTML =
+            '<div class="project-main">' +
+                logoHtml +
+                '<div class="project-header">' +
+                    '<h3 class="menu-item-name">' + item.name + '</h3>' +
+                    '<span class="project-subtitle">' + item.subtitle + '</span>' +
+                '</div>' +
+                '<p class="project-tagline">' + item.description + '</p>' +
+                '<p class="project-detail">' + item.detail + '</p>' +
+            '</div>' +
+            '<div class="project-aside">' +
+                '<div class="project-features">' +
+                    '<h4>핵심 기능 (Key Features)</h4>' +
+                    '<ul>' + featuresList + '</ul>' +
+                '</div>' +
+                '<div class="project-tech">' +
+                    '<h4>기술 스택 (Tech Stack)</h4>' +
+                    '<p>' + item.tech + '</p>' +
+                '</div>' +
+            '</div>';
+
         menuGrid.appendChild(menuItem);
-        
-        // AOS 새로고침 (동적으로 추가된 요소에 애니메이션 적용)
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
     });
-    
-    // 페이드인 애니메이션
-    const menuItems = menuGrid.querySelectorAll('.menu-item');
-    menuItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            item.style.transition = 'all 0.5s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
+
+    observeReveals(menuGrid);
 }
 
-// 탭 버튼 클릭 이벤트
-tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // 모든 탭 버튼에서 active 클래스 제거
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        
-        // 클릭한 버튼에 active 클래스 추가
-        button.classList.add('active');
-        
-        // 선택한 카테고리로 메뉴 렌더링
-        const category = button.getAttribute('data-category');
-        renderMenu(category);
-    });
-});
-
-// 네비게이션 링크 클릭 시 모바일 메뉴 닫기
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            navMenu.classList.remove('active');
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-});
-
-// 스크롤 시 네비게이션 스타일 변경
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// 초기 사업 포트폴리오 렌더링 (SiloVisionX)
-document.addEventListener('DOMContentLoaded', () => {
-    if (menuGrid) renderMenu('silo-vision');
-    
-    // AOS 초기화
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100
+// 탭
+tabButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        tabButtons.forEach(function (btn) {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
         });
-    }
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+        renderMenu(button.getAttribute('data-category'));
+    });
 });
 
-// AOS가 있으면 기존 Intersection Observer는 사용하지 않음
-// AOS가 모든 스크롤 애니메이션을 처리합니다
+// 초기 렌더링
+document.addEventListener('DOMContentLoaded', function () {
+    renderMenu('silo-vision');
+    observeReveals(document);
+});
 
-
+if (document.readyState !== 'loading') {
+    renderMenu('silo-vision');
+    observeReveals(document);
+}

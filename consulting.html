@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>컨설팅 신청 - AICANSMILE</title>
+    <meta name="theme-color" content="#0D1B2A">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="consulting.css">
 </head>
 <body>
     <!-- 네비게이션 -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo-text">AICANSMILE</a>
-            </div>
-            <ul class="nav-menu">
+            <a class="brand" href="index.html" aria-label="AICANSMILE 홈">
+                <img class="brand-seal" src="assets/aicansmile_logo_320.png" width="320" height="320" alt="AICANSMILE 골드 블롭 엠블럼">
+                <span class="brand-text">
+                    <span class="brand-name">AICANSMILE</span>
+                    <span class="brand-tag">AI DRONE · AGRI · ODA</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">홈</a></li>
                 <li><a href="index.html#core-solution">핵심 솔루션</a></li>
                 <li><a href="index.html#oda">ODA 확장</a></li>
                 <li><a href="index.html#references">R&amp;D 레퍼런스</a></li>
                 <li><a href="index.html#contact">연락처</a></li>
+                <li class="nav-cta"><a href="index.html#contact">바로 연락</a></li>
             </ul>
-            <button class="nav-toggle" aria-label="메뉴 토글">
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -33,21 +43,21 @@
     <!-- 컨설팅 신청 섹션 -->
     <section class="consulting-section">
         <div class="container">
-            <div class="consulting-header" data-aos="fade-up">
-                <h1 class="consulting-title">📝 AI 컨설팅 신청</h1>
+            <div class="consulting-header reveal">
+                <h1 class="consulting-title">AI 컨설팅 신청</h1>
                 <p class="consulting-subtitle">AI 솔루션 도입부터 AI 거버넌스·사이버보안·감리 자문, 실무 교육까지 — 전문 컨설턴트와의 상담을 거쳐 진행됩니다.</p>
                 <p class="consulting-note"><strong>*표시</strong>는 <strong>필수 입력 내용</strong>입니다.</p>
                 <p class="consulting-contact">문의: <a href="tel:010-3201-7076">010-3201-7076</a> · <a href="mailto:aicansmile8@gmail.com">aicansmile8@gmail.com</a></p>
             </div>
 
-            <form class="consulting-form" id="consultingForm" name="consulting" method="POST" action="/consulting.html" data-netlify="true" netlify-honeypot="bot-field" data-aos="fade-up" data-aos-delay="100">
+            <form class="consulting-form reveal" id="consultingForm" name="consulting" method="POST" action="/consulting.html" data-netlify="true" netlify-honeypot="bot-field" data-delay="100">
                 <input type="hidden" name="form-name" value="consulting">
                 <p class="bot-field" hidden aria-hidden="true">
                     <label>이 필드는 비워 주세요. <input name="bot-field"></label>
                 </p>
                 <!-- 사업자 정보 -->
                 <div class="form-section">
-                    <h2 class="form-section-title">👤 사업자 정보</h2>
+                    <h2 class="form-section-title">사업자 정보</h2>
                     <div class="form-group">
                         <label for="businessType">사업자 유형 <span class="required">*</span></label>
                         <div class="radio-group">
@@ -77,7 +87,7 @@
 
                 <!-- 담당자 정보 및 연락처 -->
                 <div class="form-section">
-                    <h2 class="form-section-title">📞 담당자 정보 및 연락처</h2>
+                    <h2 class="form-section-title">담당자 정보 및 연락처</h2>
                     <div class="form-group">
                         <label for="contactName">담당자명 <span class="required">*</span></label>
                         <input type="text" id="contactName" name="contactName" placeholder="담당자명을 입력하세요" required>
@@ -142,7 +152,7 @@
 
                 <!-- 컨설팅 신청 내용 -->
                 <div class="form-section">
-                    <h2 class="form-section-title">💡 컨설팅 신청 내용</h2>
+                    <h2 class="form-section-title">컨설팅 신청 내용</h2>
                     <div class="form-group">
                         <label for="consultingContent">컨설팅 신청 내용 <span class="required">*</span></label>
                         <textarea id="consultingContent" name="consultingContent" rows="6" placeholder="컨설팅을 원하는 내용(예: AI 거버넌스·사이버보안 자문, ODA 보안 요구사항·감리 대응, 보안 진단, 실무 교육, 마이그레이션, 인프라 구축 등)을 상세히 입력해주세요" required></textarea>
@@ -167,7 +177,7 @@
 
                 <!-- 개인정보 수집/이용 동의 -->
                 <div class="form-section">
-                    <h2 class="form-section-title">✅ 개인정보 수집/이용 동의 (필수)</h2>
+                    <h2 class="form-section-title">개인정보 수집/이용 동의 (필수)</h2>
                     <div class="privacy-info">
                         <table class="privacy-table">
                             <tr>
@@ -200,7 +210,7 @@
 
                 <!-- 유의사항 -->
                 <div class="form-section notice-section">
-                    <h2 class="form-section-title">⚠️ 유의사항</h2>
+                    <h2 class="form-section-title">유의사항</h2>
                     <ul class="notice-list">
                         <li><strong>회신 메일 및 휴대 번호</strong>를 정확하게 입력하셨나요? 부정확한 정보 기입 시 회신되지 않습니다.</li>
                         <li>컨설팅 신청 시 <strong>영업일 기준 1~2일</strong> 소요될 수 있습니다.</li>
@@ -221,8 +231,15 @@
 
     <!-- 푸터 -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 AICANSMILE. All rights reserved.</p>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img src="assets/aicansmile_logo_320.png" width="320" height="320" alt="" aria-hidden="true" loading="lazy">
+                <div>
+                    <p class="footer-name">AICANSMILE</p>
+                    <p class="footer-motto">AI can make the world smile.</p>
+                </div>
+            </div>
+            <p class="footer-copy">&copy; 2026 AICANSMILE. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/soyoungpark-aicansmile/" target="_blank" rel="noopener noreferrer" aria-label="링크드인">LinkedIn</a>
                 <a href="https://github.com/psoy" target="_blank" rel="noopener noreferrer" aria-label="깃허브">GitHub</a>
@@ -230,20 +247,6 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                if (typeof AOS === 'undefined') {
-                    document.querySelectorAll('[data-aos]').forEach(function (el) {
-                        el.removeAttribute('data-aos');
-                        el.removeAttribute('data-aos-delay');
-                        el.removeAttribute('data-aos-duration');
-                    });
-                }
-            }, 1200);
-        });
-    </script>
     <script src="script.js"></script>
     <script src="consulting.js"></script>
 </body>
