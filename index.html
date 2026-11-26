@@ -21,7 +21,8 @@
     <link rel="apple-touch-icon" href="assets/favicon-180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style-ko.css">
 </head>
 <body data-page="home" data-hero-theme="purple">
@@ -44,7 +45,7 @@
                 <li><a href="#references">R&amp;D 레퍼런스</a></li>
                 <li><a href="#about">회사 소개</a></li>
                 <li><a href="#contact">연락처</a></li>
-                <li class="nav-cta"><a href="consulting.html">협업 문의</a></li>
+                <li class="nav-cta"><a href="consulting.html">정부 ODA AI솔루션 제작 문의</a></li>
                 <li class="nav-lang"><span class="lang-switch" role="group" aria-label="언어 선택">
                     <span class="lang-opt is-active" aria-current="page" lang="ko">KR</span>
                     <a class="lang-opt" href="en.html" hreflang="en" lang="en" aria-label="Switch to the English page">EN</a>
@@ -83,7 +84,7 @@
                         핵심 솔루션 보기
                         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="consulting.html" class="btn btn-ghost">정부·ODA 협업 문의</a>
+                    <a href="consulting.html" class="btn btn-ghost">정부 ODA AI솔루션 제작 문의</a>
                 </div>
                 <p class="hero-keywords">AI · 드론 · 농업 · 사이버보안 · 개도국 ODA</p>
             </div>
@@ -106,13 +107,7 @@
                 <ul class="hero-ecosystem-list">
                     <li>
                         <a class="eco-link" href="https://www.worldbank.org/" target="_blank" rel="noopener noreferrer" aria-label="세계은행(World Bank Group) 공식 홈페이지 — 새 창에서 열림">
-                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
-                                <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round">
-                                    <circle cx="17" cy="17" r="14.1"/>
-                                    <ellipse cx="17" cy="17" rx="6.3" ry="14.1"/>
-                                    <path d="M3.85 11.9h26.3M3.85 22.1h26.3"/>
-                                </g>
-                            </svg>
+                            <img class="eco-logo eco-logo-mark" src="assets/logos/worldbank-mark.svg" alt="THE WORLD BANK" width="31" height="30" decoding="async">
                             <span class="eco-text">
                                 <span class="eco-word">THE WORLD BANK</span>
                                 <span class="eco-sub">IBRD · IDA</span>
@@ -121,30 +116,12 @@
                     </li>
                     <li>
                         <a class="eco-link" href="https://www.koica.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="KOICA 한국국제협력단 공식 홈페이지 — 새 창에서 열림">
-                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
-                                <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round">
-                                    <circle cx="17" cy="17" r="14.1"/>
-                                    <path d="M3.7 21.6h26.6"/>
-                                    <path d="M9.6 21.6a7.4 7.4 0 0 1 14.8 0"/>
-                                </g>
-                            </svg>
-                            <span class="eco-text">
-                                <span class="eco-word">KOICA</span>
-                                <span class="eco-sub">한국국제협력단</span>
-                            </span>
+                            <img class="eco-logo eco-logo-koica" src="assets/logos/koica-wordmark.png" alt="KOICA" width="87" height="24" decoding="async">
                         </a>
                     </li>
                     <li>
                         <a class="eco-link" href="https://www.undp.org/" target="_blank" rel="noopener noreferrer" aria-label="UNDP 유엔개발계획 공식 홈페이지 — 새 창에서 열림">
-                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
-                                <circle cx="17" cy="17" r="14.1" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
-                                <g fill="currentColor">
-                                    <circle cx="17" cy="6.6" r="2.1"/><circle cx="24.35" cy="9.65" r="2.1"/>
-                                    <circle cx="27.4" cy="17" r="2.1"/><circle cx="24.35" cy="24.35" r="2.1"/>
-                                    <circle cx="17" cy="27.4" r="2.1"/><circle cx="9.65" cy="24.35" r="2.1"/>
-                                    <circle cx="6.6" cy="17" r="2.1"/><circle cx="9.65" cy="9.65" r="2.1"/>
-                                </g>
-                            </svg>
+                            <img class="eco-logo eco-logo-mark" src="assets/logos/undp-mark.svg" alt="UNDP" width="29" height="30" decoding="async">
                             <span class="eco-text">
                                 <span class="eco-word">UNDP</span>
                                 <span class="eco-sub">유엔개발계획</span>
@@ -153,15 +130,7 @@
                     </li>
                     <li>
                         <a class="eco-link" href="https://www.ai4d.ai/" target="_blank" rel="noopener noreferrer" aria-label="AI4D 인공지능 개발 프로그램(FCDO·IDRC) 공식 홈페이지 — 새 창에서 열림">
-                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
-                                <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
-                                    <path d="M9.6 23.8 17 9.4l7.4 14.4z" opacity="0.75"/>
-                                    <path d="M17 9.4v9.1" opacity="0.4"/>
-                                </g>
-                                <g fill="currentColor">
-                                    <circle cx="9.6" cy="23.8" r="2.5"/><circle cx="17" cy="9.4" r="2.5"/><circle cx="24.4" cy="23.8" r="2.5"/>
-                                </g>
-                            </svg>
+                            <img class="eco-logo eco-logo-mark" src="assets/logos/ai4d-mark.svg" alt="AI4D" width="30" height="30" decoding="async">
                             <span class="eco-text">
                                 <span class="eco-word">AI4D</span>
                                 <span class="eco-sub">AI FOR DEVELOPMENT</span>
@@ -796,6 +765,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="hero-canvas.js"></script>
+    <script src="hero-aurora.js"></script>
 </body>
 </html>

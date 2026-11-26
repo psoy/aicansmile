@@ -48,8 +48,15 @@
     --max: 1200px;
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
-    --serif: 'Noto Serif KR', 'Nanum Myeongjo', 'Apple SD Gothic Neo', Georgia, 'Times New Roman', serif;
-    --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    /* 24K 리치 골드 — CTA 버튼 전용(보라 오로라 바탕 위에서만) */
+    --rich-gold-1: #C9A227;
+    --rich-gold-2: #E8C967;
+    --rich-gold-3: #D4AE3D;
+    --rich-gold-grad: linear-gradient(135deg, #C9A227 0%, #E8C967 55%, #D4AE3D 100%);
+
+    /* 국문은 첨부 시안과 같은 단일 산세리프(Pretendard → Noto Sans KR 폴백) */
+    --sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    --serif: var(--sans);
 
     /* legacy aliases — consulting.css 등 기존 페이지가 참조하는 변수명 */
     --primary-color: var(--navy-900);
@@ -127,11 +134,11 @@ button { font: inherit; color: inherit; }
 .section-head { max-width: 900px; margin-bottom: clamp(40px, 5vw, 64px); }
 
 .section-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.8rem, 3.1vw, 2.7rem);
-    line-height: 1.38;
-    letter-spacing: -0.015em;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+    line-height: 1.32;
+    letter-spacing: -0.032em;
     color: var(--ink);
 }
 .section-title em {
@@ -171,15 +178,24 @@ button { font: inherit; color: inherit; }
 }
 .btn svg { width: 18px; height: 18px; flex: 0 0 auto; }
 
+/* 24K 리치골드 — 보라 오로라 바탕 위 핵심 CTA */
 .btn-gold {
-    background: var(--gold-grad);
-    color: #1D1233;
-    box-shadow: 0 10px 26px rgba(139, 111, 207, 0.28);
+    background: var(--rich-gold-grad);
+    color: #111827;
+    font-weight: 700;
+    box-shadow: 0 10px 26px rgba(201, 162, 39, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.38);
 }
 .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(139, 111, 207, 0.36);
+    background: var(--rich-gold-grad);
+    color: #111827;
+    box-shadow: 0 16px 36px rgba(232, 201, 103, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
+.btn-gold:focus-visible {
+    outline: 2px solid var(--rich-gold-2);
+    outline-offset: 3px;
+}
+.btn-gold svg { stroke: currentColor; }
 
 .btn-ghost {
     border-color: rgba(183, 156, 232, 0.42);
@@ -231,10 +247,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand-name {
-    font-family: var(--serif);
-    font-size: 1.02rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     color: var(--gold-3);
 }
 .brand-tag {
@@ -268,11 +284,15 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .nav-menu a:hover::after { width: 100%; }
 
 .nav-menu .nav-cta a {
-    padding: 9px 20px;
-    border: 1px solid rgba(183, 156, 232, 0.45);
+    padding: 9px 18px;
+    border: 1px solid transparent;
     border-radius: 999px;
-    color: var(--gold-3);
-    font-size: 0.85rem;
+    background: var(--rich-gold-grad);
+    color: #111827;
+    font-size: 0.84rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(201, 162, 39, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.32);
 }
 .nav-menu .nav-cta a::after { display: none; }
 
@@ -315,9 +335,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 }
 
 .nav-menu .nav-cta a:hover {
-    background: var(--gold-grad);
+    background: var(--rich-gold-grad);
     border-color: transparent;
-    color: #1D1233;
+    color: #111827;
+    box-shadow: 0 10px 26px rgba(232, 201, 103, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .nav-toggle {
@@ -350,10 +371,12 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .hero {
     position: relative;
     isolation: isolate;
+    /* 첨부 시안의 오로라 바탕 — 플럼 그라데이션 위에 보라·청록 빛무리 */
     background:
-        radial-gradient(120% 90% at 82% 8%, rgba(75, 63, 143, 0.34) 0%, rgba(24, 15, 42, 0) 58%),
-        radial-gradient(90% 70% at 8% 0%, rgba(139, 111, 207, 0.14) 0%, rgba(24, 15, 42, 0) 60%),
-        linear-gradient(172deg, #180F2A 0%, #241838 52%, #180F2A 100%);
+        radial-gradient(760px 460px at 12% -8%, rgba(126, 105, 148, 0.55) 0%, transparent 62%),
+        radial-gradient(620px 420px at 94% 6%, rgba(212, 165, 116, 0.14) 0%, transparent 60%),
+        radial-gradient(520px 400px at 58% 92%, rgba(96, 190, 172, 0.10) 0%, transparent 70%),
+        linear-gradient(158deg, #2b2039 0%, #3a2c50 54%, #221929 100%);
     color: var(--alabaster);
     overflow: hidden;
     padding-bottom: clamp(40px, 5vw, 64px);
@@ -366,13 +389,18 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    /* 오로라 커튼이 또렷하게 살아 있도록(첨부 시안과 동일 톤) */
+    opacity: 0.9;
+}
+@media (prefers-reduced-motion: reduce) {
+    #hero-canvas { opacity: 0.8; }
 }
 .hero-glow {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(60% 50% at 78% 30%, rgba(183, 156, 232, 0.13), transparent 70%);
+    background: radial-gradient(60% 50% at 78% 30%, rgba(183, 156, 232, 0.08), transparent 70%);
 }
 
 .hero-inner {
@@ -405,29 +433,28 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 }
 
 .hero-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.95rem, 3.35vw, 2.95rem);
-    line-height: 1.36;
-    letter-spacing: -0.02em;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: clamp(1.9rem, 2.95vw, 2.8rem);
+    line-height: 1.32;
+    letter-spacing: -0.035em;
     color: #FAF7FF;
     text-wrap: balance;
 }
+/* 시안과 같이 제목은 한 덩어리 흰색 — 그라데이션 강조 없음 */
 .hero-title em {
     font-style: normal;
-    background: var(--gold-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: var(--gold-2);
+    color: #FAF7FF;
+    -webkit-text-fill-color: #FAF7FF;
+    background: none;
 }
 
 .hero-subtitle {
-    margin-top: 26px;
-    font-size: clamp(0.94rem, 1.1vw, 1.02rem);
-    line-height: 1.9;
-    color: rgba(248, 246, 252, 0.72);
-    max-width: 34em;
+    margin-top: 24px;
+    font-size: clamp(0.94rem, 1.05vw, 1rem);
+    line-height: 1.82;
+    color: rgba(248, 246, 252, 0.76);
+    max-width: 33em;
 }
 
 .hero-cred {
@@ -496,14 +523,17 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     outline-offset: 6px;
     border-radius: 4px;
 }
-.eco-mark {
-    width: 30px;
+/* 기관 공식 로고(실제 아트워크) — 흰색 처리된 SVG/PNG */
+.eco-logo {
     height: 30px;
+    width: auto;
     flex: 0 0 auto;
-    color: inherit;
-    transition: transform 0.28s var(--ease);
+    object-fit: contain;
+    opacity: 0.9;
+    transition: transform 0.28s var(--ease), opacity 0.28s var(--ease);
 }
-.eco-link:hover .eco-mark { transform: translateY(-1px); }
+.eco-logo-koica { height: 25px; }
+.eco-link:hover .eco-logo { transform: translateY(-1px); opacity: 1; }
 .eco-text { display: flex; flex-direction: column; line-height: 1.1; }
 .eco-word {
     font-size: 0.8rem;
@@ -528,7 +558,8 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px 14px;
     }
-    .eco-mark { width: 26px; height: 26px; }
+    .eco-logo { height: 25px; }
+    .eco-logo-koica { height: 21px; }
     .eco-word { font-size: 0.7rem; letter-spacing: 0.05em; }
     .eco-sub { font-size: 0.5rem; margin-top: 4px; }
 }
@@ -609,10 +640,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     background: linear-gradient(180deg, transparent, rgba(183, 156, 232, 0.28), transparent);
 }
 .kpi-value {
-    font-family: var(--serif);
-    font-size: clamp(1.4rem, 2.1vw, 1.85rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-family: var(--sans);
+    font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
     background: var(--gold-grad);
     -webkit-background-clip: text;
     background-clip: text;
@@ -688,22 +719,22 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .card-kicker-gold { color: var(--gold-2); }
 
 .card-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.5rem, 2.2vw, 1.9rem);
-    letter-spacing: -0.01em;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: clamp(1.28rem, 1.75vw, 1.56rem);
+    letter-spacing: -0.03em;
     color: var(--ink);
-    line-height: 1.3;
+    line-height: 1.34;
 }
 .b-cyber .card-title-sm,
 .b-oda .card-title-sm { color: #FAF7FF; }
 
 .card-title-sm {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.08rem, 1.5vw, 1.34rem);
-    line-height: 1.42;
-    letter-spacing: -0.01em;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.02rem, 1.35vw, 1.2rem);
+    line-height: 1.44;
+    letter-spacing: -0.025em;
     color: var(--ink);
 }
 
@@ -839,16 +870,17 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .flow-item + .flow-item { padding-left: 28px; }
 .flow-num {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.9rem;
     letter-spacing: 0.14em;
     color: var(--gold-1);
     margin-bottom: 14px;
 }
 .flow-item h3 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.12rem;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.08rem;
+    letter-spacing: -0.025em;
     color: var(--ink);
     margin-bottom: 10px;
 }
@@ -870,11 +902,11 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .metric-row li + li { padding-left: 24px; }
 .metric-row li:last-child { border-right: none; }
 .metric-value {
-    font-family: var(--serif);
-    font-size: clamp(1.25rem, 1.9vw, 1.6rem);
-    font-weight: 500;
+    font-family: var(--sans);
+    font-size: clamp(1.22rem, 1.75vw, 1.48rem);
+    font-weight: 800;
     color: var(--ink);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.035em;
     margin-bottom: 8px;
 }
 .metric-label { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
@@ -964,14 +996,15 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     backdrop-filter: blur(8px);
 }
 .oda-num {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.15rem;
     color: var(--gold-2);
 }
 .oda-card h3 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.1rem;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.06rem;
+    letter-spacing: -0.025em;
     color: #FAF7FF;
     margin: 6px 0 8px;
 }
@@ -984,9 +1017,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     border: 1px solid rgba(183, 156, 232, 0.3);
 }
 .oda-value h3 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.05rem;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
     color: var(--gold-3);
     margin-bottom: 12px;
 }
@@ -1052,16 +1086,17 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 }
 .why-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .why-num {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.9rem;
     letter-spacing: 0.16em;
     color: var(--gold-1);
 }
 .why-card h3 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.12rem;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.08rem;
     line-height: 1.45;
+    letter-spacing: -0.025em;
     color: var(--ink);
     margin: 10px 0 16px;
 }
@@ -1150,11 +1185,11 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 }
 .project-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
 .menu-item-name {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.3rem;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 1.24rem;
     color: var(--ink);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
 }
 .project-subtitle {
     font-size: 0.68rem;
@@ -1223,7 +1258,7 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     border: 1px solid rgba(183, 156, 232, 0.18);
 }
 .advisory-copy h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: clamp(1.25rem, 2vw, 1.6rem);
     color: #FAF7FF;
@@ -1288,8 +1323,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     margin-bottom: 12px;
 }
 .mv-title {
-    font-family: var(--serif);
-    font-size: 1.06rem;
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--ink);
     line-height: 1.5;
     margin-bottom: 8px;
@@ -1302,9 +1339,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     border-top: 1px solid var(--line);
 }
 .pipelines h3 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -0.02em;
     color: var(--ink);
     margin-bottom: 18px;
 }
@@ -1345,9 +1383,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     fill: var(--gold-1);
 }
 .cyc-title {
-    font-family: var(--serif);
-    font-size: 20px;
-    font-weight: 600;
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     fill: var(--ink);
 }
 .cyc-line {
@@ -1356,7 +1395,7 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     fill: var(--muted);
 }
 .cyc-note {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 14px;
     fill: var(--emerald);
     text-anchor: middle;
@@ -1449,9 +1488,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { width: 34px; height: 34px; opacity: 0.9; }
 .footer-name {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.9rem;
-    letter-spacing: 0.18em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     color: var(--gold-3);
 }
 .footer-motto { font-size: 0.7rem; color: rgba(248, 246, 252, 0.4); }
@@ -1479,6 +1519,34 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     transform: none;
 }
 
+/* ---------------------------------------------------------
+   국문 타이포 정돈 — 산세리프(Pretendard) 기준 굵기·자간
+   (반응형 규칙보다 앞에 두어 모바일 크기 규칙이 이긴다)
+   --------------------------------------------------------- */
+.hero-eyebrow { font-weight: 700; letter-spacing: 0.2em; }
+.hero-cred { font-size: 0.84rem; color: rgba(248, 246, 252, 0.72); }
+.hero-cred strong { font-weight: 700; }
+.hero-keywords { font-weight: 600; letter-spacing: 0.14em; }
+.hero-buttons { margin-top: 32px; }
+
+.section-title em { font-weight: 800; }
+.section-lead { font-size: clamp(0.93rem, 1.05vw, 1rem); line-height: 1.8; }
+
+.eyebrow, .card-kicker { font-weight: 700; }
+
+.flow-num,
+.why-num,
+.oda-num { font-weight: 700; letter-spacing: 0.16em; }
+
+.cyc-note { font-weight: 700; }
+.cycle-list li strong { font-weight: 700; letter-spacing: -0.02em; }
+
+/* CTA 버튼 문구가 길어도 한 줄로 유지되게 */
+.btn { white-space: nowrap; }
+
+/* ---------------------------------------------------------
+   반응형
+   --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
@@ -1498,9 +1566,9 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
     .kpi-bar { grid-template-columns: repeat(2, 1fr); }
     .kpi:nth-child(3)::before { display: none; }
     .kpi:nth-child(3), .kpi:nth-child(4) { border-top: 1px solid rgba(183, 156, 232, 0.16); }
-    .nav-menu { gap: 14px; }
-    .nav-menu a { font-size: 0.84rem; }
-    .nav-menu .nav-cta a { padding: 8px 15px; font-size: 0.79rem; }
+    .nav-menu { gap: 11px; }
+    .nav-menu a { font-size: 0.79rem; }
+    .nav-menu .nav-cta a { padding: 7px 12px; font-size: 0.7rem; letter-spacing: -0.02em; }
     .lang-switch .lang-opt { min-width: 30px; padding: 5px 6px; font-size: 0.62rem; }
     .bento {
         grid-template-areas:
@@ -1645,7 +1713,7 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
         text-transform: uppercase;
     }
     .cycle-list li strong {
-        font-family: var(--serif);
+        font-family: var(--sans);
         font-size: 0.98rem;
         color: var(--ink);
     }

@@ -495,14 +495,17 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     outline-offset: 6px;
     border-radius: 4px;
 }
-.eco-mark {
-    width: 30px;
+/* 기관 공식 로고(실제 아트워크) — 흰색 처리된 SVG/PNG */
+.eco-logo {
     height: 30px;
+    width: auto;
     flex: 0 0 auto;
-    color: inherit;
-    transition: transform 0.28s var(--ease);
+    object-fit: contain;
+    opacity: 0.9;
+    transition: transform 0.28s var(--ease), opacity 0.28s var(--ease);
 }
-.eco-link:hover .eco-mark { transform: translateY(-1px); }
+.eco-logo-koica { height: 25px; }
+.eco-link:hover .eco-logo { transform: translateY(-1px); opacity: 1; }
 .eco-text { display: flex; flex-direction: column; line-height: 1.1; }
 .eco-word {
     font-size: 0.8rem;
@@ -527,7 +530,8 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px 14px;
     }
-    .eco-mark { width: 26px; height: 26px; }
+    .eco-logo { height: 25px; }
+    .eco-logo-koica { height: 21px; }
     .eco-word { font-size: 0.7rem; letter-spacing: 0.05em; }
     .eco-sub { font-size: 0.5rem; margin-top: 4px; }
 }
