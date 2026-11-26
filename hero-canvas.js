@@ -1,233 +1,384 @@
 /**
- * Hero Canvas Fluid Simulation
- * High-performance particle system with spatial hashing and mouse interaction.
+ * AICANSMILE — Hero Aurora Particles
+ * -----------------------------------------------------------
+ * Hero 첫 화면 바탕의 "은은한 오로라" 배경.
+ *
+ * - 흐르는 오로라 커튼(보라·청록·골드) 위에 작은 입자들이 천천히 떠다닌다.
+ * - 마우스 이동 / 모바일 터치(touchstart·touchmove)에 입자가 유동적으로 반응한다.
+ *   (커서 주변은 살짝 밀려나며 소용돌이치고, 커서 자리에 오로라 빛이 번진다)
+ * - 텍스트 가독성과 버튼 클릭을 방해하지 않도록 pointer-events: none,
+ *   낮은 투명도, 화면 밖/탭 비활성 시 렌더링 정지.
+ * - prefers-reduced-motion 사용자는 정지된 오로라 1프레임만 그린다.
  */
 
-const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d', { alpha: true });
+(function () {
+    'use strict';
 
-let width, height;
-let particles = [];
-const PARTICLE_COUNT = 3000;
-const GRID_SIZE = 40; // Spatial grid cell size
-let grid = {};
+    var hero = document.querySelector('.hero');
+    var canvas = document.getElementById('hero-canvas');
+    if (!hero || !canvas) return;
 
-// Mouse interaction state
-const mouse = {
-    x: -1000,
-    y: -1000,
-    isActive: false,
-    isClicking: false
-};
+    var ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
 
-// Configuration
-const config = {
-    baseSpeed: 0.5,
-    maxSpeed: 8,
-    friction: 0.96,
-    colorSpeed: 0.05, // Speed of color hue change
-    mouseForce: 1.5,
-    clickForce: 15,   // Blackhole force
-    particleSize: 1.8
-};
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Resize handling
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = document.querySelector('.hero').clientHeight || window.innerHeight;
-}
+    var width = 0;
+    var height = 0;
+    var dpr = 1;
 
-window.addEventListener('resize', resize);
-resize();
+    // 브랜드 팔레트 — 플럼(보라) · 청록 · 골드
+    var PALETTE = [
+        { rgb: '168, 138, 214', weight: 0.42 }, // 라벤더/바이올렛
+        { rgb: '122, 176, 190', weight: 0.26 }, // 오로라 청록
+        { rgb: '212, 165, 116', weight: 0.18 }, // 브랜드 골드
+        { rgb: '196, 160, 220', weight: 0.14 }  // 연보라
+    ];
 
-// Mouse Event Listeners
-document.querySelector('.hero').addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-    mouse.isActive = true;
-});
+    var pointer = {
+        x: -9999,
+        y: -9999,
+        tx: -9999,
+        ty: -9999,
+        active: false,
+        lastMove: 0,
+        strength: 0
+    };
 
-document.querySelector('.hero').addEventListener('mouseleave', () => {
-    mouse.isActive = false;
-    mouse.x = -1000;
-    mouse.y = -1000;
-});
+    var particles = [];
+    var sprites = {};
+    var curtains = [
+        { rgb: '150, 120, 205', baseY: 0.18, amp: 46, thickness: 0.34, phase: 0.0, speed: 0.16, alpha: 0.20, freq: 0.0032 },
+        { rgb: '104, 168, 176', baseY: 0.42, amp: 62, thickness: 0.40, phase: 1.9, speed: 0.11, alpha: 0.16, freq: 0.0021 },
+        { rgb: '212, 165, 116', baseY: 0.62, amp: 34, thickness: 0.26, phase: 3.6, speed: 0.09, alpha: 0.11, freq: 0.0026 }
+    ];
 
-document.querySelector('.hero').addEventListener('mousedown', () => {
-    mouse.isClicking = true;
-});
+    var rafId = null;
+    var running = false;
+    var inView = true;
+    var t0 = performance.now();
 
-document.querySelector('.hero').addEventListener('mouseup', () => {
-    mouse.isClicking = false;
-});
+    /* ---------------------------------------------------------
+       캔버스 크기
+       --------------------------------------------------------- */
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = hero.clientWidth;
+        height = hero.clientHeight;
+        if (!width || !height) return;
 
-// Spatial Hash Helper
-function getGridKey(x, y) {
-    const gx = Math.floor(x / GRID_SIZE);
-    const gy = Math.floor(y / GRID_SIZE);
-    return `${gx},${gy}`;
-}
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-class Particle {
-    constructor() {
-        this.reset();
+        buildParticles();
+        if (reduceMotion) renderStatic();
     }
 
-    reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * config.baseSpeed;
-        this.vy = (Math.random() - 0.5) * config.baseSpeed;
-        this.hue = Math.random() * 60 + 120; // Greens to Cyans (initial)
-        this.size = Math.random() * config.particleSize + 0.5;
-        this.density = 0;
+    /* ---------------------------------------------------------
+       입자 스프라이트 (글로우 점) — 매 프레임 shadowBlur 대신 캐시
+       --------------------------------------------------------- */
+    function makeSprite(rgb) {
+        var size = 64;
+        var c = document.createElement('canvas');
+        c.width = c.height = size;
+        var g = c.getContext('2d');
+        var grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+        grad.addColorStop(0, 'rgba(' + rgb + ', 1)');
+        grad.addColorStop(0.28, 'rgba(' + rgb + ', 0.55)');
+        grad.addColorStop(0.6, 'rgba(' + rgb + ', 0.12)');
+        grad.addColorStop(1, 'rgba(' + rgb + ', 0)');
+        g.fillStyle = grad;
+        g.fillRect(0, 0, size, size);
+        return c;
     }
 
-    update() {
-        // Apply Physics
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Friction
-        this.vx *= config.friction;
-        this.vy *= config.friction;
-
-        // Base movement
-        if (!mouse.isClicking) {
-             // Gentle ambient drift if not clicking
-             const time = Date.now() * 0.001;
-             this.vx += Math.sin(time + this.y * 0.01) * 0.02;
-             this.vy += Math.cos(time + this.x * 0.01) * 0.02;
+    function buildSprites() {
+        for (var i = 0; i < PALETTE.length; i++) {
+            sprites[i] = makeSprite(PALETTE[i].rgb);
         }
-
-        // Mouse Interaction
-        if (mouse.isActive) {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const distSq = dx * dx + dy * dy;
-            const dist = Math.sqrt(distSq);
-
-            if (mouse.isClicking) {
-                // Blackhole effect (Suck in)
-                if (dist > 10) { // Avoid singularity
-                    const force = config.clickForce / dist;
-                    this.vx += dx * force * 0.01;
-                    this.vy += dy * force * 0.01;
-                }
-            } else {
-                // Repulsion / Flow effect
-                const interactionRadius = 200;
-                if (dist < interactionRadius) {
-                    const angle = Math.atan2(dy, dx);
-                    const force = (interactionRadius - dist) / interactionRadius;
-                    
-                    // Push away slightly perpendicular to create swirl/fluid feel
-                    this.vx -= Math.cos(angle) * force * config.mouseForce;
-                    this.vy -= Math.sin(angle) * force * config.mouseForce;
-                }
-            }
-        }
-
-        // Speed limit
-        const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-        if (speed > config.maxSpeed) {
-            this.vx = (this.vx / speed) * config.maxSpeed;
-            this.vy = (this.vy / speed) * config.maxSpeed;
-        }
-
-        // Screen wrapping
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-
-        // Color update based on speed and density
-        // Higher speed = more blue/purple, Lower speed = green/yellow
-        this.hue = 150 + (speed * 20) + (this.density * 2);
-        if (mouse.isClicking) this.hue = 280 + (speed * 10); // Purple/Red shift when sucking
     }
 
-    draw() {
+    function pickColor() {
+        var r = Math.random();
+        var acc = 0;
+        for (var i = 0; i < PALETTE.length; i++) {
+            acc += PALETTE[i].weight;
+            if (r <= acc) return i;
+        }
+        return 0;
+    }
+
+    /* ---------------------------------------------------------
+       입자
+       --------------------------------------------------------- */
+    function particleCount() {
+        var area = width * height;
+        var n = Math.round(area / 11000);
+        return Math.max(38, Math.min(120, n));
+    }
+
+    function buildParticles() {
+        var count = particleCount();
+        particles = [];
+        for (var i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.10,
+                vy: (Math.random() - 0.5) * 0.10,
+                size: 6 + Math.random() * 14,       // 스프라이트 표시 지름(px)
+                baseAlpha: 0.20 + Math.random() * 0.34,
+                alpha: 0,
+                color: pickColor(),
+                drift: Math.random() * Math.PI * 2,
+                driftSpeed: 0.00016 + Math.random() * 0.00026
+            });
+        }
+    }
+
+    /* ---------------------------------------------------------
+       오로라 커튼
+       --------------------------------------------------------- */
+    function drawCurtain(layer, time) {
+        var step = Math.max(22, Math.round(width / 60));
+        var baseY = height * layer.baseY;
+        var thickness = height * layer.thickness;
+        var amp = layer.amp;
+        var top = baseY - amp * 2.2;
+        var bottom = baseY + thickness + amp * 2.2;
+
+        var grad = ctx.createLinearGradient(0, top, 0, bottom);
+        grad.addColorStop(0, 'rgba(' + layer.rgb + ', 0)');
+        grad.addColorStop(0.32, 'rgba(' + layer.rgb + ', ' + layer.alpha + ')');
+        grad.addColorStop(0.62, 'rgba(' + layer.rgb + ', ' + (layer.alpha * 0.72) + ')');
+        grad.addColorStop(1, 'rgba(' + layer.rgb + ', 0)');
+
+        var x, y, i;
+        var xs = [];
+
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        // Neon fluorescent color
-        ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, 0.8)`;
+        // 윗변
+        for (x = -step; x <= width + step; x += step) {
+            y = baseY
+                + Math.sin(x * layer.freq + time * layer.speed + layer.phase) * amp
+                + Math.sin(x * layer.freq * 0.47 - time * layer.speed * 0.62 + layer.phase * 1.7) * amp * 0.55;
+            if (xs.length === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+            xs.push([x, y]);
+        }
+        // 아랫변 (되짚어 오기)
+        for (i = xs.length - 1; i >= 0; i--) {
+            var yy = xs[i][1] + thickness * (0.72 + 0.28 * Math.sin(xs[i][0] * 0.006 + time * 0.4 + layer.phase));
+            ctx.lineTo(xs[i][0], yy);
+        }
+        ctx.closePath();
+        ctx.fillStyle = grad;
         ctx.fill();
     }
-}
 
-// Initialize Particles
-function init() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push(new Particle());
+    /* ---------------------------------------------------------
+       포인터 오로라 블룸
+       --------------------------------------------------------- */
+    function drawPointerBloom() {
+        if (!pointer.active || pointer.strength <= 0.01) return;
+        var r = Math.min(width, height) * 0.42;
+        var grad = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, r);
+        grad.addColorStop(0, 'rgba(196, 168, 232, ' + (0.13 * pointer.strength) + ')');
+        grad.addColorStop(0.45, 'rgba(140, 176, 208, ' + (0.06 * pointer.strength) + ')');
+        grad.addColorStop(1, 'rgba(140, 176, 208, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(pointer.x, pointer.y, r, 0, Math.PI * 2);
+        ctx.fill();
     }
-}
 
-// Main Animation Loop
-function animate() {
-    // Clear with trail effect
-    ctx.fillStyle = 'rgba(10, 5, 20, 0.2)'; // Very dark purple/black with transparency for trails
-    ctx.fillRect(0, 0, width, height);
+    /* ---------------------------------------------------------
+       렌더 루프
+       --------------------------------------------------------- */
+    function frame(now) {
+        var time = (now - t0) / 1000;
+        var dt = Math.min(now - (frame.last || now), 48) / 16.667;
+        frame.last = now;
 
-    // Set composition for glowing effect
-    ctx.globalCompositeOperation = 'lighter';
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'lighter';
 
-    // Spatial Hash Clear/Build could go here for true particle-particle collision, 
-    // but for 3000 particles at 60fps on web, we might simulate fluid density visually 
-    // rather than calculating O(N) neighbor checks every frame if we want pure raw speed.
-    // However, the prompt asked for "collision physics". 
-    // Let's do a lightweight density check using the grid.
+        // 오로라 커튼
+        for (var c = 0; c < curtains.length; c++) drawCurtain(curtains[c], time);
 
-    grid = {};
-    particles.forEach((p, index) => {
-        const key = getGridKey(p.x, p.y);
-        if (!grid[key]) grid[key] = [];
-        grid[key].push(index);
-    });
+        // 포인터 좌표 부드럽게 따라가기
+        if (pointer.active) {
+            pointer.x += (pointer.tx - pointer.x) * Math.min(1, 0.16 * dt);
+            pointer.y += (pointer.ty - pointer.y) * Math.min(1, 0.16 * dt);
+        }
+        var idle = now - pointer.lastMove;
+        pointer.strength = pointer.active ? Math.max(0, 1 - Math.max(0, idle - 900) / 1400) : Math.max(0, pointer.strength - 0.02 * dt);
 
-    particles.forEach((p, index) => {
-        // Density calculation (simplified fluid dynamics)
-        const key = getGridKey(p.x, p.y);
-        let neighbors = grid[key] || [];
-        
-        // Check adjacent cells for smoother density
-        // (For extreme performance, maybe just check own cell)
-        
-        p.density = neighbors.length; // Simple density approximation
-        
-        // Optional: Simple soft collision/pressure
-        if (p.density > 5) {
-             // Move slightly away from random neighbor to simulate pressure
-             if (neighbors.length > 1) {
-                 const otherIdx = neighbors[Math.floor(Math.random() * neighbors.length)];
-                 if (otherIdx !== index) {
-                     const other = particles[otherIdx];
-                     const dx = p.x - other.x;
-                     const dy = p.y - other.y;
-                     const distSq = dx*dx + dy*dy;
-                     if (distSq < p.size * p.size * 4 && distSq > 0) {
-                         const dist = Math.sqrt(distSq);
-                         const overlap = (p.size * 2 - dist) * 0.5;
-                         const nx = dx / dist;
-                         const ny = dy / dist;
-                         
-                         p.vx += nx * overlap * 0.1;
-                         p.vy += ny * overlap * 0.1;
-                     }
-                 }
-             }
+        drawPointerBloom();
+
+        // 입자
+        var snap = pointer.active && pointer.strength > 0.15;
+        var radius = Math.min(260, Math.max(150, width * 0.22));
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+
+            p.drift += p.driftSpeed * dt * 16.667;
+            p.vx += Math.cos(p.drift) * 0.0022 * dt;
+            p.vy += Math.sin(p.drift * 0.9) * 0.0018 * dt;
+
+            if (snap) {
+                var dx = p.x - pointer.x;
+                var dy = p.y - pointer.y;
+                var dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
+                if (dist < radius) {
+                    var f = (1 - dist / radius) * pointer.strength;
+                    var nx = dx / dist;
+                    var ny = dy / dist;
+                    // 살짝 밀어내며 소용돌이 — 유체처럼 흐르는 느낌
+                    p.vx += (nx * 0.34 + -ny * 0.52) * f * dt;
+                    p.vy += (ny * 0.34 + nx * 0.52) * f * dt;
+                }
+            }
+
+            p.vx *= 0.986;
+            p.vy *= 0.986;
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+
+            if (p.x < -40) p.x = width + 40;
+            if (p.x > width + 40) p.x = -40;
+            if (p.y < -40) p.y = height + 40;
+            if (p.y > height + 40) p.y = -40;
+
+            var speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            var target = p.baseAlpha + Math.min(0.22, speed * 0.9);
+            if (snap) {
+                var pd = Math.sqrt((p.x - pointer.x) * (p.x - pointer.x) + (p.y - pointer.y) * (p.y - pointer.y));
+                if (pd < radius) target += (1 - pd / radius) * 0.24 * pointer.strength;
+            }
+            p.alpha += (target - p.alpha) * Math.min(1, 0.12 * dt);
+
+            var s = p.size;
+            ctx.globalAlpha = Math.min(0.85, p.alpha);
+            ctx.drawImage(sprites[p.color], p.x - s / 2, p.y - s / 2, s, s);
         }
 
-        p.update();
-        p.draw();
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'source-over';
+
+        rafId = requestAnimationFrame(frame);
+    }
+
+    function renderStatic() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'lighter';
+        for (var c = 0; c < curtains.length; c++) drawCurtain(curtains[c], 0);
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            ctx.globalAlpha = p.baseAlpha;
+            ctx.drawImage(sprites[p.color], p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+        }
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'source-over';
+    }
+
+    function start() {
+        if (reduceMotion || running || !inView || document.hidden) return;
+        running = true;
+        frame.last = 0;
+        rafId = requestAnimationFrame(frame);
+    }
+
+    function stop() {
+        running = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+
+    /* ---------------------------------------------------------
+       입력 — 마우스 + 터치
+       --------------------------------------------------------- */
+    function setPointer(clientX, clientY) {
+        var rect = canvas.getBoundingClientRect();
+        pointer.tx = clientX - rect.left;
+        pointer.ty = clientY - rect.top;
+        if (!pointer.active) {
+            pointer.x = pointer.tx;
+            pointer.y = pointer.ty;
+        }
+        pointer.active = true;
+        pointer.lastMove = performance.now();
+        pointer.strength = 1;
+    }
+
+    function clearPointer() {
+        pointer.active = false;
+        pointer.tx = pointer.ty = -9999;
+    }
+
+    hero.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return; // 터치는 아래 touch 이벤트에서 처리
+        setPointer(e.clientX, e.clientY);
+    }, { passive: true });
+
+    hero.addEventListener('pointerleave', clearPointer, { passive: true });
+    hero.addEventListener('pointercancel', clearPointer, { passive: true });
+
+    hero.addEventListener('touchstart', function (e) {
+        if (!e.touches || !e.touches.length) return;
+        setPointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    hero.addEventListener('touchmove', function (e) {
+        if (!e.touches || !e.touches.length) return;
+        setPointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    hero.addEventListener('touchend', function () {
+        // 손을 떼도 오로라는 잠시 남았다가 서서히 사라진다
+        pointer.strength = 0.6;
+        pointer.lastMove = performance.now() - 700;
+    }, { passive: true });
+
+    /* ---------------------------------------------------------
+       표시 상태 관리
+       --------------------------------------------------------- */
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop();
+        else start();
     });
 
-    ctx.globalCompositeOperation = 'source-over';
-    requestAnimationFrame(animate);
-}
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            inView = entries[0].isIntersecting;
+            if (inView) start();
+            else stop();
+        }, { threshold: 0 }).observe(hero);
+    }
 
-// Start
-init();
-animate();
+    if ('ResizeObserver' in window) {
+        var lastW = 0;
+        var lastH = 0;
+        new ResizeObserver(function () {
+            var w = hero.clientWidth;
+            var h = hero.clientHeight;
+            if (w === lastW && h === lastH) return;
+            lastW = w;
+            lastH = h;
+            resize();
+        }).observe(hero);
+    } else {
+        window.addEventListener('resize', resize);
+    }
+
+    /* ---------------------------------------------------------
+       시작
+       --------------------------------------------------------- */
+    buildSprites();
+    resize();
+    if (reduceMotion) renderStatic();
+    else start();
+})();

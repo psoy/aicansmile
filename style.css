@@ -270,6 +270,23 @@ ul {
     overflow: hidden;
 }
 
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* 텍스트·버튼 위에 올라가지 않고, 클릭도 가로채지 않는다 */
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #hero-canvas {
+        opacity: 0.75;
+    }
+}
+
 .hero-inner {
     position: relative;
     z-index: 2;
