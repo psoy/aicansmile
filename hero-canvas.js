@@ -54,7 +54,10 @@
     ];
 
     // 오로라 커튼은 저해상도 오프스크린에 그리고 블러로 확대 → 은은하게 번지는 빛
+    // (블러는 한 프레임에 한 번만: 도형마다 filter를 걸면 프레임당 수십 번의 블러 비용이 든다)
     var AURA_SCALE = 0.28;
+    var auraRaw = document.createElement('canvas');
+    var auraRawCtx = auraRaw.getContext('2d');
     var auraCanvas = document.createElement('canvas');
     var auraCtx = auraCanvas.getContext('2d');
     var supportsFilter = (function () {
@@ -85,8 +88,8 @@
         canvas.style.height = '100%';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        auraCanvas.width = Math.max(160, Math.round(width * AURA_SCALE));
-        auraCanvas.height = Math.max(90, Math.round(height * AURA_SCALE));
+        auraCanvas.width = auraRaw.width = Math.max(160, Math.round(width * AURA_SCALE));
+        auraCanvas.height = auraRaw.height = Math.max(90, Math.round(height * AURA_SCALE));
 
         buildParticles();
         if (reduceMotion) renderStatic();
@@ -223,15 +226,20 @@
     }
 
     function drawAurora(time) {
-        var w = auraCanvas.width;
-        var h = auraCanvas.height;
+        var w = auraRaw.width;
+        var h = auraRaw.height;
+        auraRawCtx.setTransform(1, 0, 0, 1, 0, 0);
+        auraRawCtx.clearRect(0, 0, w, h);
+        auraRawCtx.globalCompositeOperation = 'lighter';
+        for (var c = 0; c < curtains.length; c++) drawCurtain(auraRawCtx, curtains[c], time, w, h);
+        auraRawCtx.globalCompositeOperation = 'source-over';
+
+        // 한 번의 블러로 부드럽게 번지게 만든 후 화면 크기로 확대
         auraCtx.setTransform(1, 0, 0, 1, 0, 0);
         auraCtx.clearRect(0, 0, w, h);
-        auraCtx.globalCompositeOperation = 'lighter';
-        if (supportsFilter) auraCtx.filter = 'blur(5px)';
-        for (var c = 0; c < curtains.length; c++) drawCurtain(auraCtx, curtains[c], time, w, h);
+        if (supportsFilter) auraCtx.filter = 'blur(4px)';
+        auraCtx.drawImage(auraRaw, 0, 0);
         if (supportsFilter) auraCtx.filter = 'none';
-        auraCtx.globalCompositeOperation = 'source-over';
 
         ctx.imageSmoothingEnabled = true;
         ctx.drawImage(auraCanvas, 0, 0, width, height);
