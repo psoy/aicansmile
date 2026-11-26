@@ -48,10 +48,22 @@
     var particles = [];
     var sprites = {};
     var curtains = [
-        { rgb: '150, 120, 205', baseY: 0.18, amp: 46, thickness: 0.34, phase: 0.0, speed: 0.16, alpha: 0.20, freq: 0.0032 },
-        { rgb: '104, 168, 176', baseY: 0.42, amp: 62, thickness: 0.40, phase: 1.9, speed: 0.11, alpha: 0.16, freq: 0.0021 },
-        { rgb: '212, 165, 116', baseY: 0.62, amp: 34, thickness: 0.26, phase: 3.6, speed: 0.09, alpha: 0.11, freq: 0.0026 }
+        { rgb: '150, 120, 205', baseY: 0.16, amp: 46, thickness: 0.34, phase: 0.0, speed: 0.16, alpha: 0.26, freq: 0.0032 },
+        { rgb: '104, 168, 176', baseY: 0.40, amp: 62, thickness: 0.40, phase: 1.9, speed: 0.11, alpha: 0.20, freq: 0.0021 },
+        { rgb: '212, 165, 116', baseY: 0.62, amp: 34, thickness: 0.26, phase: 3.6, speed: 0.09, alpha: 0.14, freq: 0.0026 }
     ];
+
+    // 오로라 커튼은 저해상도 오프스크린에 그리고 블러로 확대 → 은은하게 번지는 빛
+    var AURA_SCALE = 0.28;
+    var auraCanvas = document.createElement('canvas');
+    var auraCtx = auraCanvas.getContext('2d');
+    var supportsFilter = (function () {
+        try {
+            var tc = document.createElement('canvas').getContext('2d');
+            tc.filter = 'blur(2px)';
+            return tc.filter === 'blur(2px)';
+        } catch (e) { return false; }
+    })();
 
     var rafId = null;
     var running = false;
@@ -72,6 +84,9 @@
         canvas.style.width = '100%';
         canvas.style.height = '100%';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        auraCanvas.width = Math.max(160, Math.round(width * AURA_SCALE));
+        auraCanvas.height = Math.max(90, Math.round(height * AURA_SCALE));
 
         buildParticles();
         if (reduceMotion) renderStatic();
@@ -142,41 +157,57 @@
     /* ---------------------------------------------------------
        오로라 커튼
        --------------------------------------------------------- */
-    function drawCurtain(layer, time) {
-        var step = Math.max(22, Math.round(width / 60));
-        var baseY = height * layer.baseY;
-        var thickness = height * layer.thickness;
-        var amp = layer.amp;
-        var top = baseY - amp * 2.2;
-        var bottom = baseY + thickness + amp * 2.2;
+    function drawCurtain(target, layer, time, w, h) {
+        var k = height / h;              // 오프스크린 → 화면 픽셀 비율
+        var step = Math.max(16, Math.round(w / 60));
+        var baseY = h * layer.baseY;
+        var thickness = h * layer.thickness;
+        var amp = layer.amp * (h / Math.max(height, 1));
+        var top = baseY - amp * 2.4;
+        var bottom = baseY + thickness + amp * 2.4;
 
-        var grad = ctx.createLinearGradient(0, top, 0, bottom);
+        var grad = target.createLinearGradient(0, top, 0, bottom);
         grad.addColorStop(0, 'rgba(' + layer.rgb + ', 0)');
-        grad.addColorStop(0.32, 'rgba(' + layer.rgb + ', ' + layer.alpha + ')');
-        grad.addColorStop(0.62, 'rgba(' + layer.rgb + ', ' + (layer.alpha * 0.72) + ')');
+        grad.addColorStop(0.34, 'rgba(' + layer.rgb + ', ' + layer.alpha + ')');
+        grad.addColorStop(0.62, 'rgba(' + layer.rgb + ', ' + (layer.alpha * 0.7) + ')');
         grad.addColorStop(1, 'rgba(' + layer.rgb + ', 0)');
 
         var x, y, i;
         var xs = [];
 
-        ctx.beginPath();
+        target.beginPath();
         // 윗변
-        for (x = -step; x <= width + step; x += step) {
+        for (x = -step; x <= w + step; x += step) {
             y = baseY
-                + Math.sin(x * layer.freq + time * layer.speed + layer.phase) * amp
-                + Math.sin(x * layer.freq * 0.47 - time * layer.speed * 0.62 + layer.phase * 1.7) * amp * 0.55;
-            if (xs.length === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
+                + Math.sin(x * k * layer.freq + time * layer.speed + layer.phase) * amp
+                + Math.sin(x * k * layer.freq * 0.47 - time * layer.speed * 0.62 + layer.phase * 1.7) * amp * 0.55;
+            if (xs.length === 0) target.moveTo(x, y);
+            else target.lineTo(x, y);
             xs.push([x, y]);
         }
         // 아랫변 (되짚어 오기)
         for (i = xs.length - 1; i >= 0; i--) {
-            var yy = xs[i][1] + thickness * (0.72 + 0.28 * Math.sin(xs[i][0] * 0.006 + time * 0.4 + layer.phase));
-            ctx.lineTo(xs[i][0], yy);
+            var yy = xs[i][1] + thickness * (0.72 + 0.28 * Math.sin(xs[i][0] * k * 0.006 + time * 0.4 + layer.phase));
+            target.lineTo(xs[i][0], yy);
         }
-        ctx.closePath();
-        ctx.fillStyle = grad;
-        ctx.fill();
+        target.closePath();
+        target.fillStyle = grad;
+        target.fill();
+    }
+
+    function drawAurora(time) {
+        var w = auraCanvas.width;
+        var h = auraCanvas.height;
+        auraCtx.setTransform(1, 0, 0, 1, 0, 0);
+        auraCtx.clearRect(0, 0, w, h);
+        auraCtx.globalCompositeOperation = 'lighter';
+        if (supportsFilter) auraCtx.filter = 'blur(5px)';
+        for (var c = 0; c < curtains.length; c++) drawCurtain(auraCtx, curtains[c], time, w, h);
+        if (supportsFilter) auraCtx.filter = 'none';
+        auraCtx.globalCompositeOperation = 'source-over';
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(auraCanvas, 0, 0, width, height);
     }
 
     /* ---------------------------------------------------------
@@ -207,7 +238,7 @@
         ctx.globalCompositeOperation = 'lighter';
 
         // 오로라 커튼
-        for (var c = 0; c < curtains.length; c++) drawCurtain(curtains[c], time);
+        drawAurora(time);
 
         // 포인터 좌표 부드럽게 따라가기
         if (pointer.active) {
@@ -275,7 +306,7 @@
     function renderStatic() {
         ctx.clearRect(0, 0, width, height);
         ctx.globalCompositeOperation = 'lighter';
-        for (var c = 0; c < curtains.length; c++) drawCurtain(curtains[c], 0);
+        drawAurora(0);
         for (var i = 0; i < particles.length; i++) {
             var p = particles[i];
             ctx.globalAlpha = p.baseAlpha;
