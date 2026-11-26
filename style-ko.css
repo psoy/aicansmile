@@ -20,7 +20,7 @@
     --gold-2: #B79CE8;
     --gold-3: #DCCEF7;
     --gold-grad: linear-gradient(135deg, #8B6FCF 0%, #B79CE8 46%, #DCCEF7 100%);
-    --gold-grad-deep: linear-gradient(135deg, #6A4FAE 0%, #8B6FCF 48%, #6A4FAE 100%);
+    --gold-grad-deep: linear-gradient(135deg, #4E3588 0%, #7152BC 48%, #4E3588 100%);
     --gold-line: rgba(183, 156, 232, 0.34);
 
     /* 웜 알라바스터 / 스톤 */
