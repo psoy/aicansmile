@@ -435,9 +435,9 @@ body[data-page="home"] .navbar.scrolled { background: rgba(24, 15, 42, 0.95); }
 .hero-title {
     font-family: var(--sans);
     font-weight: 800;
-    font-size: clamp(1.9rem, 2.95vw, 2.8rem);
-    line-height: 1.32;
-    letter-spacing: -0.035em;
+    font-size: clamp(2rem, 3.15vw, 3rem);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
     color: #FAF7FF;
     text-wrap: balance;
 }
