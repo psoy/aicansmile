@@ -1,5 +1,8 @@
-// 사업 포트폴리오 데이터
-const menuData = {
+// 페이지 언어 (index.html = ko, en.html = en)
+const LANG = (document.documentElement.lang || 'ko').toLowerCase().indexOf('en') === 0 ? 'en' : 'ko';
+
+// 사업 포트폴리오 데이터 (국문)
+const menuDataKo = {
     'clef-ai': [
         {
             name: 'Clef.ai (클레프 AI)',
@@ -148,6 +151,162 @@ const menuData = {
     ]
 };
 
+// Portfolio data (English — en.html)
+const menuDataEn = {
+    'silo-vision': [
+        {
+            name: 'SiloVisionX',
+            description: 'Automatic bale-silage detection and counting with drone and AI vision',
+            subtitle: 'AgriTech / AI Vision',
+            logo: 'Gemini_Generated_Image_gyrce8gyrce8gyrc.png',
+            features: [
+                'Automatic object detection: bale silage detected in drone and mobile imagery (YOLOv8m-seg)',
+                'Precise counting and batch totals: multiple images per run, totals calculated automatically',
+                'Evidence automation: one-click PDF report with location and timestamp metadata',
+                'Field-first UI: mobile browser camera capture, four languages (KR · EN · ZH · JA)'
+            ],
+            tech: 'YOLOv8m-seg (mAP50 0.96, 0.42 s CPU inference), Python · Streamlit, OpenCV, ReportLab (auto-generated PDF), Docker · Railway, responsive web',
+            detail: 'An AI vision solution that began with the manual counting bottleneck in the Seogwipo livestock field. A single photo automatically detects and counts bale silage and produces the PDF evidence report needed for subsidy claims. The same detection engine extends to livestock counting and pasture monitoring on the Mongolian steppe.'
+        }
+    ],
+    'snap-speak': [
+        {
+            name: 'Snap&Speak',
+            description: 'AI native-level conversation at your level, from a single photo',
+            subtitle: 'EdTech / B2C',
+            logo: 'Gemini_Generated_Image_ftg0hxftg0hxftg0.png',
+            features: [
+                'Photo-driven conversation: real conversation practice from everyday photos',
+                'Level-matched dialogue: AI native-speaker dialogue tuned to the learner',
+                'Global K-Culture target: a conversation app built for the K-Culture fandom',
+                'Offline operation: a lightweight build that works without a network'
+            ],
+            tech: 'Multimodal AI (GPT-4V, Claude 3), Neural TTS (ElevenLabs, Google TTS), Speech Recognition (Whisper), Few-shot Learning, On-device ML (Core ML, TensorFlow Lite), TTS, Image Recognition, NLP, Edge AI',
+            detail: 'Snap&Speak is a practical conversation app that generates AI native-speaker dialogue (TTS) at the learner’s level from a single photo. It targets the global K-Culture community and monetises through advertising and subscriptions. In Impact Lab, a lightweight build is provided to education projects in developing countries.'
+        }
+    ],
+    'clef-ai': [
+        {
+            name: 'Clef.ai',
+            description: 'A 24/7 AI practice partner for musicians',
+            subtitle: 'EdTech / Arts',
+            logo: 'Gemini_Generated_Image_bjq7qfbjq7qfbjq7.png',
+            features: [
+                'AI maestro Q&A: real-time answers on technique, expression marks and practice tips',
+                'Personalised practice scheduling: daily routines based on level and goals',
+                'Integrated music-theory search: difficult theory explained so it can be played'
+            ],
+            tech: 'RAG (Retrieval-Augmented Generation), LangChain / LlamaIndex, OpenAI GPT-4 / Claude, OMR (Optical Music Recognition), Audio Analysis (Librosa, Essentia), Vector Database (Pinecone, Weaviate), NLP',
+            detail: 'Clef.ai is an intelligent lesson companion for cello and piano learners. It removes the uncertainty of practising alone between lessons, going beyond search to give in-depth guidance specific to instrumental technique and music theory.'
+        }
+    ],
+    'jurins-theme': [
+        {
+            name: 'Jurin’s Theme',
+            description: 'A sentiment-analysis stock guide for first-time investors',
+            subtitle: 'FinTech',
+            logo: 'KakaoTalk_20251209_200717706_01.jpg',
+            features: [
+                'News sentiment analysis: positive and negative signals drawn from large volumes of financial news',
+                'Curated picks: promising stocks by theme, matched to investment profile',
+                'Plain-language market briefings: a daily report that explains the jargon'
+            ],
+            tech: 'Transformer Models (BERT, FinBERT), Sentiment Analysis, Time Series Forecasting (Prophet, LSTM), Real-time Data Processing (Apache Kafka, Spark Streaming), Graph Neural Networks, Explainable AI (SHAP, LIME), Big Data Analytics, AI Recommendation System',
+            detail: 'Jurin’s Theme was built for first-time investors who lose their way in the stock market. Beyond dry financial statements, it analyses news trends and investor sentiment to deliver reports that are easy to understand.'
+        }
+    ],
+    'miriface': [
+        {
+            name: 'MiriFace',
+            description: 'AI/AR simulation of botulinum results before treatment',
+            subtitle: 'BeautyTech / Medical',
+            features: [
+                'AI/AR simulation: see the outcome before a botulinum procedure',
+                'Reduced anxiety: visual expectations build confidence before treatment',
+                'Hospital B2B solution: a communication tool between clinicians and patients'
+            ],
+            tech: '3D Face Reconstruction (MediaPipe, FaceX-Zoo), AR Frameworks (ARKit, ARCore), GANs (StyleGAN, Face Swapping), Computer Vision, AR, Face Recognition, Medical AI Ethics, Privacy-preserving AI',
+            detail: 'MiriFace is a hospital B2B solution that simulates botulinum outcomes with AI/AR before treatment, easing patient anxiety and building trust between patient and clinician through visual expectations.'
+        }
+    ],
+    'aihunjang': [
+        {
+            name: 'AIHUNJANG',
+            description: 'A RAG-based internal Q&A agent trained on complex manuals',
+            subtitle: 'Enterprise / Knowledge Management',
+            features: [
+                'RAG-based Q&A: an intelligent agent trained on complex manuals and documents',
+                'Internal knowledge management: efficient use of an organisation’s knowledge assets',
+                'B2B SaaS: a knowledge-sharing platform inside the enterprise'
+            ],
+            tech: 'RAG (Retrieval-Augmented Generation), Vector Databases (Pinecone, Qdrant), Graph Databases (Neo4j, ArangoDB), Multi-agent Systems (AutoGPT, LangGraph), Fine-tuning (LoRA, QLoRA), API Integration (OpenAI, Anthropic), Knowledge Graph, NLP',
+            detail: 'AIHUNJANG is a RAG-based internal Q&A agent trained on complex manuals. It puts a company’s knowledge assets to work with AI, raising employee productivity as a B2B SaaS solution.'
+        }
+    ],
+    'vallyway': [
+        {
+            name: 'VallyWay',
+            description: 'Tech pilgrimage travel that pairs technology with the humanities',
+            subtitle: 'Travel / Experience',
+            features: [
+                'Tech pilgrimage: a distinctive journey combining technology and the humanities',
+                'Education programme: visits to technology companies with humanistic insight',
+                'Community: networking and knowledge sharing among participants'
+            ],
+            tech: 'Recommendation Systems (Collaborative Filtering, Content-based), Social Network Analysis, Content Generation (GPT-4), Payment Integration (Stripe, Toss), Mobile Apps (React Native, Flutter), Platform, Community Management, Content Curation',
+            detail: 'VallyWay is a tech pilgrimage programme that pairs technology with the humanities, offering visits to technology companies, humanistic insight and networking opportunities.'
+        }
+    ],
+    'choicecafe': [
+        {
+            name: 'ChoiceCafe',
+            description: 'Hyper-personal AI cafe search for women in midlife',
+            subtitle: 'Lifestyle / B2C',
+            features: [
+                'Hyper-personal recommendations: cafes matched to individual taste',
+                'Built for women in midlife: optimised for a specific audience',
+                'Lifestyle fit: atmosphere, menu and location weighed together'
+            ],
+            tech: 'Deep Learning Recommenders (Neural Collaborative Filtering), Geospatial AI (Google Maps API, Mapbox), User Behavior Analytics (Mixpanel, Amplitude), Real-time Personalization, Multi-modal Search, Recommendation System, Personalization AI, Location-based Services',
+            detail: 'ChoiceCafe is a hyper-personal AI cafe search service for women in midlife, analysing individual taste and lifestyle to recommend the right cafe.'
+        }
+    ],
+    'doljob': [
+        {
+            name: 'Doljob',
+            description: 'AI-produced first-birthday growth films',
+            subtitle: 'Memory / Recording',
+            features: [
+                'AI film production: a child’s first year turned into film automatically',
+                'Memory keeping: precious moments recorded systematically',
+                'Personalised content: a film that carries the family’s story'
+            ],
+            tech: 'Video Generation (Runway ML, Pika Labs), Storytelling AI (GPT-4), Face Recognition (FaceNet, ArcFace), Video Editing (FFmpeg, OpenCV), Cloud Storage (AWS S3, Google Cloud Storage), Video Generation AI, Image Processing, Storytelling AI',
+            detail: 'Doljob is an AI-based first-birthday film service. It analyses and edits a child’s growth automatically to create a film that belongs to the family alone.'
+        }
+    ],
+    'mypa': [
+        {
+            name: 'MYPA',
+            description: 'An agent that deletes old comments and manages your digital footprint',
+            subtitle: 'Privacy / Digital Footprint',
+            features: [
+                'Digital footprint management: track and manage past online activity',
+                'Automatic comment cleanup: tidy unwanted comments and posts',
+                'Privacy protection: personal data protection and digital identity management'
+            ],
+            tech: 'Privacy-preserving ML (Federated Learning, Differential Privacy), Web Scraping (Scrapy, Selenium), Data Anonymization, GDPR Compliance Tools, Blockchain (optional), Privacy AI, Data Management',
+            detail: 'MYPA is a privacy agent that deletes past comments and manages your digital footprint, tracking and managing online activity to protect privacy.'
+        }
+    ]
+};
+
+const menuData = LANG === 'en' ? menuDataEn : menuDataKo;
+
+const UI_TEXT = LANG === 'en'
+    ? { features: 'Key Features', tech: 'Tech Stack', logoAlt: ' logo', openMenu: 'Open menu', closeMenu: 'Close menu' }
+    : { features: '핵심 기능 (Key Features)', tech: '기술 스택 (Tech Stack)', logoAlt: ' 로고', openMenu: '메뉴 열기', closeMenu: '메뉴 닫기' };
+
 // ---------------------------------------------------------
 // DOM
 // ---------------------------------------------------------
@@ -180,19 +339,19 @@ function observeReveals(root) {
     });
 }
 
-// 모바일 네비게이션 토글
+// Mobile navigation toggle
 function closeNav() {
     if (!navMenu || !navToggle) return;
     navMenu.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', '메뉴 열기');
+    navToggle.setAttribute('aria-label', UI_TEXT.openMenu);
 }
 
 if (navToggle && navMenu) {
     navToggle.addEventListener('click', function () {
         const open = navMenu.classList.toggle('open');
         navToggle.setAttribute('aria-expanded', String(open));
-        navToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+        navToggle.setAttribute('aria-label', open ? UI_TEXT.closeMenu : UI_TEXT.openMenu);
     });
 
     navMenu.querySelectorAll('a').forEach(function (link) {
@@ -211,7 +370,7 @@ if (navToggle && navMenu) {
     });
 }
 
-// 스크롤 시 네비게이션 배경 강화
+// Strengthen navigation background on scroll
 if (navbar) {
     const onScroll = function () {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -237,7 +396,7 @@ function renderMenu(category) {
         }).join('');
 
         const logoHtml = item.logo
-            ? '<img src="' + item.logo + '" alt="' + item.name + ' 로고" class="project-logo" loading="lazy">'
+            ? '<img src="' + item.logo + '" alt="' + item.name + UI_TEXT.logoAlt + '" class="project-logo" loading="lazy">'
             : '';
 
         menuItem.innerHTML =
@@ -252,11 +411,11 @@ function renderMenu(category) {
             '</div>' +
             '<div class="project-aside">' +
                 '<div class="project-features">' +
-                    '<h4>핵심 기능 (Key Features)</h4>' +
+                    '<h4>' + UI_TEXT.features + '</h4>' +
                     '<ul>' + featuresList + '</ul>' +
                 '</div>' +
                 '<div class="project-tech">' +
-                    '<h4>기술 스택 (Tech Stack)</h4>' +
+                    '<h4>' + UI_TEXT.tech + '</h4>' +
                     '<p>' + item.tech + '</p>' +
                 '</div>' +
             '</div>';
@@ -267,7 +426,7 @@ function renderMenu(category) {
     observeReveals(menuGrid);
 }
 
-// 탭
+// Tabs
 tabButtons.forEach(function (button) {
     button.addEventListener('click', function () {
         tabButtons.forEach(function (btn) {
@@ -280,7 +439,7 @@ tabButtons.forEach(function (button) {
     });
 });
 
-// 초기 렌더링
+// Initial render
 document.addEventListener('DOMContentLoaded', function () {
     renderMenu('silo-vision');
     observeReveals(document);

@@ -1,7 +1,9 @@
 /**
  * AICANSMILE — Hero Data Mesh
  * -----------------------------------------------------------
- * 딥 슬레이트 네이비 히어로 위의 "골드 + 에메랄드/시안 데이터 메쉬".
+ * 테마(data-hero-theme):
+ *   gold   — 딥 슬레이트 네이비 위 "골드 + 에메랄드/시안 데이터 메쉬" (en.html)
+ *   purple — 플럼 네이비 위 "라벤더 + 오로라 퍼플" 파티클 (index.html)
  *
  * - 24K 골드를 중심으로 은은한 에메랄드·시안 노드가 섞인 입자망이 천천히 흐른다.
  * - 가까운 노드끼리 얇은 선으로 이어져 데이터 네트워크처럼 보인다.
@@ -27,13 +29,42 @@
     var height = 0;
     var dpr = 1;
 
-    // 브랜드 팔레트 — 24K 골드 중심 + 에메랄드/시안 데이터 포인트
-    var PALETTE = [
-        { rgb: '232, 201, 103', line: '232, 201, 103', weight: 0.56 }, // 골드
-        { rgb: '201, 162, 39',  line: '201, 162, 39',  weight: 0.20 }, // 딥 골드
-        { rgb: '47, 131, 103',  line: '72, 168, 137',  weight: 0.15 }, // 에메랄드
-        { rgb: '126, 197, 190', line: '126, 197, 190', weight: 0.09 }  // 시안
-    ];
+    // 테마 분기 — body[data-hero-theme] ("gold" 기본 / "purple")
+    //   gold   : 딥 슬레이트 네이비 위 24K 골드 + 에메랄드·시안 데이터 메쉬 (en.html)
+    //   purple : 플럼 네이비 위 라벤더·오로라 퍼플 파티클 (index.html)
+    var THEME = (document.body && document.body.getAttribute('data-hero-theme')) === 'purple' ? 'purple' : 'gold';
+
+    var THEMES = {
+        gold: {
+            palette: [
+                { rgb: '232, 201, 103', line: '232, 201, 103', weight: 0.56 }, // 골드
+                { rgb: '201, 162, 39',  line: '201, 162, 39',  weight: 0.20 }, // 딥 골드
+                { rgb: '47, 131, 103',  line: '72, 168, 137',  weight: 0.15 }, // 에메랄드
+                { rgb: '126, 197, 190', line: '126, 197, 190', weight: 0.09 }  // 시안
+            ],
+            streamA: '232, 201, 103',
+            streamB: '126, 197, 190',
+            bloom: '232, 201, 103',
+            bloomSoft: '47, 131, 103',
+            link: '245, 225, 153'
+        },
+        purple: {
+            palette: [
+                { rgb: '183, 156, 232', line: '183, 156, 232', weight: 0.56 }, // 라벤더
+                { rgb: '124, 95, 191',  line: '158, 128, 224', weight: 0.20 }, // 딥 바이올렛
+                { rgb: '147, 197, 233', line: '147, 197, 233', weight: 0.15 }, // 오로라 스카이
+                { rgb: '222, 209, 245', line: '222, 209, 245', weight: 0.09 }  // 페일 라일락
+            ],
+            streamA: '183, 156, 232',
+            streamB: '147, 197, 233',
+            bloom: '183, 156, 232',
+            bloomSoft: '124, 95, 191',
+            link: '222, 209, 245'
+        }
+    };
+
+    var THEME_SET = THEMES[THEME];
+    var PALETTE = THEME_SET.palette;
 
     var pointer = {
         x: -9999, y: -9999,
@@ -153,10 +184,10 @@
             var s = streams[i];
             var baseY = height * s.y;
             var grad = ctx.createLinearGradient(0, 0, width, 0);
-            grad.addColorStop(0, 'rgba(232, 201, 103, 0)');
-            grad.addColorStop(0.35, 'rgba(232, 201, 103, ' + s.alpha + ')');
-            grad.addColorStop(0.62, 'rgba(126, 197, 190, ' + (s.alpha * 0.8) + ')');
-            grad.addColorStop(1, 'rgba(232, 201, 103, 0)');
+            grad.addColorStop(0, 'rgba(' + THEME_SET.streamA + ', 0)');
+            grad.addColorStop(0.35, 'rgba(' + THEME_SET.streamA + ', ' + s.alpha + ')');
+            grad.addColorStop(0.62, 'rgba(' + THEME_SET.streamB + ', ' + (s.alpha * 0.8) + ')');
+            grad.addColorStop(1, 'rgba(' + THEME_SET.streamA + ', 0)');
 
             ctx.beginPath();
             var step = Math.max(18, Math.round(width / 48));
@@ -180,9 +211,9 @@
         if (!pointer.active || pointer.strength <= 0.01) return;
         var r = Math.min(width, height) * 0.4;
         var grad = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, r);
-        grad.addColorStop(0, 'rgba(232, 201, 103, ' + (0.1 * pointer.strength) + ')');
-        grad.addColorStop(0.4, 'rgba(47, 131, 103, ' + (0.05 * pointer.strength) + ')');
-        grad.addColorStop(1, 'rgba(47, 131, 103, 0)');
+        grad.addColorStop(0, 'rgba(' + THEME_SET.bloom + ', ' + (0.1 * pointer.strength) + ')');
+        grad.addColorStop(0.4, 'rgba(' + THEME_SET.bloomSoft + ', ' + (0.05 * pointer.strength) + ')');
+        grad.addColorStop(1, 'rgba(' + THEME_SET.bloomSoft + ', 0)');
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.arc(pointer.x, pointer.y, r, 0, Math.PI * 2);
@@ -290,7 +321,7 @@
                 if (ad > linkR) continue;
                 var la = (1 - ad / linkR) * 0.4 * pointer.strength;
                 if (la < 0.015) continue;
-                ctx.strokeStyle = 'rgba(245, 225, 153, ' + la.toFixed(3) + ')';
+                ctx.strokeStyle = 'rgba(' + THEME_SET.link + ', ' + la.toFixed(3) + ')';
                 ctx.beginPath();
                 ctx.moveTo(pointer.x, pointer.y);
                 ctx.lineTo(p.x, p.y);

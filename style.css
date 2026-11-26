@@ -244,7 +244,7 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     margin-top: 3px;
 }
 
-.nav-menu { display: flex; align-items: center; gap: 26px; }
+.nav-menu { display: flex; align-items: center; gap: clamp(14px, 1.9vw, 26px); }
 .nav-menu a {
     position: relative;
     font-size: 0.9rem;
@@ -274,6 +274,45 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     font-size: 0.85rem;
 }
 .nav-menu .nav-cta a::after { display: none; }
+
+
+/* ---------------------------------------------------------
+   언어 전환 (KR | EN)
+   --------------------------------------------------------- */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    border: 1px solid var(--gold-line);
+    background: rgba(255, 255, 255, 0.06);
+}
+.lang-switch .lang-opt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: rgba(248, 246, 252, 0.62);
+    transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.lang-switch a.lang-opt:hover {
+    color: var(--gold-3);
+    background: rgba(255, 255, 255, 0.07);
+}
+.lang-switch a.lang-opt::after { display: none; }
+.lang-switch .lang-opt.is-active {
+    background: var(--gold-grad);
+    color: var(--navy-900);
+    box-shadow: 0 4px 12px rgba(12, 6, 24, 0.28);
+}
+
 .nav-menu .nav-cta a:hover {
     background: var(--gold-grad);
     border-color: transparent;
@@ -409,6 +448,88 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     font-size: 0.76rem;
     letter-spacing: 0.16em;
     color: rgba(247, 246, 242, 0.42);
+}
+
+/* ---------------------------------------------------------
+   글로벌 ODA 기관 로고 바 (히어로 CTA 아래 · 참고 생태계)
+   --------------------------------------------------------- */
+.hero-ecosystem {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(22px, 2.8vw, 36px);
+}
+.hero-ecosystem-caption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(248, 246, 252, 0.36);
+    margin-bottom: 16px;
+}
+.hero-ecosystem-caption::after {
+    content: '';
+    flex: 1 1 auto;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+}
+.hero-ecosystem-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px clamp(22px, 3.6vw, 52px);
+}
+.eco-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: rgba(255, 255, 255, 0.78);
+    transition: color 0.28s var(--ease);
+}
+.eco-link:hover,
+.eco-link:focus-visible { color: var(--gold-2); }
+.eco-link:focus-visible {
+    outline: 1px solid var(--gold-2);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+.eco-mark {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    color: inherit;
+    transition: transform 0.28s var(--ease);
+}
+.eco-link:hover .eco-mark { transform: translateY(-1px); }
+.eco-text { display: flex; flex-direction: column; line-height: 1.1; }
+.eco-word {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+.eco-sub {
+    margin-top: 5px;
+    font-size: 0.545rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: currentColor;
+    opacity: 0.52;
+    transition: opacity 0.28s var(--ease);
+}
+.eco-link:hover .eco-sub { opacity: 0.85; }
+
+@media (max-width: 560px) {
+    .hero-ecosystem-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 14px;
+    }
+    .eco-mark { width: 26px; height: 26px; }
+    .eco-word { font-size: 0.7rem; letter-spacing: 0.05em; }
+    .eco-sub { font-size: 0.5rem; margin-top: 4px; }
 }
 
 .hero-visual { margin: 0; }
@@ -1376,6 +1497,10 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     .kpi-bar { grid-template-columns: repeat(2, 1fr); }
     .kpi:nth-child(3)::before { display: none; }
     .kpi:nth-child(3), .kpi:nth-child(4) { border-top: 1px solid rgba(245, 225, 153, 0.16); }
+    .nav-menu { gap: 14px; }
+    .nav-menu a { font-size: 0.84rem; }
+    .nav-menu .nav-cta a { padding: 8px 15px; font-size: 0.79rem; }
+    .lang-switch .lang-opt { min-width: 30px; padding: 5px 6px; font-size: 0.62rem; }
     .bento {
         grid-template-areas:
             "video video video video video video video dash dash dash dash dash"
@@ -1419,6 +1544,9 @@ body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
     .nav-menu .nav-cta { margin-top: 12px; }
     .nav-menu .nav-cta a { text-align: center; border-radius: 10px; padding: 13px; }
     .nav-toggle { display: flex; }
+    .nav-menu .nav-lang { padding: 14px 2px 4px; }
+    .nav-menu .lang-switch { width: 100%; justify-content: center; }
+    .nav-menu .lang-switch .lang-opt { flex: 1 1 0; min-width: 0; padding: 9px 0; font-size: 0.78rem; }
 
     .section-head { margin-bottom: 36px; }
     .flow { grid-template-columns: 1fr; }

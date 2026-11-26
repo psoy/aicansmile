@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICANSMILE — AI &amp; Drone Vision for Agriculture, ODA and Cybersecurity Advisory</title>
+    <meta name="description" content="AICANSMILE applies drone and AI vision to detect and count bale silage — SiloVisionX, proven in the field in Seogwipo — and extends the same engine to livestock counting and pasture monitoring ODA in Mongolia. Cybersecurity and audit advisory for AI and ODA programmes, grounded in a former Samsung Electronics background and an M.S. in Information Systems (Information Security) from Yonsei University.">
+    <meta name="theme-color" content="#0D1B2A">
+    <meta property="og:title" content="AICANSMILE — AI Drone &amp; Data for Sustainable Impact">
+    <meta property="og:description" content="Drone and AI vision for the agri-livestock field, scaled through ODA. AI, ODA cybersecurity and audit advisory.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aicansmile.netlify.app/en.html">
+    <meta property="og:image" content="https://aicansmile.netlify.app/assets/silovision_frame_03.jpg">
+    <link rel="canonical" href="https://aicansmile.netlify.app/en.html">
+    <link rel="alternate" hreflang="ko" href="https://aicansmile.netlify.app/">
+    <link rel="alternate" hreflang="en" href="https://aicansmile.netlify.app/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://aicansmile.netlify.app/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home" data-hero-theme="gold">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a class="brand" href="en.html" aria-label="AICANSMILE home">
+                <img class="brand-seal" src="assets/aicansmile_logo_320.png" width="320" height="320" alt="AICANSMILE gold blob emblem">
+                <span class="brand-text">
+                    <span class="brand-name">AICANSMILE</span>
+                    <span class="brand-tag">AI DRONE · AGRI · ODA</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#core-solution">Solutions</a></li>
+                <li><a href="#oda">ODA Impact</a></li>
+                <li><a href="#why">Capabilities</a></li>
+                <li><a href="#references">R&amp;D References</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="nav-cta"><a href="consulting.html">Contact Us</a></li>
+                <li class="nav-lang"><span class="lang-switch" role="group" aria-label="Language">
+                    <a class="lang-opt" href="index.html" hreflang="ko" lang="ko" aria-label="Switch to the Korean page">KR</a>
+                    <span class="lang-opt is-active" aria-current="page" lang="en">EN</span>
+                </span></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <p class="hero-eyebrow"><span class="rule" aria-hidden="true"></span>AI FOR AGRICULTURE · SECURITY · DEVELOPMENT</p>
+                <h1 class="hero-title">
+                    AI and drone vision<br>
+                    for the livestock field —<br>
+                    scaled through <em>ODA</em>.
+                </h1>
+                <p class="hero-subtitle">
+                    Drone and AI object detection proven on bale-silage counting in the Seogwipo livestock field.<br>
+                    The same vision engine now reads flocks and pastures across the Mongolian steppe.
+                </p>
+                <p class="hero-cred">
+                    <span>Former Samsung Electronics · M.S. in Information Systems (Information Security), Yonsei University</span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <strong>AI · ODA cybersecurity &amp; audit advisory</strong>
+                </p>
+                <div class="hero-buttons">
+                    <a href="#core-solution" class="btn btn-gold">
+                        Explore Solutions
+                        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="consulting.html" class="btn btn-ghost">Government &amp; ODA Enquiries</a>
+                </div>
+                <p class="hero-keywords">AI · Drone · Agriculture · Cybersecurity · ODA</p>
+            </div>
+
+            <figure class="hero-visual reveal" data-delay="120">
+                <div class="hero-shot-frame">
+                    <div class="hero-shot-bar">
+                        <span class="dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="hero-chip">SiloVisionX MVP · YOLOv8m-seg</span>
+                    </div>
+                    <img src="assets/silovision_frame_03.jpg" width="1600" height="900" alt="Uploaded silage photo compared with AI bounding-box detections" loading="eager">
+                    <figcaption>Live demo · uploaded original vs. AI detection (bounding boxes)</figcaption>
+                </div>
+            </figure>
+        </div>
+
+        <div class="container">
+            <div class="hero-ecosystem reveal" data-delay="160">
+                <p class="hero-ecosystem-caption">Global ODA reference &amp; ecosystem</p>
+                <ul class="hero-ecosystem-list">
+                    <li>
+                        <a class="eco-link" href="https://www.worldbank.org/" target="_blank" rel="noopener noreferrer" aria-label="The World Bank Group — official website, opens in a new tab">
+                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round">
+                                    <circle cx="17" cy="17" r="14.1"/>
+                                    <ellipse cx="17" cy="17" rx="6.3" ry="14.1"/>
+                                    <path d="M3.85 11.9h26.3M3.85 22.1h26.3"/>
+                                </g>
+                            </svg>
+                            <span class="eco-text">
+                                <span class="eco-word">THE WORLD BANK</span>
+                                <span class="eco-sub">IBRD · IDA</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="eco-link" href="https://www.koica.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="KOICA, Korea International Cooperation Agency — official website, opens in a new tab">
+                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round">
+                                    <circle cx="17" cy="17" r="14.1"/>
+                                    <path d="M3.7 21.6h26.6"/>
+                                    <path d="M9.6 21.6a7.4 7.4 0 0 1 14.8 0"/>
+                                </g>
+                            </svg>
+                            <span class="eco-text">
+                                <span class="eco-word">KOICA</span>
+                                <span class="eco-sub">KOREA INTERNATIONAL COOPERATION AGENCY</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="eco-link" href="https://www.undp.org/" target="_blank" rel="noopener noreferrer" aria-label="UNDP, United Nations Development Programme — official website, opens in a new tab">
+                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+                                <circle cx="17" cy="17" r="14.1" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.5"/>
+                                <g fill="currentColor">
+                                    <circle cx="17" cy="6.6" r="2.1"/><circle cx="24.35" cy="9.65" r="2.1"/>
+                                    <circle cx="27.4" cy="17" r="2.1"/><circle cx="24.35" cy="24.35" r="2.1"/>
+                                    <circle cx="17" cy="27.4" r="2.1"/><circle cx="9.65" cy="24.35" r="2.1"/>
+                                    <circle cx="6.6" cy="17" r="2.1"/><circle cx="9.65" cy="9.65" r="2.1"/>
+                                </g>
+                            </svg>
+                            <span class="eco-text">
+                                <span class="eco-word">UNDP</span>
+                                <span class="eco-sub">UNITED NATIONS DEVELOPMENT PROGRAMME</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="eco-link" href="https://www.ai4d.ai/" target="_blank" rel="noopener noreferrer" aria-label="AI4D, Artificial Intelligence for Development (FCDO · IDRC) — official website, opens in a new tab">
+                            <svg class="eco-mark" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+                                <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+                                    <path d="M9.6 23.8 17 9.4l7.4 14.4z" opacity="0.75"/>
+                                    <path d="M17 9.4v9.1" opacity="0.4"/>
+                                </g>
+                                <g fill="currentColor">
+                                    <circle cx="9.6" cy="23.8" r="2.5"/><circle cx="17" cy="9.4" r="2.5"/><circle cx="24.4" cy="23.8" r="2.5"/>
+                                </g>
+                            </svg>
+                            <span class="eco-text">
+                                <span class="eco-word">AI4D</span>
+                                <span class="eco-sub">ARTIFICIAL INTELLIGENCE FOR DEVELOPMENT</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="kpi-bar reveal" data-delay="200">
+                <li class="kpi">
+                    <span class="kpi-value">0.96</span>
+                    <span class="kpi-label">mAP50<em>Detection accuracy · YOLOv8m-seg</em></span>
+                </li>
+                <li class="kpi">
+                    <span class="kpi-value">0.42<small>s</small></span>
+                    <span class="kpi-label">CPU inference<em>Single image · no server GPU</em></span>
+                </li>
+                <li class="kpi">
+                    <span class="kpi-value">30 min<small>→</small>30 sec</span>
+                    <span class="kpi-label">Evidence report<em>Auto-generated PDF</em></span>
+                </li>
+                <li class="kpi">
+                    <span class="kpi-value kpi-value-en">Edge AI</span>
+                    <span class="kpi-label">On-device inference<em>Smartphone browser · low-spec environments</em></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Bento grid -->
+    <section id="work" class="section section-work">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow">WHAT WE DO</p>
+                <h2 class="section-title">Field-proven technology,<br><em>trusted systems</em>, and expansion into developing countries</h2>
+                <p class="section-lead">Agri-livestock AI vision, ODA delivery on the ground, and cybersecurity &amp; governance advisory — carried through by one team.</p>
+            </header>
+
+            <div class="bento">
+                <!-- 1. SiloVisionX demo video -->
+                <article class="bento-card b-video reveal">
+                    <div class="card-head">
+                        <p class="card-kicker">FLAGSHIP · AGRI-DRONE INTELLIGENCE</p>
+                        <h3 class="card-title">SiloVisionX</h3>
+                        <p class="card-sub">An AI vision system that detects and counts bale silage from a single drone or mobile photo — and produces the evidence report to match</p>
+                    </div>
+                    <div class="video-frame">
+                        <video controls preload="none" poster="assets/silovision_frame_03.jpg" playsinline>
+                            <source src="assets/SilovisionX_demo.mp4" type="video/mp4">
+                            Your browser does not support video. <a href="assets/SilovisionX_demo.mp4">Download the demo</a>
+                        </video>
+                    </div>
+                    <p class="card-note">Actual screen recording (approx. 6 min) · mobile access → field capture → detection &amp; count → PDF evidence download</p>
+                </article>
+
+                <!-- 2. Dashboard mock-up -->
+                <article class="bento-card b-dash reveal" data-delay="90">
+                    <div class="card-media">
+                        <img src="assets/silovision_frame_01.jpg" width="1600" height="900" alt="SiloVisionX dashboard detecting five field photos in one run and totalling 14 bales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-kicker">DASHBOARD</p>
+                        <h3 class="card-title-sm">Batch detection · auto count</h3>
+                        <p class="card-sub-sm">Multiple images per run · automatic totals · web UI in four languages (KR · EN · ZH · JA)</p>
+                    </div>
+                </article>
+
+                <!-- 3. Cybersecurity & Governance -->
+                <article class="bento-card b-cyber reveal" data-delay="120">
+                    <div class="card-body">
+                        <p class="card-kicker card-kicker-gold">CYBERSECURITY &amp; GOVERNANCE ADVISORY</p>
+                        <h3 class="card-title-sm">Secure Data.<br>Trusted Systems.</h3>
+                        <p class="card-sub-sm">Security requirements definition for AI and ODA programmes, ISMS-P and data standard-contract practice, and audit readiness — designed so that organisations adopting technology secure trust alongside it.</p>
+                        <ul class="chip-list">
+                            <li>AI · ODA cybersecurity advisory</li>
+                            <li>Privacy · personal data · data contracts</li>
+                            <li>System assurance &amp; security assessment</li>
+                            <li>Public and private sector training</li>
+                        </ul>
+                    </div>
+                    <svg class="cyber-mark" viewBox="0 0 120 130" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="shieldGold" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#C9A227"/><stop offset="55%" stop-color="#E8C967"/><stop offset="100%" stop-color="#F5E199"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M60 6 108 24v42c0 28-20 47-48 58C32 113 12 94 12 66V24Z" fill="none" stroke="url(#shieldGold)" stroke-width="2.4" stroke-linejoin="round" opacity="0.85"/>
+                        <path d="M60 22 92 34v32c0 20-13 34-32 43-19-9-32-23-32-43V34Z" fill="none" stroke="url(#shieldGold)" stroke-width="1.1" opacity="0.45"/>
+                        <circle cx="60" cy="60" r="12" fill="none" stroke="url(#shieldGold)" stroke-width="2"/>
+                        <path d="M60 72v14" stroke="url(#shieldGold)" stroke-width="2.4" stroke-linecap="round"/>
+                    </svg>
+                </article>
+
+                <!-- 4. Mongolia grazing ODA -->
+                <article class="bento-card b-oda reveal" data-delay="150">
+                    <div class="card-body">
+                        <p class="card-kicker card-kicker-gold">ODA EXTENSION · MONGOLIA</p>
+                        <h3 class="card-title-sm">Reading flocks and<br>pastures across the steppe</h3>
+                        <p class="card-sub-sm">The same vision engine maps herd counts and grazing pressure by zone — the evidence base for rotational grazing and pasture conservation decisions.</p>
+                    </div>
+                    <div class="oda-mini">
+                        <svg viewBox="0 0 420 190" role="img" aria-label="Illustrative diagram: a drone surveying pasture zones — forage available, partly grazed, overgrazed">
+                            <defs>
+                                <linearGradient id="odaZoneHigh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2C7A5E"/><stop offset="100%" stop-color="#1F5E4B"/></linearGradient>
+                                <linearGradient id="odaZoneMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5C8F6B"/><stop offset="100%" stop-color="#3F7355"/></linearGradient>
+                                <linearGradient id="odaZoneLow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9C8A5A"/><stop offset="100%" stop-color="#7A6A42"/></linearGradient>
+                            </defs>
+                            <path d="M20 34 C110 12 300 12 400 38" fill="none" stroke="#E8C967" stroke-width="1.3" stroke-dasharray="5 5" opacity="0.55"/>
+                            <g transform="translate(210,26)">
+                                <rect x="-13" y="-3" width="26" height="7" rx="2.5" fill="#E8C967"/>
+                                <circle cx="-18" cy="0" r="5.5" fill="none" stroke="#E8C967" stroke-width="1.4"/>
+                                <circle cx="18" cy="0" r="5.5" fill="none" stroke="#E8C967" stroke-width="1.4"/>
+                            </g>
+                            <path d="M196 34 L160 62 M224 34 L260 62" stroke="#E8C967" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+                            <g>
+                                <rect x="16" y="66" width="124" height="112" rx="5" fill="url(#odaZoneHigh)" opacity="0.95"/>
+                                <rect x="148" y="66" width="124" height="112" rx="5" fill="url(#odaZoneMid)" opacity="0.95"/>
+                                <rect x="280" y="66" width="124" height="112" rx="5" fill="url(#odaZoneLow)" opacity="0.95"/>
+                            </g>
+                            <g fill="#F5E199" opacity="0.92">
+                                <ellipse cx="44" cy="112" rx="5.5" ry="3.6"/><ellipse cx="66" cy="122" rx="5.5" ry="3.6"/>
+                                <ellipse cx="90" cy="108" rx="5.5" ry="3.6"/><ellipse cx="112" cy="126" rx="5.5" ry="3.6"/>
+                                <ellipse cx="60" cy="146" rx="5.5" ry="3.6"/><ellipse cx="98" cy="152" rx="5.5" ry="3.6"/>
+                                <ellipse cx="176" cy="104" rx="5.5" ry="3.6"/><ellipse cx="206" cy="112" rx="5.5" ry="3.6"/>
+                                <ellipse cx="234" cy="100" rx="5.5" ry="3.6"/><ellipse cx="196" cy="140" rx="5.5" ry="3.6"/>
+                            </g>
+                            <g font-size="10" font-weight="600" text-anchor="middle" fill="#F7F6F2" opacity="0.95">
+                                <text x="78" y="86">Forage available</text>
+                                <text x="210" y="86">Partly grazed</text>
+                                <text x="342" y="86">Overgrazed</text>
+                            </g>
+                            <g font-size="8.5" text-anchor="middle" fill="#F7F6F2" opacity="0.62">
+                                <text x="78" y="99">Dense herd</text>
+                                <text x="210" y="99">Moderate grazing</text>
+                                <text x="342" y="99">Forage low</text>
+                            </g>
+                        </svg>
+                    </div>
+                </article>
+
+                <!-- 5. Track record -->
+                <article class="bento-card b-cred reveal" data-delay="180">
+                    <p class="card-kicker">TRACK RECORD</p>
+                    <h3 class="card-title-sm">Delivered end to end — from proposal to commissioning and stabilisation</h3>
+                    <ul class="cred-list">
+                        <li>
+                            <span class="cred-org">KOICA · Nepal</span>
+                            <span class="cred-desc"><strong>Government data centre (IDC)</strong> — ground-breaking, build-out, operational stabilisation and technical training for local officials</span>
+                        </li>
+                        <li>
+                            <span class="cred-org">KOICA · Nepal</span>
+                            <span class="cred-desc"><strong>Tribhuvan University Institute of Technical Computing</strong> — grant-aid proposal written, institution established</span>
+                        </li>
+                        <li>
+                            <span class="cred-org">Seogwipo Livestock Division</span>
+                            <span class="cred-desc">Silage subsidy support, sample analysis and <strong>pasture counting</strong> in practice — where SiloVisionX began</span>
+                        </li>
+                        <li>
+                            <span class="cred-org">Samsung Electronics · Yonsei University</span>
+                            <span class="cred-desc"><strong>Former Samsung Electronics · M.S. in Information Systems (Information Security), Yonsei University</strong>; ISMS-P and data standard-contract practice</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Solution -->
+    <section id="core-solution" class="section section-core">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow">01 — CORE SOLUTION</p>
+                <h2 class="section-title">It began with a <em>manual counting</em> bottleneck in the Seogwipo livestock field</h2>
+                <p class="section-lead">
+                    Working on silage subsidy support, sample analysis and pasture counting at the Seogwipo Livestock Division, we lived with manual inventories that took about 30 minutes per case — double counting, omissions and a separate paperwork trail.
+                    SiloVisionX replaced that bottleneck with one drone or smartphone photo and AI object recognition.
+                </p>
+            </header>
+
+            <ol class="flow reveal">
+                <li class="flow-item">
+                    <span class="flow-num">01</span>
+                    <h3>Counted by eye, written by hand</h3>
+                    <p>Bale silage was counted by hand, recorded on paper and retyped into documents. About 30 minutes per case, with the risk of double counting and omissions.</p>
+                </li>
+                <li class="flow-item">
+                    <span class="flow-num">02</span>
+                    <h3>Automatic detection and counting</h3>
+                    <p>YOLOv8m-seg detects bales in captured imagery and aggregates the count. Confidence thresholds are tuned on site.</p>
+                </li>
+                <li class="flow-item">
+                    <span class="flow-num">03</span>
+                    <h3>One-click evidence report</h3>
+                    <p>A PDF report with location and timestamp metadata is generated automatically — evidence in 30 seconds from a single photo.</p>
+                </li>
+            </ol>
+
+            <ul class="metric-row reveal">
+                <li>
+                    <p class="metric-value">mAP50 0.96</p>
+                    <p class="metric-label">Detection accuracy 93–96%<br>YOLOv8m-seg training results</p>
+                </li>
+                <li>
+                    <p class="metric-value">0.42 s</p>
+                    <p class="metric-label">Inference per image<br>(CPU only)</p>
+                </li>
+                <li>
+                    <p class="metric-value">30 min → 30 s</p>
+                    <p class="metric-label">Time to produce one evidence report<br>Auto-generated PDF</p>
+                </li>
+                <li>
+                    <p class="metric-value">4 languages</p>
+                    <p class="metric-label">KR · EN · ZH · JA responsive web<br>No separate PC or mobile app</p>
+                </li>
+            </ul>
+
+            <div class="gallery reveal">
+                <figure class="shot shot-main">
+                    <img src="assets/silovision_frame_03.jpg" width="1600" height="900" alt="Original photo with bales 1 and 2 boxed at 0.89 confidence by the AI model" loading="lazy">
+                    <figcaption><strong>Before / after</strong> Uploaded original → AI detection (confidence shown)</figcaption>
+                </figure>
+                <figure class="shot shot-tall">
+                    <img src="assets/silovision_frame_02.jpg" width="800" height="1600" alt="SiloVisionX screen capturing a field photo with the mobile camera and uploading it directly" loading="lazy">
+                    <figcaption><strong>Immediate field processing</strong> Mobile camera capture → no separate desktop step</figcaption>
+                </figure>
+                <figure class="shot shot-wide">
+                    <img src="assets/silovision_drone_report.jpg" width="1600" height="900" alt="SiloVisionX drone report view (mock-up) with single and stacked silage rolls detected without duplication — 187 single rolls and 26 stacked" loading="lazy">
+                    <figcaption><strong>Drone aerial reading</strong> One frame covers a wide pasture, with single and stacked bales counted separately &mdash; overlapping rolls counted without duplication (illustrative screen)</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ODA extension -->
+    <section id="oda" class="section section-oda">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow eyebrow-gold">02 — ODA EXTENSION · MONGOLIA</p>
+                <h2 class="section-title">The same vision engine reads<br>flocks and pastures</h2>
+                <p class="section-lead">
+                    An object detection and counting engine validated in Korea extends simply by changing the target.
+                    A drone surveys the wide Mongolian steppe and shows <strong>(1) herd counts, counted automatically</strong> and
+                    <strong>(2) which zones are overgrazed and where forage remains</strong>, at a glance.
+                </p>
+            </header>
+
+            <div class="oda-grid">
+                <div class="oda-cards">
+                    <article class="oda-card reveal">
+                        <span class="oda-num">①</span>
+                        <h3>Automated herd counting</h3>
+                        <p>Livestock individuals are detected in aerial footage and counted by zone, using the same detection and counting pipeline as domestic silage counting.</p>
+                    </article>
+                    <article class="oda-card reveal" data-delay="90">
+                        <span class="oda-num">②</span>
+                        <h3>Pasture condition mapping</h3>
+                        <p>Zone-level forage is compared to separate overgrazed areas from those where forage remains. Grazing pressure hotspots are visible directly on the map.</p>
+                    </article>
+                    <article class="oda-value reveal" data-delay="150">
+                        <h3>Turning data into decisions</h3>
+                        <ul>
+                            <li>Zone-level grazing history → <strong>rotational grazing</strong> plans</li>
+                            <li>Early detection of overgrazing → <strong>pasture conservation</strong> and recovery priorities</li>
+                            <li>Herd counts, area and vegetation indices recorded as metrics → <strong>ODA performance evidence</strong></li>
+                        </ul>
+                    </article>
+                </div>
+
+                <figure class="oda-diagram reveal" data-delay="120">
+                    <svg viewBox="0 0 560 400" role="img" aria-label="Illustrative diagram of a drone surveying pasture zones and grazing status">
+                        <defs>
+                            <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#132238"/><stop offset="100%" stop-color="#0D1B2A"/>
+                            </linearGradient>
+                            <linearGradient id="grassHigh" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#2F8367"/><stop offset="100%" stop-color="#1F5E4B"/>
+                            </linearGradient>
+                            <linearGradient id="grassMid" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#5E9270"/><stop offset="100%" stop-color="#3E7357"/>
+                            </linearGradient>
+                            <linearGradient id="grassLow" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#A08D5C"/><stop offset="100%" stop-color="#7B6B43"/>
+                            </linearGradient>
+                            <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#C9A227"/><stop offset="60%" stop-color="#E8C967"/><stop offset="100%" stop-color="#F5E199"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="560" height="400" fill="url(#skyN)"/>
+
+                        <!-- Grid -->
+                        <g stroke="#E8C967" stroke-opacity="0.06">
+                            <path d="M0 40H560M0 80H560M0 120H560M0 160H560M0 200H560M0 240H560M0 280H560M0 320H560M0 360H560"/>
+                            <path d="M40 0V400M80 0V400M120 0V400M160 0V400M200 0V400M240 0V400M280 0V400M320 0V400M360 0V400M400 0V400M440 0V400M480 0V400M520 0V400"/>
+                        </g>
+
+                        <!-- Drone -->
+                        <path d="M40 92 C170 56 390 56 520 92" fill="none" stroke="url(#goldLine)" stroke-width="1.6" stroke-dasharray="7 7" opacity="0.75"/>
+                        <g transform="translate(280,68)">
+                            <rect x="-18" y="-4.5" width="36" height="9" rx="3" fill="#F5E199"/>
+                            <circle cx="-25" cy="0" r="8" fill="none" stroke="#F5E199" stroke-width="1.6"/>
+                            <circle cx="25" cy="0" r="8" fill="none" stroke="#F5E199" stroke-width="1.6"/>
+                        </g>
+                        <text x="280" y="34" font-size="12" text-anchor="middle" fill="#F5E199" opacity="0.85" letter-spacing="1.5">DRONE SURVEY</text>
+                        <path d="M262 78 L206 116 M298 78 L354 116" stroke="#E8C967" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+
+                        <!-- Pasture zones -->
+                        <rect x="24" y="116" width="160" height="206" rx="8" fill="url(#grassHigh)"/>
+                        <rect x="196" y="116" width="160" height="206" rx="8" fill="url(#grassMid)"/>
+                        <rect x="368" y="116" width="168" height="206" rx="8" fill="url(#grassLow)"/>
+
+                        <!-- Grass texture -->
+                        <g stroke="#F7F6F2" stroke-opacity="0.22" stroke-width="1.5">
+                            <path d="M44 306 L44 294 M64 308 L64 290 M84 306 L84 296 M104 308 L104 288 M124 306 L124 292 M144 308 L144 290 M164 306 L164 294"/>
+                            <path d="M216 306 L216 298 M236 308 L236 292 M256 306 L256 296 M276 308 L276 290 M296 306 L296 298"/>
+                        </g>
+
+                        <!-- Flock -->
+                        <g fill="#F5E199" stroke="#0D1B2A" stroke-opacity="0.35" stroke-width="0.6">
+                            <ellipse cx="70" cy="204" rx="8.5" ry="5.5"/><ellipse cx="98" cy="218" rx="8.5" ry="5.5"/>
+                            <ellipse cx="126" cy="202" rx="8.5" ry="5.5"/><ellipse cx="152" cy="220" rx="8.5" ry="5.5"/>
+                            <ellipse cx="62" cy="246" rx="8.5" ry="5.5"/><ellipse cx="104" cy="254" rx="8.5" ry="5.5"/>
+                            <ellipse cx="142" cy="248" rx="8.5" ry="5.5"/>
+                            <ellipse cx="232" cy="190" rx="8.5" ry="5.5"/><ellipse cx="274" cy="180" rx="8.5" ry="5.5"/>
+                            <ellipse cx="306" cy="196" rx="8.5" ry="5.5"/><ellipse cx="252" cy="230" rx="8.5" ry="5.5"/>
+                            <ellipse cx="322" cy="232" rx="8.5" ry="5.5"/>
+                        </g>
+
+                        <!-- Labels -->
+                        <g font-size="13" font-weight="600" text-anchor="middle" fill="#F7F6F2">
+                            <text x="104" y="148">Forage available</text>
+                            <text x="276" y="148">Partly grazed</text>
+                            <text x="452" y="148">Overgrazed</text>
+                        </g>
+                        <g font-size="10.5" text-anchor="middle" fill="#F7F6F2" opacity="0.6">
+                            <text x="104" y="166">Dense herd</text>
+                            <text x="276" y="166">Moderate grazing</text>
+                            <text x="452" y="166">Forage low</text>
+                        </g>
+
+                        <!-- Legend -->
+                        <g font-size="11" fill="#F7F6F2" opacity="0.72">
+                            <rect x="24" y="352" width="11" height="11" rx="2" fill="#1F5E4B"/>
+                            <text x="41" y="362">Good vegetation</text>
+                            <rect x="122" y="352" width="11" height="11" rx="2" fill="#3E7357"/>
+                            <text x="139" y="362">Grazing in progress</text>
+                            <rect x="216" y="352" width="11" height="11" rx="2" fill="#7B6B43"/>
+                            <text x="233" y="362">Overgrazed</text>
+                        </g>
+                    </svg>
+                    <figcaption>Illustrative scenario · pre-validation stage in Mongolia</figcaption>
+                </figure>
+            </div>
+
+            <div class="oda-note reveal">
+                <p><strong>Why this suits ODA</strong> &mdash; (1) wide pastures that are hard to inspect on foot are surveyed by drone in a fraction of the time, (2) objective figures such as herd counts and zone-level vegetation can go straight into performance reporting, and (3) it runs in a smartphone browser, so field teams carry <strong>no extra hardware or training burden.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why AICANSMILE -->
+    <section id="why" class="section section-why">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow">WHY AICANSMILE</p>
+                <h2 class="section-title">What we bring</h2>
+                <p class="section-lead">Problems lived in the field, ODA delivered through to completion, technology we built ourselves — and the cybersecurity discipline that makes it trusted.</p>
+            </header>
+            <div class="why-grid">
+                <article class="why-card reveal">
+                    <span class="why-num">01</span>
+                    <h3>Field-first problem solving</h3>
+                    <ul>
+                        <li><strong>Silage subsidy support and sample analysis</strong>, and <strong>pasture counting</strong> in practice at the Seogwipo Livestock Division</li>
+                        <li>Counting and evidence bottlenecks met in the field, resolved with AI vision &mdash; SiloVisionX</li>
+                    </ul>
+                    <p class="why-foot">Tools built by people who know the field get used in the field.</p>
+                </article>
+                <article class="why-card reveal" data-delay="90">
+                    <span class="why-num">02</span>
+                    <h3>Full-cycle KOICA ODA delivery (three years in Nepal)</h3>
+                    <ul>
+                        <li><strong>Government data centre (IDC), Nepal</strong> &mdash; from ground-breaking through build-out and operational stabilisation, including technical training for local officials</li>
+                        <li><strong>Tribhuvan University Institute of Technical Computing</strong> &mdash; wrote the KOICA grant-aid proposal that led to its establishment</li>
+                        <li><strong>KOVA</strong> (Korean Overseas Volunteers Association) &mdash; served as Secretary-General</li>
+                    </ul>
+                    <p class="why-foot">From proposal writing to handover and stabilisation, we have run the full ODA project cycle.</p>
+                </article>
+                <article class="why-card reveal" data-delay="180">
+                    <span class="why-num">03</span>
+                    <h3>Cybersecurity and information protection</h3>
+                    <ul>
+                        <li>Former Samsung Electronics · Yonsei University, <strong>M.S. in Information Systems (Information Security)</strong></li>
+                        <li>ISMS-P, data standard contracts and AI governance &mdash; hands-on training and assignments</li>
+                        <li><strong>AI cybersecurity and audit advisory</strong> for public and ODA programmes</li>
+                        <li>In-house YOLO and Edge AI development</li>
+                    </ul>
+                    <p class="why-foot">We build the technology &mdash; and design it to be trusted.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- R&D references & advisory -->
+    <section id="references" class="section section-refs">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow">R&amp;D REFERENCES</p>
+                <h2 class="section-title">AI solution portfolio</h2>
+                <p class="section-lead">AI applications planned and built in-house across agri-livestock, music, language learning, finance and healthcare. Select a tab to see each solution's capabilities and technology stack.</p>
+            </header>
+
+            <div class="ref-block reveal">
+                <div class="menu-tabs" role="tablist" aria-label="AI solutions">
+                    <button class="tab-btn active" role="tab" aria-selected="true" data-category="silo-vision">SiloVisionX</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="snap-speak">Snap&amp;Speak</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="clef-ai">Clef.ai</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="jurins-theme">Jurin's Theme</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="miriface">MiriFace</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="aihunjang">AIHUNJANG</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="vallyway">VallyWay</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="choicecafe">ChoiceCafe</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="doljob">Doljob</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-category="mypa">MYPA</button>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Product items are rendered by script.js -->
+                </div>
+            </div>
+
+            <div class="advisory reveal">
+                <div class="advisory-copy">
+                    <p class="eyebrow eyebrow-gold">ADVISORY</p>
+                    <h3>AI Governance &amp; Cybersecurity Advisory</h3>
+                    <p>We design governance and cybersecurity from the outset so that organisations adopting AI secure technology and trust together. Drawing on a Samsung Electronics background, an M.S. in Information Systems (Information Security) at Yonsei University, and hands-on ISMS-P and data standard-contract work, we support security requirements definition and audit readiness for AI and ODA programmes.</p>
+                </div>
+                <ul class="advisory-badges">
+                    <li>AI · ODA cybersecurity advisory</li>
+                    <li>Privacy · personal data · data contracts</li>
+                    <li>System assurance &amp; security assessment</li>
+                    <li>Public and private sector training</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section-about">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow">ABOUT</p>
+                <h2 class="section-title">About AICANSMILE</h2>
+            </header>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        <strong>AICANSMILE</strong> is an AI technology company that solves real problems in the agri-livestock field with AI and drone vision,
+                        and extends that technology through ODA in developing countries.
+                        Our principle is to move technology proven in Korea directly onto developing-country problems.
+                    </p>
+                    <p>
+                        Three axes carry each other's record and credibility: <strong>AI Studio</strong> commercialises what we build,
+                        <strong>Impact Lab</strong> applies AI to developing-country problems, and
+                        <strong>AI Governance &amp; Cybersecurity Advisory</strong> helps the AI being adopted earn trust.
+                    </p>
+                    <p>
+                        In particular, grounded in a background as <strong>former Samsung Electronics and an M.S. in Information Systems (Information Security) at Yonsei University</strong>, plus ISMS-P and data standard-contract practice,
+                        we provide the <strong>cybersecurity, privacy and audit advisory</strong> that AI and ODA programmes need alongside technology development.
+                    </p>
+                </div>
+                <div class="about-side reveal" data-delay="90">
+                    <div class="mv">
+                        <h3>Mission</h3>
+                        <p class="mv-title">"AI can make the world smile."</p>
+                        <p>To be a global impact partner delivering practical AI where it is needed most.</p>
+                    </div>
+                    <div class="mv">
+                        <h3>Vision</h3>
+                        <p class="mv-title">"Borderless AI Partner"</p>
+                        <p>Beyond the boundaries of agriculture, edtech and ODA, we build AI that works in the field.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pipelines reveal">
+                <h3>Impact Lab pipeline <span>(under review / planning)</span></h3>
+                <ul>
+                    <li><span class="pipe-name">Mongolia steppe livestock counting and pasture monitoring ODA</span><em>SiloVisionX engine extension</em></li>
+                    <li><span class="pipe-name">Nepal health, education and labour AI decision support</span><em>Partner discussions</em></li>
+                    <li><span class="pipe-name">Developing-country water and disaster-response AI monitoring</span><em>Planning</em></li>
+                </ul>
+            </div>
+
+            <figure class="model-figure reveal">
+                <svg class="cycle-diagram" viewBox="0 0 1000 400" role="img" aria-label="AICANSMILE technology, business and impact loop — Studio R&amp;D becomes revenue through commercialisation, and that revenue and technology flow into Impact Lab's developing-country work, which in turn advances the technology">
+                    <defs>
+                        <linearGradient id="cycGold" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#C9A227"/><stop offset="50%" stop-color="#E8C967"/><stop offset="100%" stop-color="#C9A227"/>
+                        </linearGradient>
+                        <marker id="cycArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M0 0 L10 5 L0 10 z" fill="#C9A227"/>
+                        </marker>
+                        <marker id="cycArrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M0 0 L10 5 L0 10 z" fill="#1F5E4B"/>
+                        </marker>
+                    </defs>
+
+                    <rect x="0.5" y="0.5" width="999" height="399" rx="18" fill="#FBFAF6" stroke="#E4E0D5"/>
+
+                    <!-- 01 Studio -->
+                    <g>
+                        <rect x="54" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="76" y="98">01 · AI STUDIO</text>
+                        <text class="cyc-title" x="76" y="128">R&amp;D technology development</text>
+                        <text class="cyc-line" x="76" y="158">Visual intelligence · Generative AI</text>
+                        <text class="cyc-line" x="76" y="180">YOLO · Edge AI · RAG</text>
+                        <text class="cyc-line" x="76" y="208">SiloVisionX · Snap&amp;Speak · Clef.ai</text>
+                    </g>
+
+                    <!-- 02 Business -->
+                    <g>
+                        <rect x="381" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="403" y="98">02 · BUSINESS</text>
+                        <text class="cyc-title" x="403" y="128">Market-led productisation</text>
+                        <text class="cyc-line" x="403" y="158">B2G · B2B agri-livestock</text>
+                        <text class="cyc-line" x="403" y="180">Revenue · sustainable growth</text>
+                        <text class="cyc-line" x="403" y="208">Commercialisation from Magok</text>
+                    </g>
+
+                    <!-- 03 Impact Lab -->
+                    <g>
+                        <rect x="708" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="730" y="98">03 · IMPACT LAB</text>
+                        <text class="cyc-title" x="730" y="128">Social value return</text>
+                        <text class="cyc-line" x="730" y="158">Developing-country problem solving</text>
+                        <text class="cyc-line" x="730" y="180">KOICA ODA · ESG management</text>
+                        <text class="cyc-line" x="730" y="208">Mongolia · Nepal pipeline</text>
+                    </g>
+
+                    <!-- Forward arrows -->
+                    <path d="M296 145H374" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
+                    <path d="M623 145H701" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
+
+                    <!-- Feedback arrow -->
+                    <path d="M827 246C827 330 173 330 173 246" fill="none" stroke="#1F5E4B" stroke-width="1.6" stroke-dasharray="6 6" marker-end="url(#cycArrowGreen)" opacity="0.85"/>
+
+                    <text class="cyc-note" x="500" y="292">Feedback loop: technology · revenue · field data</text>
+                    <text class="cyc-note-sm" x="500" y="356">Data and experience from developing-country fields return to technology development</text>
+
+                    <text class="cyc-kicker" x="500" y="40" text-anchor="middle">TECHNOLOGY · BUSINESS · IMPACT</text>
+                </svg>
+                <ol class="cycle-list">
+                    <li><span>01 · AI Studio</span><strong>R&amp;D technology development</strong><em>Visual intelligence · generative AI · YOLO · Edge AI · RAG</em></li>
+                    <li><span>02 · Business</span><strong>Market-led productisation</strong><em>B2G · B2B agri-livestock · revenue · commercialisation from Magok</em></li>
+                    <li><span>03 · Impact Lab</span><strong>Social value return</strong><em>KOICA ODA · ESG management · Mongolia &amp; Nepal pipeline</em></li>
+                    <li class="cycle-return">Feedback loop of technology, revenue and field data &mdash; data and experience from developing-country fields return to technology development</li>
+                </ol>
+                <figcaption><strong>The technology · business · impact loop</strong> Studio R&amp;D becomes revenue through commercialisation from Magok; that revenue and technology flow into Impact Lab's developing-country work, which in turn advances the technology.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-contact">
+        <div class="container">
+            <header class="section-head reveal">
+                <p class="eyebrow eyebrow-gold">CONTACT</p>
+                <h2 class="section-title">Government programmes &amp; ODA enquiries</h2>
+                <p class="section-lead">Joint proposal writing, proof of concept, and ODA consortium participation are all open for discussion.</p>
+            </header>
+            <div class="contact-content">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <h3>Contact</h3>
+                        <p>Phone: <a href="tel:+821032017076">+82 10 3201 7076</a></p>
+                        <p>Email: <a href="mailto:aicansmile8@gmail.com">aicansmile8@gmail.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Location</h3>
+                        <p>Mok-dong, Yangcheon-gu, Seoul</p>
+                        <p class="address-note">Detailed address shared on request</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Office hours</h3>
+                        <p>Mon–Fri: 09:00 – 18:00</p>
+                        <p>Sat–Sun: closed</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Getting here</h3>
+                        <p>Subway: Line 5 Omokgyo Stn., Line 9 Mokdong Stn.</p>
+                        <p>Bus: trunk 603, 662 · branch 5615, 5713</p>
+                    </div>
+                    <a href="consulting.html" class="btn btn-gold contact-cta">
+                        Start a project enquiry
+                        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                <div class="contact-map reveal" data-delay="90">
+                    <iframe
+                        src="https://www.google.com/maps?q=Mok-dong,+Yangcheon-gu,+Seoul&amp;output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="AICANSMILE location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img src="assets/aicansmile_logo_320.png" width="320" height="320" alt="" aria-hidden="true" loading="lazy">
+                <div>
+                    <p class="footer-name">AICANSMILE</p>
+                    <p class="footer-motto">AI can make the world smile.</p>
+                </div>
+            </div>
+            <p class="footer-copy">&copy; 2026 AICANSMILE. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/soyoungpark-aicansmile/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/psoy" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+                <a href="consulting.html">Project enquiry</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="hero-canvas.js"></script>
+</body>
+</html>
