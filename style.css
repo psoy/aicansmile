@@ -199,14 +199,17 @@ button { font: inherit; color: inherit; }
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(13, 27, 42, 0.62);
+    background: rgba(13, 27, 42, 0.97);
     backdrop-filter: saturate(160%) blur(14px);
     -webkit-backdrop-filter: saturate(160%) blur(14px);
     border-bottom: 1px solid rgba(245, 225, 153, 0.13);
     transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
+/* 히어로(다크) 위에서는 배경이 비쳐 보이도록 */
+body[data-page="home"] .navbar { background: rgba(13, 27, 42, 0.55); }
+body[data-page="home"] .navbar.scrolled { background: rgba(13, 27, 42, 0.95); }
 .navbar.scrolled {
-    background: rgba(13, 27, 42, 0.94);
+    background: rgba(13, 27, 42, 0.97);
     box-shadow: 0 10px 30px rgba(4, 10, 18, 0.35);
 }
 
