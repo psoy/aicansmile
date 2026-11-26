@@ -48,14 +48,14 @@
     var particles = [];
     var sprites = {};
     var curtains = [
-        { rgb: '150, 124, 214', baseY: 0.14, amp: 46, thickness: 0.30, phase: 0.0, speed: 0.16, alpha: 0.26, freq: 0.0032, rays: 26 },
-        { rgb: '96, 190, 172', baseY: 0.38, amp: 62, thickness: 0.36, phase: 1.9, speed: 0.11, alpha: 0.20, freq: 0.0021, rays: 20 },
+        { rgb: '150, 124, 214', baseY: 0.14, amp: 46, thickness: 0.30, phase: 0.0, speed: 0.16, alpha: 0.26, freq: 0.0032, rays: 34 },
+        { rgb: '96, 190, 172', baseY: 0.38, amp: 62, thickness: 0.36, phase: 1.9, speed: 0.11, alpha: 0.20, freq: 0.0021, rays: 26 },
         { rgb: '212, 165, 116', baseY: 0.72, amp: 30, thickness: 0.22, phase: 3.6, speed: 0.09, alpha: 0.10, freq: 0.0026, rays: 0 }
     ];
 
     // 오로라 커튼은 저해상도 오프스크린에 그리고 블러로 확대 → 은은하게 번지는 빛
     // (블러는 한 프레임에 한 번만: 도형마다 filter를 걸면 프레임당 수십 번의 블러 비용이 든다)
-    var AURA_SCALE = 0.28;
+    var AURA_SCALE = 0.34;
     var auraRaw = document.createElement('canvas');
     var auraRawCtx = auraRaw.getContext('2d');
     var auraCanvas = document.createElement('canvas');
@@ -208,8 +208,8 @@
             var seed = r * 2.399;
             var rx = (r + 0.5) * slot + Math.sin(seed) * slot * 0.45;
             var flick = 0.5 + 0.5 * Math.sin(seed * 2.3 + time * (0.35 + (r % 3) * 0.08) + layer.phase);
-            var rw = slot * (0.16 + 0.34 * flick);
-            var a = layer.alpha * (0.22 + 0.62 * flick);
+            var rw = slot * (0.10 + 0.26 * flick);
+            var a = layer.alpha * (0.28 + 0.66 * flick);
             var topY = baseY
                 + Math.sin(rx * k * layer.freq + time * layer.speed + layer.phase) * amp - amp * 0.9;
             var rh = thickness * (0.85 + 0.45 * Math.sin(rx * k * 0.005 + time * 0.3 + layer.phase));
@@ -237,7 +237,7 @@
         // 한 번의 블러로 부드럽게 번지게 만든 후 화면 크기로 확대
         auraCtx.setTransform(1, 0, 0, 1, 0, 0);
         auraCtx.clearRect(0, 0, w, h);
-        if (supportsFilter) auraCtx.filter = 'blur(4px)';
+        if (supportsFilter) auraCtx.filter = 'blur(3px)';
         auraCtx.drawImage(auraRaw, 0, 0);
         if (supportsFilter) auraCtx.filter = 'none';
 
