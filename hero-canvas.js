@@ -48,9 +48,9 @@
     var particles = [];
     var sprites = {};
     var curtains = [
-        { rgb: '150, 120, 205', baseY: 0.16, amp: 46, thickness: 0.34, phase: 0.0, speed: 0.16, alpha: 0.26, freq: 0.0032 },
-        { rgb: '104, 168, 176', baseY: 0.40, amp: 62, thickness: 0.40, phase: 1.9, speed: 0.11, alpha: 0.20, freq: 0.0021 },
-        { rgb: '212, 165, 116', baseY: 0.62, amp: 34, thickness: 0.26, phase: 3.6, speed: 0.09, alpha: 0.14, freq: 0.0026 }
+        { rgb: '150, 124, 214', baseY: 0.14, amp: 46, thickness: 0.30, phase: 0.0, speed: 0.16, alpha: 0.26, freq: 0.0032, rays: 26 },
+        { rgb: '96, 190, 172', baseY: 0.38, amp: 62, thickness: 0.36, phase: 1.9, speed: 0.11, alpha: 0.20, freq: 0.0021, rays: 20 },
+        { rgb: '212, 165, 116', baseY: 0.72, amp: 30, thickness: 0.22, phase: 3.6, speed: 0.09, alpha: 0.10, freq: 0.0026, rays: 0 }
     ];
 
     // 오로라 커튼은 저해상도 오프스크린에 그리고 블러로 확대 → 은은하게 번지는 빛
@@ -193,6 +193,33 @@
         target.closePath();
         target.fillStyle = grad;
         target.fill();
+
+        // 오로라 기둥(ray) — 커튼 안쪽의 세로 빛무늬
+        if (layer.rays) drawRays(target, layer, time, w, h, k, baseY, amp, thickness);
+    }
+
+    function drawRays(target, layer, time, w, h, k, baseY, amp, thickness) {
+        var count = layer.rays;
+        var slot = w / count;
+        for (var r = 0; r < count; r++) {
+            var seed = r * 2.399;
+            var rx = (r + 0.5) * slot + Math.sin(seed) * slot * 0.45;
+            var flick = 0.5 + 0.5 * Math.sin(seed * 2.3 + time * (0.35 + (r % 3) * 0.08) + layer.phase);
+            var rw = slot * (0.16 + 0.34 * flick);
+            var a = layer.alpha * (0.22 + 0.62 * flick);
+            var topY = baseY
+                + Math.sin(rx * k * layer.freq + time * layer.speed + layer.phase) * amp - amp * 0.9;
+            var rh = thickness * (0.85 + 0.45 * Math.sin(rx * k * 0.005 + time * 0.3 + layer.phase));
+            if (rh < 6) continue;
+
+            var g = target.createLinearGradient(0, topY, 0, topY + rh);
+            g.addColorStop(0, 'rgba(' + layer.rgb + ', 0)');
+            g.addColorStop(0.38, 'rgba(' + layer.rgb + ', ' + a + ')');
+            g.addColorStop(0.72, 'rgba(' + layer.rgb + ', ' + (a * 0.62) + ')');
+            g.addColorStop(1, 'rgba(' + layer.rgb + ', 0)');
+            target.fillStyle = g;
+            target.fillRect(rx - rw / 2, topY, rw, rh);
+        }
     }
 
     function drawAurora(time) {
