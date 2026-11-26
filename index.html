@@ -57,7 +57,7 @@
                 <h1 class="hero-title">
                     AI와 드론의 눈으로<br>
                     농축산 현장을 읽고,<br>
-                    <em>개발도상국 ODA</em>로 확장합니다.
+                    <em>개도국 ODA</em>로 확장합니다.
                 </h1>
                 <p class="hero-subtitle">
                     서귀포 축산 현장의 곤포 사일리지 카운팅에서 검증한 드론·AI 객체 인식 기술.<br>
@@ -304,7 +304,7 @@
                     <img src="assets/silovision_frame_03.jpg" width="1600" height="900" alt="원본 사진 위에 사일로 1, 2가 각각 신뢰도 0.89로 바운딩 박스 표시된 AI 탐지 결과" loading="lazy">
                     <figcaption><strong>전후 비교</strong> 업로드 원본 → AI 탐지 결과 (신뢰도 표시)</figcaption>
                 </figure>
-                <figure class="shot">
+                <figure class="shot shot-tall">
                     <img src="assets/silovision_frame_02.jpg" width="800" height="1600" alt="모바일에서 카메라로 현장 사진을 촬영해 바로 업로드하는 SiloVisionX 화면" loading="lazy">
                     <figcaption><strong>현장 즉시 처리</strong> 모바일 카메라 촬영 → 별도 PC 작업 없음</figcaption>
                 </figure>
@@ -576,7 +576,69 @@
             </div>
 
             <figure class="model-figure reveal">
-                <img src="assets/aicansmile_impact_circulation.jpg" alt="AICANSMILE 기술·비즈니스·임팩트 선순환 구조도 — R&amp;D 기술 개발(Studio)이 시장 중심 제품화로 이어져 수익을 창출하고, 그 수익과 기술이 Impact Lab의 사회적 가치 환원으로 다시 기술 고도화에 투자되는 순환 구조" loading="lazy">
+                <svg class="cycle-diagram" viewBox="0 0 1000 400" role="img" aria-label="AICANSMILE 기술·비즈니스·임팩트 선순환 구조도 — Studio의 R&amp;D 성과가 사업화로 수익을 만들고, 그 수익과 기술이 Impact Lab의 개도국 문제 해결로 이어져 다시 기술 고도화에 투자되는 순환 구조">
+                    <defs>
+                        <linearGradient id="cycGold" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#C9A227"/><stop offset="50%" stop-color="#E8C967"/><stop offset="100%" stop-color="#C9A227"/>
+                        </linearGradient>
+                        <marker id="cycArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M0 0 L10 5 L0 10 z" fill="#C9A227"/>
+                        </marker>
+                    </defs>
+
+                    <rect x="0.5" y="0.5" width="999" height="399" rx="18" fill="#FBFAF6" stroke="#E4E0D5"/>
+                    <g stroke="#E4E0D5" stroke-dasharray="2 6">
+                        <path d="M0 200H1000"/>
+                    </g>
+
+                    <!-- 01 Studio -->
+                    <g>
+                        <rect x="54" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="76" y="98">01 · AI STUDIO</text>
+                        <text class="cyc-title" x="76" y="128">R&amp;D 기술 개발</text>
+                        <text class="cyc-line" x="76" y="158">시각지능 · 생성지능</text>
+                        <text class="cyc-line" x="76" y="180">YOLO · Edge AI · RAG</text>
+                        <text class="cyc-line" x="76" y="208">SiloVisionX · Snap&amp;Speak · Clef.ai</text>
+                    </g>
+
+                    <!-- 02 Business -->
+                    <g>
+                        <rect x="381" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="403" y="98">02 · BUSINESS</text>
+                        <text class="cyc-title" x="403" y="128">시장 중심 제품화</text>
+                        <text class="cyc-line" x="403" y="158">B2G · B2B 농축산</text>
+                        <text class="cyc-line" x="403" y="180">수익 창출 · 지속 성장</text>
+                        <text class="cyc-line" x="403" y="208">마곡 기반 사업화</text>
+                    </g>
+
+                    <!-- 03 Impact Lab -->
+                    <g>
+                        <rect x="708" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E4E0D5"/>
+                        <text class="cyc-kicker" x="730" y="98">03 · IMPACT LAB</text>
+                        <text class="cyc-title" x="730" y="128">사회적 가치 환원</text>
+                        <text class="cyc-line" x="730" y="158">개도국 문제 해결</text>
+                        <text class="cyc-line" x="730" y="180">KOICA ODA · ESG 경영</text>
+                        <text class="cyc-line" x="730" y="208">몽골 · 네팔 파이프라인</text>
+                    </g>
+
+                    <!-- 순방향 화살표 -->
+                    <path d="M296 145H374" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
+                    <path d="M623 145H701" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
+
+                    <!-- 환류 화살표 -->
+                    <path d="M827 246C827 330 173 330 173 246" fill="none" stroke="#1F5E4B" stroke-width="1.6" stroke-dasharray="6 6" marker-end="url(#cycArrow)" opacity="0.85"/>
+
+                    <text class="cyc-note" x="500" y="296">기술 · 수익 · 현장 데이터의 환류</text>
+                    <text class="cyc-note-sm" x="500" y="356">개도국 현장에서 얻은 데이터와 경험이 다시 기술 고도화로 이어집니다</text>
+
+                    <text class="cyc-kicker" x="500" y="40" text-anchor="middle">TECHNOLOGY · BUSINESS · IMPACT</text>
+                </svg>
+                <ol class="cycle-list">
+                    <li><span>01 · AI Studio</span><strong>R&amp;D 기술 개발</strong><em>시각지능·생성지능 · YOLO·Edge AI · RAG</em></li>
+                    <li><span>02 · Business</span><strong>시장 중심 제품화</strong><em>B2G·B2B 농축산 · 수익 창출 · 마곡 기반 사업화</em></li>
+                    <li><span>03 · Impact Lab</span><strong>사회적 가치 환원</strong><em>KOICA ODA · ESG 경영 · 몽골·네팔 파이프라인</em></li>
+                    <li class="cycle-return">기술 · 수익 · 현장 데이터의 환류 &mdash; 개도국 현장의 데이터와 경험이 다시 기술 고도화로 이어집니다</li>
+                </ol>
                 <figcaption><strong>기술·비즈니스·임팩트 선순환</strong> Studio의 R&amp;D 성과가 마곡 기반 사업화로 수익을 만들고, 그 수익과 기술이 Impact Lab의 개도국 문제 해결로 다시 이어져 기술을 고도화합니다.</figcaption>
             </figure>
         </div>
