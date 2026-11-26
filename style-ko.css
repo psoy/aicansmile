@@ -148,6 +148,9 @@ button { font: inherit; color: inherit; }
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: var(--gold-1);
+    /* 인라인 그라데이션 텍스트가 줄바꿈될 때 생기는 배경 띠 제거 */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 .section-lead {
