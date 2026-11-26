@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AICANSMILE — AI·드론·농업에 사이버보안·감리 자문까지, 개도국 ODA로 확장합니다</title>
-    <meta name="description" content="AICANSMILE은 드론·AI 비전으로 곤포 사일리지를 자동 탐지·계수하는 SiloVisionX를 서귀포 축산 현장에서 검증하고, 동일 엔진을 몽골 초원의 가축 계수·목초지 모니터링 ODA로 확장합니다. 삼성전자 출신·연세대 정보시스템학 석사(정보보호 전공) 기반의 AI·ODA 사이버보안·감리 자문을 함께 제공합니다.">
+    <title>AICANSMILE — AI·드론으로 농축산 현장을 읽고, 개도국 ODA로 확장합니다</title>
+    <meta name="description" content="AICANSMILE은 드론·AI 비전으로 곤포 사일리지를 자동 탐지·계수하는 SiloVisionX를 서귀포 축산 현장에서 검증하고, 동일 엔진을 몽골 초원의 가축 계수·목초지 모니터링 ODA로 확장합니다.">
     <meta name="theme-color" content="#180F2A">
     <meta property="og:title" content="AICANSMILE — AI Drone &amp; Data for Sustainable Impact">
-    <meta property="og:description" content="드론·AI 비전으로 농축산 현장을 읽고, 개도국 ODA로 확장합니다. AI·ODA 사이버보안·감리 자문.">
+    <meta property="og:description" content="드론·AI 비전으로 농축산 현장을 읽고, 개도국 ODA로 확장합니다.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aicansmile.netlify.app/">
     <meta property="og:image" content="https://aicansmile.netlify.app/assets/silovision_frame_03.jpg">
@@ -21,486 +21,300 @@
     <link rel="apple-touch-icon" href="assets/favicon-180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style-ko.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body data-page="home" data-hero-theme="purple">
-    <a class="skip-link" href="#main">본문으로 바로가기</a>
-
+<body data-page="home">
     <!-- 네비게이션 -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-inner">
-            <a class="brand" href="index.html" aria-label="AICANSMILE 홈">
-                <img class="brand-seal" src="assets/aicansmile_logo_320.png" width="320" height="320" alt="AICANSMILE 골드 블롭 엠블럼">
-                <span class="brand-text">
-                    <span class="brand-name">AICANSMILE</span>
-                    <span class="brand-tag">AI DRONE · AGRI · ODA</span>
-                </span>
-            </a>
-            <ul class="nav-menu" id="navMenu">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo-text">AICANSMILE</a>
+            </div>
+            <ul class="nav-menu">
                 <li><a href="#core-solution">핵심 솔루션</a></li>
                 <li><a href="#oda">ODA 확장</a></li>
-                <li><a href="#why">수행 역량</a></li>
+                <li><a href="#why">Why AICANSMILE</a></li>
                 <li><a href="#references">R&amp;D 레퍼런스</a></li>
                 <li><a href="#about">회사 소개</a></li>
                 <li><a href="#contact">연락처</a></li>
-                <li class="nav-cta"><a href="consulting.html">정부 ODA AI솔루션 제작 문의</a></li>
+                <li class="nav-cta"><a href="consulting.html">정부·ODA 협업 문의</a></li>
                 <li class="nav-lang"><span class="lang-switch" role="group" aria-label="언어 선택">
                     <span class="lang-opt is-active" aria-current="page" lang="ko">KR</span>
                     <a class="lang-opt" href="en.html" hreflang="en" lang="en" aria-label="Switch to the English page">EN</a>
                 </span></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
-                <span></span><span></span><span></span>
+            <button class="nav-toggle" aria-label="메뉴 토글">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
 
-    <main id="main">
-    <!-- Hero -->
+    <!-- Hero 섹션 -->
     <section id="home" class="hero">
         <canvas id="hero-canvas" aria-hidden="true"></canvas>
-        <div class="hero-glow" aria-hidden="true"></div>
         <div class="container hero-inner">
             <div class="hero-copy">
-                <p class="hero-eyebrow"><span class="rule" aria-hidden="true"></span>AI FOR AGRICULTURE · SECURITY · DEVELOPMENT</p>
-                <h1 class="hero-title">
-                    AI와 드론의 눈으로<br>
-                    농축산 현장을 읽고,<br>
-                    <em>개도국 ODA</em>로 확장합니다.
-                </h1>
+                <p class="hero-eyebrow">AI · DRONE · AGRICULTURE · ODA</p>
+                <h1 class="hero-title">AI와 드론의 눈으로 농축산 현장을 읽고,<br>개발도상국 ODA로 확장합니다.</h1>
                 <p class="hero-subtitle">
                     서귀포 축산 현장의 곤포 사일리지 카운팅에서 검증한 드론·AI 객체 인식 기술.<br>
                     같은 비전 엔진으로 몽골 초원의 양떼와 목초지를 읽습니다.
                 </p>
-                <p class="hero-cred">
-                    <span>삼성전자 출신 · 연세대 정보시스템학 석사(정보보호 전공)</span>
-                    <span class="dot" aria-hidden="true"></span>
-                    <strong>AI·ODA 사이버보안·감리 자문</strong>
-                </p>
                 <div class="hero-buttons">
-                    <a href="#core-solution" class="btn btn-gold">
-                        핵심 솔루션 보기
-                        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                    <a href="consulting.html" class="btn btn-ghost">정부 ODA AI솔루션 제작 문의</a>
+                    <a href="#core-solution" class="btn-primary">핵심 솔루션 보기</a>
+                    <a href="consulting.html" class="btn-secondary">정부·ODA 협업 문의</a>
                 </div>
-                <p class="hero-keywords">AI · 드론 · 농업 · 사이버보안 · 개도국 ODA</p>
-            </div>
-
-            <figure class="hero-visual reveal" data-delay="120">
-                <div class="hero-shot-frame">
-                    <div class="hero-shot-bar">
-                        <span class="dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
-                        <span class="hero-chip">SiloVisionX MVP · YOLOv8m-seg</span>
-                    </div>
-                    <img src="assets/silovision_frame_03.jpg" width="1600" height="900" alt="업로드한 사일리지 원본 사진과 AI가 바운딩 박스로 탐지한 결과 화면 비교" loading="eager">
-                    <figcaption>실제 시연 화면 · 업로드 원본 vs AI 탐지(바운딩 박스)</figcaption>
-                </div>
-            </figure>
-        </div>
-
-        <div class="container">
-            <div class="hero-ecosystem reveal" data-delay="160">
-                <p class="hero-ecosystem-caption">글로벌 ODA 레퍼런스 &amp; 생태계</p>
-                <ul class="hero-ecosystem-list">
-                    <li>
-                        <a class="eco-link" href="https://www.worldbank.org/" target="_blank" rel="noopener noreferrer" aria-label="세계은행(World Bank Group) 공식 홈페이지 — 새 창에서 열림">
-                            <img class="eco-logo eco-logo-mark" src="assets/logos/worldbank-mark.svg" alt="THE WORLD BANK" width="31" height="30" decoding="async">
-                            <span class="eco-text">
-                                <span class="eco-word">THE WORLD BANK</span>
-                                <span class="eco-sub">IBRD · IDA</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="eco-link" href="https://www.koica.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="KOICA 한국국제협력단 공식 홈페이지 — 새 창에서 열림">
-                            <img class="eco-logo eco-logo-koica" src="assets/logos/koica-wordmark.png" alt="KOICA" width="87" height="24" decoding="async">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="eco-link" href="https://www.undp.org/" target="_blank" rel="noopener noreferrer" aria-label="UNDP 유엔개발계획 공식 홈페이지 — 새 창에서 열림">
-                            <img class="eco-logo eco-logo-mark" src="assets/logos/undp-mark.svg" alt="UNDP" width="29" height="30" decoding="async">
-                            <span class="eco-text">
-                                <span class="eco-word">UNDP</span>
-                                <span class="eco-sub">유엔개발계획</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="eco-link" href="https://www.ai4d.ai/" target="_blank" rel="noopener noreferrer" aria-label="AI4D 인공지능 개발 프로그램(FCDO·IDRC) 공식 홈페이지 — 새 창에서 열림">
-                            <img class="eco-logo eco-logo-mark" src="assets/logos/ai4d-mark.svg" alt="AI4D" width="30" height="30" decoding="async">
-                            <span class="eco-text">
-                                <span class="eco-word">AI4D</span>
-                                <span class="eco-sub">AI FOR DEVELOPMENT</span>
-                            </span>
-                        </a>
-                    </li>
+                <ul class="hero-kpis">
+                    <li><strong>0.96</strong><span>mAP50 탐지 정확도</span></li>
+                    <li><strong>0.42초</strong><span>CPU 추론 속도</span></li>
+                    <li><strong>30분 → 30초</strong><span>증빙 보고서 작성</span></li>
+                    <li><strong>4개 국어</strong><span>한·영·중·일 지원</span></li>
                 </ul>
             </div>
-
-            <ul class="kpi-bar reveal" data-delay="200">
-                <li class="kpi">
-                    <span class="kpi-value">0.96</span>
-                    <span class="kpi-label">mAP50<em>탐지 정확도 · YOLOv8m-seg</em></span>
-                </li>
-                <li class="kpi">
-                    <span class="kpi-value">0.42<small>s</small></span>
-                    <span class="kpi-label">CPU 추론<em>이미지 1장 · 서버 GPU 없음</em></span>
-                </li>
-                <li class="kpi">
-                    <span class="kpi-value">30분<small>→</small>30초</span>
-                    <span class="kpi-label">증빙 보고서<em>PDF 자동 생성</em></span>
-                </li>
-                <li class="kpi">
-                    <span class="kpi-value kpi-value-en">Edge AI</span>
-                    <span class="kpi-label">온디바이스 추론<em>스마트폰 브라우저·저사양 환경</em></span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Bento grid -->
-    <section id="work" class="section section-work">
-        <div class="container">
-            <header class="section-head reveal">
-                <p class="eyebrow">WHAT WE DO</p>
-                <h2 class="section-title">현장에서 검증한 기술,<br><em>신뢰받는 시스템</em>, 그리고 개도국으로의 확장</h2>
-                <p class="section-lead">농축산 AI 비전 솔루션 · 개도국 ODA 실무 · 사이버보안·거버넌스 자문을 한 팀이 이어서 수행합니다.</p>
-            </header>
-
-            <div class="bento">
-                <!-- 1. SiloVisionX 시연 영상 -->
-                <article class="bento-card b-video reveal">
-                    <div class="card-head">
-                        <p class="card-kicker">FLAGSHIP · AGRI-DRONE INTELLIGENCE</p>
-                        <h3 class="card-title">SiloVisionX</h3>
-                        <p class="card-sub">드론·모바일 사진 한 장으로 곤포 사일리지를 자동 탐지·계수하고, 증빙 보고서까지 만드는 AI 비전 시스템</p>
-                    </div>
-                    <div class="video-frame">
-                        <video controls preload="none" poster="assets/silovision_frame_03.jpg" playsinline>
-                            <source src="assets/SilovisionX_demo.mp4" type="video/mp4">
-                            브라우저가 동영상을 지원하지 않습니다. <a href="assets/SilovisionX_demo.mp4">시연 영상 내려받기</a>
-                        </video>
-                    </div>
-                    <p class="card-note">실제 동작 화면 (약 6분) · 모바일 접속 → 현장 촬영 → 탐지·집계 → PDF 증빙 다운로드</p>
-                </article>
-
-                <!-- 2. 대시보드 목업 -->
-                <article class="bento-card b-dash reveal" data-delay="90">
-                    <div class="card-media">
-                        <img src="assets/silovision_frame_01.jpg" width="1600" height="900" alt="여러 현장 사진 5장을 한 번에 탐지하고 총 개수를 14개로 집계한 SiloVisionX 대시보드" loading="lazy">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-kicker">DASHBOARD</p>
-                        <h3 class="card-title-sm">일괄 탐지 · 자동 집계</h3>
-                        <p class="card-sub-sm">다중 이미지 동시 처리 · 총 개수 자동 산출 · 4개 국어(한·영·중·일) 웹 UI</p>
-                    </div>
-                </article>
-
-                <!-- 3. Cybersecurity & Governance -->
-                <article class="bento-card b-cyber reveal" data-delay="120">
-                    <div class="card-body">
-                        <p class="card-kicker card-kicker-gold">CYBERSECURITY &amp; GOVERNANCE ADVISORY</p>
-                        <h3 class="card-title-sm">Secure Data.<br>Trusted Systems.</h3>
-                        <p class="card-sub-sm">AI·ODA 사업의 보안 요구사항 정의, ISMS-P·데이터 표준계약 실무, 감리 대응까지 — 기술을 도입하는 조직이 신뢰를 함께 확보하도록 설계합니다.</p>
-                        <ul class="chip-list">
-                            <li>AI·ODA 사이버보안 자문</li>
-                            <li>정보보호·개인정보·데이터 계약</li>
-                            <li>시스템 신뢰성·보안 진단</li>
-                            <li>공공·민간 실무 교육</li>
-                        </ul>
-                    </div>
-                    <svg class="cyber-mark" viewBox="0 0 120 130" aria-hidden="true">
-                        <defs>
-                            <linearGradient id="shieldGold" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0%" stop-color="#8B6FCF"/><stop offset="55%" stop-color="#B79CE8"/><stop offset="100%" stop-color="#DCCEF7"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M60 6 108 24v42c0 28-20 47-48 58C32 113 12 94 12 66V24Z" fill="none" stroke="url(#shieldGold)" stroke-width="2.4" stroke-linejoin="round" opacity="0.85"/>
-                        <path d="M60 22 92 34v32c0 20-13 34-32 43-19-9-32-23-32-43V34Z" fill="none" stroke="url(#shieldGold)" stroke-width="1.1" opacity="0.45"/>
-                        <circle cx="60" cy="60" r="12" fill="none" stroke="url(#shieldGold)" stroke-width="2"/>
-                        <path d="M60 72v14" stroke="url(#shieldGold)" stroke-width="2.4" stroke-linecap="round"/>
-                    </svg>
-                </article>
-
-                <!-- 4. 몽골 방목 ODA -->
-                <article class="bento-card b-oda reveal" data-delay="150">
-                    <div class="card-body">
-                        <p class="card-kicker card-kicker-gold">ODA EXTENSION · MONGOLIA</p>
-                        <h3 class="card-title-sm">초원의 양떼와<br>목초지를 읽습니다</h3>
-                        <p class="card-sub-sm">같은 비전 엔진으로 구역별 개체수와 방목 압력을 판독 — 순환 방목·초지 보전 의사결정의 근거를 만듭니다.</p>
-                    </div>
-                    <div class="oda-mini">
-                        <svg viewBox="0 0 420 190" role="img" aria-label="드론이 초원을 비행하며 풀 남음·부분 방목·과방목 구역을 판독하는 개념도">
-                            <defs>
-                                <linearGradient id="odaZoneHigh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2C7A5E"/><stop offset="100%" stop-color="#1F5E4B"/></linearGradient>
-                                <linearGradient id="odaZoneMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5C8F6B"/><stop offset="100%" stop-color="#3F7355"/></linearGradient>
-                                <linearGradient id="odaZoneLow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9C8A5A"/><stop offset="100%" stop-color="#7A6A42"/></linearGradient>
-                            </defs>
-                            <path d="M20 34 C110 12 300 12 400 38" fill="none" stroke="#B79CE8" stroke-width="1.3" stroke-dasharray="5 5" opacity="0.55"/>
-                            <g transform="translate(210,26)">
-                                <rect x="-13" y="-3" width="26" height="7" rx="2.5" fill="#B79CE8"/>
-                                <circle cx="-18" cy="0" r="5.5" fill="none" stroke="#B79CE8" stroke-width="1.4"/>
-                                <circle cx="18" cy="0" r="5.5" fill="none" stroke="#B79CE8" stroke-width="1.4"/>
-                            </g>
-                            <path d="M196 34 L160 62 M224 34 L260 62" stroke="#B79CE8" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
-                            <g>
-                                <rect x="16" y="66" width="124" height="112" rx="5" fill="url(#odaZoneHigh)" opacity="0.95"/>
-                                <rect x="148" y="66" width="124" height="112" rx="5" fill="url(#odaZoneMid)" opacity="0.95"/>
-                                <rect x="280" y="66" width="124" height="112" rx="5" fill="url(#odaZoneLow)" opacity="0.95"/>
-                            </g>
-                            <g fill="#DCCEF7" opacity="0.92">
-                                <ellipse cx="44" cy="112" rx="5.5" ry="3.6"/><ellipse cx="66" cy="122" rx="5.5" ry="3.6"/>
-                                <ellipse cx="90" cy="108" rx="5.5" ry="3.6"/><ellipse cx="112" cy="126" rx="5.5" ry="3.6"/>
-                                <ellipse cx="60" cy="146" rx="5.5" ry="3.6"/><ellipse cx="98" cy="152" rx="5.5" ry="3.6"/>
-                                <ellipse cx="176" cy="104" rx="5.5" ry="3.6"/><ellipse cx="206" cy="112" rx="5.5" ry="3.6"/>
-                                <ellipse cx="234" cy="100" rx="5.5" ry="3.6"/><ellipse cx="196" cy="140" rx="5.5" ry="3.6"/>
-                            </g>
-                            <g font-size="10" font-weight="600" text-anchor="middle" fill="#F8F6FC" opacity="0.95">
-                                <text x="78" y="86">풀 남음</text>
-                                <text x="210" y="86">부분 방목</text>
-                                <text x="342" y="86">과방목</text>
-                            </g>
-                            <g font-size="8.5" text-anchor="middle" fill="#F8F6FC" opacity="0.62">
-                                <text x="78" y="99">양떼 밀집</text>
-                                <text x="210" y="99">방목 압력 중간</text>
-                                <text x="342" y="99">풀 부족</text>
-                            </g>
-                        </svg>
-                    </div>
-                </article>
-
-                <!-- 5. 이력 -->
-                <article class="bento-card b-cred reveal" data-delay="180">
-                    <p class="card-kicker">TRACK RECORD</p>
-                    <h3 class="card-title-sm">제안서부터 준공·운영 안정화까지, 직접 수행한 이력</h3>
-                    <ul class="cred-list">
-                        <li>
-                            <span class="cred-org">KOICA · 네팔</span>
-                            <span class="cred-desc"><strong>정부청사 내 IDC 데이터센터</strong> — 착공부터 구축·운영 안정화, 현지 공무원 기술 교육까지</span>
-                        </li>
-                        <li>
-                            <span class="cred-org">KOICA · 네팔</span>
-                            <span class="cred-desc"><strong>트리부반 대학교(Tribhuvan Univ.) 기술전산원</strong> — 무상원조 사업 제안서 작성 및 설립 성사</span>
-                        </li>
-                        <li>
-                            <span class="cred-org">서귀포시 축산과</span>
-                            <span class="cred-desc">사일리지 보조금 지원·시료 분석, <strong>목초지 카운팅</strong> 실무 — SiloVisionX의 출발점</span>
-                        </li>
-                        <li>
-                            <span class="cred-org">삼성전자 · 연세대</span>
-                            <span class="cred-desc"><strong>삼성전자 출신 · 연세대학교 정보시스템학 석사(정보보호 전공)</strong>, ISMS-P·데이터 표준계약 실무</span>
-                        </li>
-                    </ul>
-                </article>
+            <div class="hero-visual" data-aos="fade-up" data-aos-delay="150">
+                <p class="hero-chip">SiloVisionX MVP · YOLOv8m-seg</p>
+                <figure class="hero-shot">
+                    <img src="assets/silovision_frame_03.jpg" alt="업로드한 사일리지 원본 사진과 AI가 바운딩 박스로 탐지한 결과 화면 비교" loading="eager">
+                    <figcaption>실제 시연 화면 · 업로드 원본 vs AI 탐지(바운딩 박스)</figcaption>
+                </figure>
             </div>
         </div>
+        <a class="hero-scroll" href="#core-solution" aria-label="핵심 솔루션으로 이동">↓</a>
     </section>
 
     <!-- Core Solution -->
     <section id="core-solution" class="section section-core">
         <div class="container">
-            <header class="section-head reveal">
-                <p class="eyebrow">01 — CORE SOLUTION</p>
-                <h2 class="section-title">서귀포 축산 현장의 <em>수작업 카운팅</em> 병목에서 출발했습니다</h2>
-                <p class="section-lead">
-                    서귀포시 축산과에서 사일리지 보조금 지원과 시료 분석, 목초지 카운팅 실무를 하며 건당 30분씩 걸리는 수작업 계수와 중복·누락, 별도의 문서 작업을 직접 겪었습니다.
-                    그 병목을 드론·스마트폰 촬영 한 장과 AI 객체 인식으로 바꾼 것이 SiloVisionX입니다.
-                </p>
-            </header>
-
-            <ol class="flow reveal">
-                <li class="flow-item">
-                    <span class="flow-num">01</span>
-                    <h3>눈으로 세고, 손으로 적고</h3>
-                    <p>곤포 사일리지를 사람이 일일이 세고 수기로 정리한 뒤 문서로 옮겨야 했습니다. 건당 약 30분, 중복 계수와 누락 위험.</p>
-                </li>
-                <li class="flow-item">
-                    <span class="flow-num">02</span>
-                    <h3>AI 비전 자동 탐지·계수</h3>
-                    <p>YOLOv8m-seg 기반으로 촬영 이미지에서 곤포를 자동 탐지하고 개수를 집계합니다. 신뢰도 임계값은 현장에서 조정합니다.</p>
-                </li>
-                <li class="flow-item">
-                    <span class="flow-num">03</span>
-                    <h3>증빙 보고서 원클릭</h3>
-                    <p>위치·일시 메타데이터가 포함된 PDF 보고서가 자동 생성됩니다. 사진 한 장으로 30초 만에 증빙 완료.</p>
-                </li>
-            </ol>
-
-            <ul class="metric-row reveal">
-                <li>
-                    <p class="metric-value">mAP50 0.96</p>
-                    <p class="metric-label">탐지 정확도 93~96%<br>YOLOv8m-seg 학습 결과</p>
-                </li>
-                <li>
-                    <p class="metric-value">0.42초</p>
-                    <p class="metric-label">이미지 1장 추론 속도<br>(CPU 기준)</p>
-                </li>
-                <li>
-                    <p class="metric-value">30분 → 30초</p>
-                    <p class="metric-label">증빙 보고서 1건 작성 시간<br>PDF 자동 생성</p>
-                </li>
-                <li>
-                    <p class="metric-value">4개 국어</p>
-                    <p class="metric-label">한·영·중·일 반응형 웹<br>PC·모바일 별도 앱 설치 없음</p>
-                </li>
-            </ul>
-
-            <div class="gallery reveal">
-                <figure class="shot shot-main">
-                    <img src="assets/silovision_frame_03.jpg" width="1600" height="900" alt="원본 사진 위에 사일로 1, 2가 각각 신뢰도 0.89로 바운딩 박스 표시된 AI 탐지 결과" loading="lazy">
-                    <figcaption><strong>전후 비교</strong> 업로드 원본 → AI 탐지 결과 (신뢰도 표시)</figcaption>
-                </figure>
-                <figure class="shot shot-tall">
-                    <img src="assets/silovision_frame_02.jpg" width="800" height="1600" alt="모바일에서 카메라로 현장 사진을 촬영해 바로 업로드하는 SiloVisionX 화면" loading="lazy">
-                    <figcaption><strong>현장 즉시 처리</strong> 모바일 카메라 촬영 → 별도 PC 작업 없음</figcaption>
-                </figure>
-                <figure class="shot shot-wide">
-                    <img src="assets/silovision_drone_report.jpg" width="1600" height="900" alt="드론 항공 사진 위에 사일리지 롤이 하나씩 탐지되고, 적재된 사일리지는 겹치지 않게 구분되어 단일 187롤·적재 26롤로 집계된 SiloVisionX 판독 리포트 화면(목업)" loading="lazy">
-                    <figcaption><strong>드론 항공 판독</strong> 넓은 초지를 한 장에 담아 단·적재(스택) 사일리지를 구분해 집계 &mdash; 겹쳐 쌓인 롤을 중복 없이 세어 총 수량을 산출합니다 (화면 예시)</figcaption>
-                </figure>
+            <div class="section-head" data-aos="fade-up">
+                <p class="eyebrow">CORE SOLUTION</p>
+                <h2 class="section-title">SiloVisionX</h2>
+                <p class="section-subtitle">드론·모바일 사진 한 장으로 곤포 사일리지를 자동 탐지·계수하고, 증빙 보고서까지 만드는 AI 비전 시스템</p>
+                <p class="section-line">국내 축산 현장에서 검증한 기술 &rarr; 개발도상국 ODA로 확장</p>
             </div>
-        </div>
-    </section>
 
-    <!-- ODA 확장 -->
-    <section id="oda" class="section section-oda">
-        <div class="container">
-            <header class="section-head reveal">
-                <p class="eyebrow eyebrow-gold">02 — ODA EXTENSION · MONGOLIA</p>
-                <h2 class="section-title">같은 비전 엔진으로,<br>초원의 양떼와 목초지를 읽습니다</h2>
-                <p class="section-lead">
-                    국내에서 검증한 객체 인식·계수 엔진은 대상만 바꾸면 그대로 확장됩니다.
-                    드론이 광활한 몽골 초원을 비행하며 <strong>① 양떼(가축) 개체수를 자동으로 세고</strong>,
-                    <strong>② 어느 구역이 과방목으로 뜯겼고 어느 구역에 풀이 남아 있는지</strong>를 한눈에 보여줍니다.
-                </p>
-            </header>
-
-            <div class="oda-grid">
-                <div class="oda-cards">
-                    <article class="oda-card reveal">
-                        <span class="oda-num">①</span>
-                        <h3>양떼(가축) 자동 카운팅</h3>
-                        <p>드론 항공 촬영 영상에서 가축 개체를 탐지해 구역별 개체수를 집계합니다. 국내 사일리지 카운팅에 쓴 동일한 객체 인식·계수 파이프라인을 적용합니다.</p>
-                    </article>
-                    <article class="oda-card reveal" data-delay="90">
-                        <span class="oda-num">②</span>
-                        <h3>목초지 식생 상태 파악</h3>
-                        <p>구역별 풀의 양을 비교해 과방목으로 뜯긴 구역과 아직 풀이 남은 구역을 구분합니다. 방목 압력이 몰리는 곳을 지도 위에서 바로 확인할 수 있습니다.</p>
-                    </article>
-                    <article class="oda-value reveal" data-delay="150">
-                        <h3>의사결정으로 연결</h3>
-                        <ul>
-                            <li>구역별 방목 이력 관리 → <strong>순환 방목</strong> 계획 수립</li>
-                            <li>과방목 구역 조기 발견 → <strong>초지 보전</strong>·회복 우선순위 결정</li>
-                            <li>개체수·면적·식생 지표를 수치로 남겨 <strong>ODA 사업 성과 증빙</strong>에 활용</li>
-                        </ul>
-                    </article>
+            <!-- 01 국내 실증 -->
+            <article class="proof proof-domestic">
+                <div class="proof-head" data-aos="fade-up">
+                    <span class="step-tag">01 · 국내 실증 (대한민국 · 서귀포)</span>
+                    <h3 class="proof-title">서귀포 축산 현장의 &lsquo;수작업 카운팅&rsquo; 병목에서 출발했습니다</h3>
+                    <p class="proof-desc">
+                        서귀포시 축산과에서 사일리지 보조금 지원과 시료 분석, 목초지 카운팅 실무를 하며
+                        건당 30분씩 걸리는 수작업 계수와 중복·누락, 별도의 문서 작업을 직접 겪었습니다.
+                        그 병목을 드론·스마트폰 촬영 한 장과 AI 객체 인식으로 바꾼 것이 SiloVisionX입니다.
+                    </p>
                 </div>
 
-                <figure class="oda-diagram reveal" data-delay="120">
-                    <svg viewBox="0 0 560 400" role="img" aria-label="드론이 초원을 비행하며 구역별 방목 상태를 파악하는 개념도">
-                        <defs>
-                            <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#241838"/><stop offset="100%" stop-color="#180F2A"/>
-                            </linearGradient>
-                            <linearGradient id="grassHigh" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#2F8367"/><stop offset="100%" stop-color="#1F5E4B"/>
-                            </linearGradient>
-                            <linearGradient id="grassMid" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#5E9270"/><stop offset="100%" stop-color="#3E7357"/>
-                            </linearGradient>
-                            <linearGradient id="grassLow" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#A08D5C"/><stop offset="100%" stop-color="#7B6B43"/>
-                            </linearGradient>
-                            <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stop-color="#8B6FCF"/><stop offset="60%" stop-color="#B79CE8"/><stop offset="100%" stop-color="#DCCEF7"/>
-                            </linearGradient>
-                        </defs>
-                        <rect width="560" height="400" fill="url(#skyN)"/>
+                <div class="flow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flow-item">
+                        <span class="flow-num">문제</span>
+                        <h4>눈으로 세고, 손으로 적고</h4>
+                        <p>곤포 사일리지를 사람이 일일이 세고 수기로 정리한 뒤 문서로 옮겨야 했습니다. 건당 약 30분, 중복 계수와 누락 위험.</p>
+                    </div>
+                    <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+                    <div class="flow-item">
+                        <span class="flow-num">기술</span>
+                        <h4>AI 비전 자동 탐지·계수</h4>
+                        <p>YOLOv8m-seg 기반으로 촬영 이미지에서 곤포를 자동 탐지하고 개수를 집계합니다. 신뢰도 임계값은 현장에서 조정합니다.</p>
+                    </div>
+                    <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+                    <div class="flow-item">
+                        <span class="flow-num">결과</span>
+                        <h4>증빙 보고서 원클릭</h4>
+                        <p>위치·일시 메타데이터가 포함된 PDF 보고서가 자동 생성됩니다. 사진 한 장으로 30초 만에 증빙 완료.</p>
+                    </div>
+                </div>
 
-                        <!-- 그리드 -->
-                        <g stroke="#B79CE8" stroke-opacity="0.06">
-                            <path d="M0 40H560M0 80H560M0 120H560M0 160H560M0 200H560M0 240H560M0 280H560M0 320H560M0 360H560"/>
-                            <path d="M40 0V400M80 0V400M120 0V400M160 0V400M200 0V400M240 0V400M280 0V400M320 0V400M360 0V400M400 0V400M440 0V400M480 0V400M520 0V400"/>
-                        </g>
+                <div class="metrics" data-aos="fade-up" data-aos-delay="150">
+                    <div class="metric">
+                        <p class="metric-value">mAP50 0.96</p>
+                        <p class="metric-label">탐지 정확도 93~96%<br>YOLOv8m-seg 학습 결과</p>
+                    </div>
+                    <div class="metric">
+                        <p class="metric-value">0.42초</p>
+                        <p class="metric-label">이미지 1장 추론 속도<br>(CPU 기준)</p>
+                    </div>
+                    <div class="metric">
+                        <p class="metric-value">30분 → 30초</p>
+                        <p class="metric-label">증빙 보고서 1건 작성 시간<br>PDF 자동 생성</p>
+                    </div>
+                    <div class="metric">
+                        <p class="metric-value">4개 국어</p>
+                        <p class="metric-label">한·영·중·일 반응형 웹<br>PC·모바일 별도 앱 설치 없음</p>
+                    </div>
+                </div>
 
-                        <!-- 드론 -->
-                        <path d="M40 92 C170 56 390 56 520 92" fill="none" stroke="url(#goldLine)" stroke-width="1.6" stroke-dasharray="7 7" opacity="0.75"/>
-                        <g transform="translate(280,68)">
-                            <rect x="-18" y="-4.5" width="36" height="9" rx="3" fill="#DCCEF7"/>
-                            <circle cx="-25" cy="0" r="8" fill="none" stroke="#DCCEF7" stroke-width="1.6"/>
-                            <circle cx="25" cy="0" r="8" fill="none" stroke="#DCCEF7" stroke-width="1.6"/>
-                        </g>
-                        <text x="280" y="34" font-size="12" text-anchor="middle" fill="#DCCEF7" opacity="0.85" letter-spacing="1.5">DRONE SURVEY</text>
-                        <path d="M262 78 L206 116 M298 78 L354 116" stroke="#B79CE8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+                <div class="shots" data-aos="fade-up" data-aos-delay="100">
+                    <figure class="shot shot-wide">
+                        <img src="assets/silovision_frame_03.jpg" alt="원본 사진 위에 사일로 1, 2가 각각 신뢰도 0.89로 바운딩 박스 표시된 AI 탐지 결과" loading="lazy">
+                        <figcaption><strong>전후 비교</strong> 업로드 원본 → AI 탐지 결과 (신뢰도 표시)</figcaption>
+                    </figure>
+                    <div class="shot-side">
+                        <figure class="shot">
+                            <img src="assets/silovision_frame_01.jpg" alt="여러 현장 사진 5장을 한 번에 탐지하고 총 개수를 14개로 집계한 대시보드" loading="lazy">
+                            <figcaption><strong>일괄 탐지</strong> 다중 이미지 동시 처리 · 총 개수 자동 집계</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <img src="assets/silovision_frame_02.jpg" alt="모바일에서 카메라로 현장 사진을 촬영해 바로 업로드하는 SiloVisionX 화면" loading="lazy">
+                            <figcaption><strong>현장 즉시 처리</strong> 모바일 카메라 촬영 → 별도 PC 작업 없음</figcaption>
+                        </figure>
+                    </div>
+                    <figure class="shot shot-wide">
+                        <img src="assets/silovision_drone_report.jpg" alt="드론 항공 사진 위에 사일리지 롤이 하나씩 탐지되고, 적재된 사일리지는 겹치지 않게 구분되어 단일 187롤·적재 26롤로 집계된 SiloVisionX 판독 리포트 화면(목업)" loading="lazy">
+                        <figcaption><strong>드론 항공 판독</strong> 넓은 초지를 한 장에 담아 단·적재(스택) 사일리지를 구분해 집계 &mdash; 겹쳐 쌓인 롤을 중복 없이 세어 총 수량을 산출합니다 (화면 예시)</figcaption>
+                    </figure>
+                </div>
 
-                        <!-- 초원 구역 -->
-                        <rect x="24" y="116" width="160" height="206" rx="8" fill="url(#grassHigh)"/>
-                        <rect x="196" y="116" width="160" height="206" rx="8" fill="url(#grassMid)"/>
-                        <rect x="368" y="116" width="168" height="206" rx="8" fill="url(#grassLow)"/>
+                <div class="video-panel" data-aos="fade-up">
+                    <div class="video-copy">
+                        <h4>SiloVisionX 시연 영상</h4>
+                        <p>모바일 접속 → 현장 사진 촬영 → 바운딩 박스 탐지와 총 개수 확인 → PDF 증빙 보고서 다운로드까지, 실제 동작 화면을 담았습니다. (약 6분)</p>
+                    </div>
+                    <div class="video-frame">
+                        <video controls preload="metadata" poster="assets/silovision_frame_03.jpg" playsinline>
+                            <source src="assets/SilovisionX_demo.mp4" type="video/mp4">
+                            브라우저가 동영상을 지원하지 않습니다. <a href="assets/SilovisionX_demo.mp4">시연 영상 내려받기</a>
+                        </video>
+                    </div>
+                </div>
+            </article>
 
-                        <!-- 풀 결 -->
-                        <g stroke="#F8F6FC" stroke-opacity="0.22" stroke-width="1.5">
-                            <path d="M44 306 L44 294 M64 308 L64 290 M84 306 L84 296 M104 308 L104 288 M124 306 L124 292 M144 308 L144 290 M164 306 L164 294"/>
-                            <path d="M216 306 L216 298 M236 308 L236 292 M256 306 L256 296 M276 308 L276 290 M296 306 L296 298"/>
-                        </g>
+            <!-- 02 몽골 ODA 확장 -->
+            <article id="oda" class="proof proof-oda">
+                <div class="proof-head" data-aos="fade-up">
+                    <span class="step-tag step-tag-green">02 · 글로벌 ODA 확장 (몽골 초원)</span>
+                    <h3 class="proof-title">같은 비전 엔진으로, 초원의 양떼와 목초지를 읽습니다</h3>
+                    <p class="proof-desc">
+                        국내에서 검증한 객체 인식·계수 엔진은 대상만 바꾸면 그대로 확장됩니다.
+                        드론이 광활한 몽골 초원을 비행하며 <strong>① 양떼(가축) 개체수를 자동으로 세고</strong>,
+                        <strong>② 어느 구역이 과방목으로 뜯겼고 어느 구역에 풀이 남아 있는지</strong>를 한눈에 보여줍니다.
+                        그 결과는 순환 방목과 초지 보전 의사결정의 근거가 됩니다.
+                    </p>
+                </div>
 
-                        <!-- 양떼 -->
-                        <g fill="#DCCEF7" stroke="#180F2A" stroke-opacity="0.35" stroke-width="0.6">
-                            <ellipse cx="70" cy="204" rx="8.5" ry="5.5"/><ellipse cx="98" cy="218" rx="8.5" ry="5.5"/>
-                            <ellipse cx="126" cy="202" rx="8.5" ry="5.5"/><ellipse cx="152" cy="220" rx="8.5" ry="5.5"/>
-                            <ellipse cx="62" cy="246" rx="8.5" ry="5.5"/><ellipse cx="104" cy="254" rx="8.5" ry="5.5"/>
-                            <ellipse cx="142" cy="248" rx="8.5" ry="5.5"/>
-                            <ellipse cx="232" cy="190" rx="8.5" ry="5.5"/><ellipse cx="274" cy="180" rx="8.5" ry="5.5"/>
-                            <ellipse cx="306" cy="196" rx="8.5" ry="5.5"/><ellipse cx="252" cy="230" rx="8.5" ry="5.5"/>
-                            <ellipse cx="322" cy="232" rx="8.5" ry="5.5"/>
-                        </g>
+                <div class="oda-grid">
+                    <div class="oda-cards">
+                        <div class="oda-card" data-aos="fade-up" data-aos-delay="100">
+                            <span class="oda-num">①</span>
+                            <h4>양떼(가축) 자동 카운팅</h4>
+                            <p>드론 항공 촬영 영상에서 가축 개체를 탐지해 구역별 개체수를 집계합니다. 국내 사일리지 카운팅에 쓴 동일한 객체 인식·계수 파이프라인을 적용합니다.</p>
+                        </div>
+                        <div class="oda-card" data-aos="fade-up" data-aos-delay="200">
+                            <span class="oda-num">②</span>
+                            <h4>목초지 식생 상태 파악</h4>
+                            <p>구역별 풀의 양을 비교해 과방목으로 뜯긴 구역과 아직 풀이 남은 구역을 구분합니다. 방목 압력이 몰리는 곳을 지도 위에서 바로 확인할 수 있습니다.</p>
+                        </div>
+                        <div class="oda-value" data-aos="fade-up" data-aos-delay="300">
+                            <h4>의사결정으로 연결</h4>
+                            <ul>
+                                <li>구역별 방목 이력 관리 → <strong>순환 방목</strong> 계획 수립</li>
+                                <li>과방목 구역 조기 발견 → <strong>초지 보전</strong>·회복 우선순위 결정</li>
+                                <li>개체수·면적·식생 지표를 수치로 남겨 <strong>ODA 사업 성과 증빙</strong>에 활용</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                        <!-- 라벨 -->
-                        <g font-size="13" font-weight="600" text-anchor="middle" fill="#F8F6FC">
-                            <text x="104" y="148">풀 남음</text>
-                            <text x="276" y="148">부분 방목</text>
-                            <text x="452" y="148">과방목</text>
-                        </g>
-                        <g font-size="10.5" text-anchor="middle" fill="#F8F6FC" opacity="0.6">
-                            <text x="104" y="166">양떼 밀집</text>
-                            <text x="276" y="166">방목 압력 중간</text>
-                            <text x="452" y="166">풀 부족</text>
-                        </g>
+                    <figure class="oda-diagram" data-aos="fade-left" data-aos-delay="150">
+                        <svg viewBox="0 0 560 384" role="img" aria-label="드론이 초원을 비행하며 구역별 방목 상태를 파악하는 개념도">
+                            <defs>
+                                <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#f2f5ef"/>
+                                    <stop offset="100%" stop-color="#e2ebe0"/>
+                                </linearGradient>
+                                <linearGradient id="grassHigh" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#7cb875"/>
+                                    <stop offset="100%" stop-color="#4e8f4d"/>
+                                </linearGradient>
+                                <linearGradient id="grassMid" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#c2d095"/>
+                                    <stop offset="100%" stop-color="#9aad6a"/>
+                                </linearGradient>
+                                <linearGradient id="grassLow" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#ddcfa8"/>
+                                    <stop offset="100%" stop-color="#c1ad80"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="560" height="384" fill="url(#sky)"/>
 
-                        <!-- 범례 -->
-                        <g font-size="11" fill="#F8F6FC" opacity="0.72">
-                            <rect x="24" y="352" width="11" height="11" rx="2" fill="#1F5E4B"/>
-                            <text x="41" y="362">식생 양호</text>
-                            <rect x="122" y="352" width="11" height="11" rx="2" fill="#3E7357"/>
-                            <text x="139" y="362">방목 진행</text>
-                            <rect x="216" y="352" width="11" height="11" rx="2" fill="#7B6B43"/>
-                            <text x="233" y="362">과방목</text>
-                        </g>
-                    </svg>
-                    <figcaption>적용 시나리오 개념도 · 몽골 현장 실증 전 단계</figcaption>
-                </figure>
-            </div>
+                            <!-- 드론 비행 경로 -->
+                            <path d="M40 86 C160 52 380 52 500 86" fill="none" stroke="#4a3a5c" stroke-width="2" stroke-dasharray="6 6" stroke-opacity="0.6"/>
+                            <g transform="translate(280,62)">
+                                <rect x="-16" y="-4" width="32" height="9" rx="3" fill="#4a3a5c"/>
+                                <circle cx="-22" cy="0" r="7" fill="none" stroke="#4a3a5c" stroke-width="2"/>
+                                <circle cx="22" cy="0" r="7" fill="none" stroke="#4a3a5c" stroke-width="2"/>
+                            </g>
+                            <text x="280" y="32" font-size="12.5" text-anchor="middle" fill="#4a3a5c" font-weight="600">드론 비행 촬영</text>
+                            <!-- 스캔 빔 -->
+                            <path d="M264 72 L212 106 M296 72 L348 106" stroke="#d4a574" stroke-width="1.5" stroke-dasharray="4 4"/>
 
-            <div class="oda-note reveal">
-                <p><strong>왜 ODA에 적합한가</strong> &mdash; ① 눈으로 확인하기 어려운 넓은 초지를 드론으로 짧은 시간에 조사하고, ② 개체수·구역별 식생 같은 <strong>객관적 수치</strong>를 남겨 사업 성과 보고에 바로 쓸 수 있으며, ③ 스마트폰 브라우저에서 바로 동작해 <strong>현장 인력의 별도 장비·교육 부담이 적습니다.</strong></p>
-            </div>
+                            <!-- 초원 구역 -->
+                            <rect x="24" y="106" width="160" height="212" rx="6" fill="url(#grassHigh)"/>
+                            <rect x="196" y="106" width="160" height="212" rx="6" fill="url(#grassMid)"/>
+                            <rect x="368" y="106" width="168" height="212" rx="6" fill="url(#grassLow)"/>
+
+                            <!-- 풀 결 -->
+                            <g stroke="#ffffff" stroke-opacity="0.38" stroke-width="2">
+                                <path d="M44 304 L44 292 M64 306 L64 288 M84 304 L84 294 M104 306 L104 286 M124 304 L124 290 M144 306 L144 288 M164 304 L164 292"/>
+                                <path d="M216 304 L216 296 M236 306 L236 290 M256 304 L256 294 M276 306 L276 288 M296 304 L296 296"/>
+                            </g>
+
+                            <!-- 양떼 -->
+                            <g fill="#faf9f4" stroke="#8d8672" stroke-width="1">
+                                <ellipse cx="70" cy="196" rx="9" ry="6"/><ellipse cx="98" cy="210" rx="9" ry="6"/>
+                                <ellipse cx="126" cy="194" rx="9" ry="6"/><ellipse cx="152" cy="212" rx="9" ry="6"/>
+                                <ellipse cx="62" cy="238" rx="9" ry="6"/><ellipse cx="104" cy="246" rx="9" ry="6"/>
+                                <ellipse cx="142" cy="240" rx="9" ry="6"/>
+                                <ellipse cx="232" cy="182" rx="9" ry="6"/><ellipse cx="274" cy="172" rx="9" ry="6"/>
+                                <ellipse cx="306" cy="188" rx="9" ry="6"/><ellipse cx="252" cy="222" rx="9" ry="6"/>
+                                <ellipse cx="322" cy="224" rx="9" ry="6"/>
+                            </g>
+
+                            <!-- 구역 라벨 -->
+                            <g font-size="13" font-weight="700" text-anchor="middle">
+                                <text x="104" y="138" fill="#ffffff">풀 남음</text>
+                                <text x="276" y="138" fill="#3d4a2f">부분 방목</text>
+                                <text x="452" y="138" fill="#6a5636">과방목</text>
+                            </g>
+                            <g font-size="11" text-anchor="middle" fill-opacity="0.92">
+                                <text x="104" y="158" fill="#ffffff">양떼 밀집</text>
+                                <text x="276" y="158" fill="#3d4a2f">방목 압력 중간</text>
+                                <text x="452" y="158" fill="#6a5636">풀 부족</text>
+                            </g>
+
+                            <!-- 범례 -->
+                            <g font-size="11.5" fill="#5a5560">
+                                <rect x="24" y="352" width="12" height="12" rx="2" fill="#4e8f4d"/>
+                                <text x="42" y="362">식생 양호</text>
+                                <rect x="128" y="352" width="12" height="12" rx="2" fill="#9aad6a"/>
+                                <text x="146" y="362">방목 진행</text>
+                                <rect x="232" y="352" width="12" height="12" rx="2" fill="#c1ad80"/>
+                                <text x="250" y="362">과방목</text>
+                            </g>
+                        </svg>
+                        <figcaption>적용 시나리오 개념도 · 몽골 현장 실증 전 단계</figcaption>
+                    </figure>
+                </div>
+
+                <div class="oda-note" data-aos="fade-up">
+                    <p><strong>왜 ODA에 적합한가</strong> &mdash; ① 눈으로 확인하기 어려운 넓은 초지를 드론으로 짧은 시간에 조사하고, ② 개체수·구역별 식생 같은 <strong>객관적 수치</strong>를 남겨 사업 성과 보고에 바로 쓸 수 있으며, ③ 스마트폰 브라우저에서 바로 동작해 <strong>현장 인력의 별도 장비·교육 부담이 적습니다.</strong></p>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- Why AICANSMILE -->
     <section id="why" class="section section-why">
         <div class="container">
-            <header class="section-head reveal">
+            <div class="section-head" data-aos="fade-up">
                 <p class="eyebrow">WHY AICANSMILE</p>
                 <h2 class="section-title">수행 역량</h2>
-                <p class="section-lead">현장에서 겪은 문제, 개도국에서 끝까지 수행한 경험, 직접 만든 기술, 그리고 그 기술을 신뢰받게 하는 사이버보안 역량</p>
-            </header>
+                <p class="section-subtitle">현장에서 겪은 문제, 개도국에서 끝까지 수행한 경험, 그리고 직접 만든 기술</p>
+            </div>
             <div class="why-grid">
-                <article class="why-card reveal">
+                <article class="why-card" data-aos="fade-up" data-aos-delay="100">
                     <span class="why-num">01</span>
                     <h3>축산 현장 기반 문제 해결</h3>
                     <ul>
@@ -509,7 +323,7 @@
                     </ul>
                     <p class="why-foot">현장을 아는 사람이 만든 도구는 현장에서 바로 쓰입니다.</p>
                 </article>
-                <article class="why-card reveal" data-delay="90">
+                <article class="why-card" data-aos="fade-up" data-aos-delay="200">
                     <span class="why-num">02</span>
                     <h3>KOICA ODA 전주기 실적 (네팔 3년)</h3>
                     <ul>
@@ -519,14 +333,12 @@
                     </ul>
                     <p class="why-foot">제안서 작성부터 준공·운영 안정화까지, ODA 사업의 전 과정을 직접 수행했습니다.</p>
                 </article>
-                <article class="why-card reveal" data-delay="180">
+                <article class="why-card" data-aos="fade-up" data-aos-delay="300">
                     <span class="why-num">03</span>
-                    <h3>사이버보안·정보보호 전문성</h3>
+                    <h3>IT·정보보호 전문성</h3>
                     <ul>
-                        <li>삼성전자 출신 · 연세대학교 <strong>정보시스템학 석사(정보보호 전공)</strong></li>
-                        <li>ISMS-P·데이터 표준계약·AI 거버넌스 실무 교육·과제 수행</li>
-                        <li>공공·ODA <strong>AI 사이버보안·감리 자문</strong></li>
                         <li>YOLO·Edge AI 자체 개발 역량</li>
+                        <li>공공·ODA AI 거버넌스·보안 자문</li>
                     </ul>
                     <p class="why-foot">기술을 만들고, 그 기술이 신뢰받도록 설계합니다.</p>
                 </article>
@@ -537,39 +349,39 @@
     <!-- R&D 레퍼런스 & 자문 -->
     <section id="references" class="section section-refs">
         <div class="container">
-            <header class="section-head reveal">
-                <p class="eyebrow">R&amp;D REFERENCES</p>
-                <h2 class="section-title">AI 솔루션 포트폴리오</h2>
-                <p class="section-lead">농축산·음악·어학·금융·헬스케어 등 영역별로 직접 기획하고 구현한 AI 응용 서비스입니다. 탭을 눌러 각 솔루션의 기능과 기술 스택을 확인할 수 있습니다.</p>
-            </header>
+            <div class="section-head" data-aos="fade-up">
+                <p class="eyebrow">R&amp;D REFERENCES &amp; ADVISORY</p>
+                <h2 class="section-title">R&amp;D 레퍼런스 &amp; 자문</h2>
+                <p class="section-subtitle">직접 기획·개발해 본 AI 솔루션과, 공공·ODA 사업의 신뢰를 뒷받침하는 거버넌스·보안 자문</p>
+            </div>
 
-            <div class="ref-block reveal">
-                <div class="menu-tabs" role="tablist" aria-label="AI 솔루션 목록">
-                    <button class="tab-btn active" role="tab" aria-selected="true" data-category="silo-vision">SiloVisionX</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="snap-speak">Snap&amp;Speak</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="clef-ai">Clef.ai</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="jurins-theme">Jurin's Theme</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="miriface">MiriFace</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="aihunjang">AIHUNJANG</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="vallyway">VallyWay</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="choicecafe">ChoiceCafe</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="doljob">Doljob</button>
-                    <button class="tab-btn" role="tab" aria-selected="false" data-category="mypa">MYPA</button>
+            <div class="ref-block" data-aos="fade-up">
+                <h3 class="ref-title">AI 솔루션 포트폴리오</h3>
+                <p class="ref-desc">농축산·음악·어학·금융·헬스케어 등 영역별로 직접 기획하고 구현한 AI 응용 서비스입니다. 탭을 눌러 각 솔루션의 기능과 기술 스택을 확인할 수 있습니다.</p>
+                <div class="menu-tabs">
+                    <button class="tab-btn active" data-category="silo-vision">SiloVisionX</button>
+                    <button class="tab-btn" data-category="snap-speak">Snap&amp;Speak</button>
+                    <button class="tab-btn" data-category="clef-ai">Clef.ai</button>
+                    <button class="tab-btn" data-category="jurins-theme">Jurin's Theme</button>
+                    <button class="tab-btn" data-category="miriface">MiriFace</button>
+                    <button class="tab-btn" data-category="aihunjang">AIHUNJANG</button>
+                    <button class="tab-btn" data-category="vallyway">VallyWay</button>
+                    <button class="tab-btn" data-category="choicecafe">ChoiceCafe</button>
+                    <button class="tab-btn" data-category="doljob">Doljob</button>
+                    <button class="tab-btn" data-category="mypa">MYPA</button>
                 </div>
                 <div class="menu-grid" id="menuGrid">
                     <!-- 제품 아이템은 script.js에서 렌더링됩니다 -->
                 </div>
             </div>
 
-            <div class="advisory reveal">
+            <div class="advisory" data-aos="fade-up">
                 <div class="advisory-copy">
-                    <p class="eyebrow eyebrow-gold">ADVISORY</p>
-                    <h3>AI Governance &amp; Cybersecurity Advisory</h3>
-                    <p>AI를 도입하는 조직이 기술과 신뢰를 함께 확보하도록, 거버넌스 체계와 사이버보안을 처음부터 함께 설계합니다. 삼성전자 출신 · 연세대 정보시스템학 석사(정보보호 전공)와 ISMS-P·데이터 표준계약 실무 교육·과제 수행 경험을 바탕으로, AI·ODA 사업의 보안 요구사항 정의와 감리 대응까지 지원합니다.</p>
+                    <h3>AI Governance &amp; Advisory</h3>
+                    <p>AI를 도입하는 조직이 기술과 신뢰를 함께 확보하도록, 거버넌스 체계와 보안을 처음부터 함께 설계합니다. ISMS-P·데이터 표준계약 실무 교육·과제 수행 경험을 바탕으로 합니다.</p>
                 </div>
                 <ul class="advisory-badges">
-                    <li>AI·ODA 사이버보안 자문</li>
-                    <li>정보보호·개인정보·데이터 계약</li>
+                    <li>AI 거버넌스·정보보호 자문</li>
                     <li>시스템 신뢰성·보안 진단</li>
                     <li>공공·민간 실무 교육</li>
                 </ul>
@@ -580,12 +392,12 @@
     <!-- 회사 소개 -->
     <section id="about" class="section section-about">
         <div class="container">
-            <header class="section-head reveal">
+            <div class="section-head" data-aos="fade-up">
                 <p class="eyebrow">ABOUT</p>
                 <h2 class="section-title">회사 소개</h2>
-            </header>
+            </div>
             <div class="about-grid">
-                <div class="about-text reveal">
+                <div class="about-text" data-aos="fade-up">
                     <p>
                         <strong>AICANSMILE(아이캔스마일)</strong>은 AI·드론 비전 기술로 농축산 현장의 실제 문제를 풀고,
                         그 기술을 개발도상국 ODA로 확장하는 AI 기술 기업입니다.
@@ -593,101 +405,34 @@
                     </p>
                     <p>
                         만든 기술을 상용화하는 <strong>AI Studio</strong>, 개도국의 문제를 AI로 푸는 <strong>Impact Lab</strong>,
-                        그리고 도입하는 AI가 신뢰받도록 돕는 <strong>AI Governance &amp; Cybersecurity Advisory</strong> &mdash;
+                        그리고 도입하는 AI가 신뢰받도록 돕는 <strong>AI Governance &amp; Advisory</strong> &mdash;
                         세 축이 서로의 실적과 신뢰를 떠받칩니다.
                     </p>
-                    <p>
-                        특히 <strong>삼성전자 출신 · 연세대학교 정보시스템학 석사(정보보호 전공)</strong> 이력과 ISMS-P·데이터 표준계약 실무 경험을 바탕으로,
-                        AI·ODA 사업에 필요한 <strong>사이버보안·개인정보·감리 자문</strong>을 기술 개발과 함께 제공합니다.
-                    </p>
                 </div>
-                <div class="about-side reveal" data-delay="90">
+                <div class="about-side" data-aos="fade-up" data-aos-delay="100">
                     <div class="mv">
-                        <h3>Mission</h3>
+                        <h4>Mission</h4>
                         <p class="mv-title">"AI can make the world smile."</p>
                         <p>가장 절실한 곳에 실용적인 AI를 제공하는 글로벌 임팩트 파트너가 되겠습니다.</p>
                     </div>
                     <div class="mv">
-                        <h3>Vision</h3>
+                        <h4>Vision</h4>
                         <p class="mv-title">"Borderless AI Partner"</p>
                         <p>농업·에듀테크·ODA의 경계를 넘어, 현장에서 작동하는 AI를 만듭니다.</p>
                     </div>
                 </div>
             </div>
-
-            <div class="pipelines reveal">
-                <h3>Impact Lab 파이프라인 <span>(검토·기획 단계)</span></h3>
+            <div class="pipelines" data-aos="fade-up">
+                <h4>Impact Lab 파이프라인 <span>(검토·기획 단계)</span></h4>
                 <ul>
-                    <li><span class="pipe-name">몽골 초원 가축 계수·목초지 모니터링 ODA</span><em>SiloVisionX 엔진 확장</em></li>
-                    <li><span class="pipe-name">네팔 의료·교육·노동 분야 AI 의사결정 지원</span><em>파트너 협의 단계</em></li>
-                    <li><span class="pipe-name">개도국 식수·재난 대응 AI 모니터링</span><em>기획</em></li>
+                    <li>몽골 초원 가축 계수·목초지 모니터링 ODA <em>— SiloVisionX 엔진 확장</em></li>
+                    <li>네팔 의료·교육·노동 분야 AI 의사결정 지원 <em>— 파트너 협의 단계</em></li>
+                    <li>개도국 식수·재난 대응 AI 모니터링 <em>— 기획</em></li>
                 </ul>
             </div>
 
-            <figure class="model-figure reveal">
-                <svg class="cycle-diagram" viewBox="0 0 1000 400" role="img" aria-label="AICANSMILE 기술·비즈니스·임팩트 선순환 구조도 — Studio의 R&amp;D 성과가 사업화로 수익을 만들고, 그 수익과 기술이 Impact Lab의 개도국 문제 해결로 이어져 다시 기술 고도화에 투자되는 순환 구조">
-                    <defs>
-                        <linearGradient id="cycGold" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#8B6FCF"/><stop offset="50%" stop-color="#B79CE8"/><stop offset="100%" stop-color="#8B6FCF"/>
-                        </linearGradient>
-                        <marker id="cycArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                            <path d="M0 0 L10 5 L0 10 z" fill="#8B6FCF"/>
-                        </marker>
-                        <marker id="cycArrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                            <path d="M0 0 L10 5 L0 10 z" fill="#4B3F8F"/>
-                        </marker>
-                    </defs>
-
-                    <rect x="0.5" y="0.5" width="999" height="399" rx="18" fill="#FBFAFE" stroke="#E2DAF0"/>
-
-                    <!-- 01 Studio -->
-                    <g>
-                        <rect x="54" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E2DAF0"/>
-                        <text class="cyc-kicker" x="76" y="98">01 · AI STUDIO</text>
-                        <text class="cyc-title" x="76" y="128">R&amp;D 기술 개발</text>
-                        <text class="cyc-line" x="76" y="158">시각지능 · 생성지능</text>
-                        <text class="cyc-line" x="76" y="180">YOLO · Edge AI · RAG</text>
-                        <text class="cyc-line" x="76" y="208">SiloVisionX · Snap&amp;Speak · Clef.ai</text>
-                    </g>
-
-                    <!-- 02 Business -->
-                    <g>
-                        <rect x="381" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E2DAF0"/>
-                        <text class="cyc-kicker" x="403" y="98">02 · BUSINESS</text>
-                        <text class="cyc-title" x="403" y="128">시장 중심 제품화</text>
-                        <text class="cyc-line" x="403" y="158">B2G · B2B 농축산</text>
-                        <text class="cyc-line" x="403" y="180">수익 창출 · 지속 성장</text>
-                        <text class="cyc-line" x="403" y="208">마곡 기반 사업화</text>
-                    </g>
-
-                    <!-- 03 Impact Lab -->
-                    <g>
-                        <rect x="708" y="62" width="238" height="166" rx="14" fill="#FFFFFF" stroke="#E2DAF0"/>
-                        <text class="cyc-kicker" x="730" y="98">03 · IMPACT LAB</text>
-                        <text class="cyc-title" x="730" y="128">사회적 가치 환원</text>
-                        <text class="cyc-line" x="730" y="158">개도국 문제 해결</text>
-                        <text class="cyc-line" x="730" y="180">KOICA ODA · ESG 경영</text>
-                        <text class="cyc-line" x="730" y="208">몽골 · 네팔 파이프라인</text>
-                    </g>
-
-                    <!-- 순방향 화살표 -->
-                    <path d="M296 145H374" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
-                    <path d="M623 145H701" fill="none" stroke="url(#cycGold)" stroke-width="2" marker-end="url(#cycArrow)"/>
-
-                    <!-- 환류 화살표 -->
-                    <path d="M827 246C827 330 173 330 173 246" fill="none" stroke="#4B3F8F" stroke-width="1.6" stroke-dasharray="6 6" marker-end="url(#cycArrowGreen)" opacity="0.85"/>
-
-                    <text class="cyc-note" x="500" y="292">기술 · 수익 · 현장 데이터의 환류</text>
-                    <text class="cyc-note-sm" x="500" y="356">개도국 현장에서 얻은 데이터와 경험이 다시 기술 고도화로 이어집니다</text>
-
-                    <text class="cyc-kicker" x="500" y="40" text-anchor="middle">TECHNOLOGY · BUSINESS · IMPACT</text>
-                </svg>
-                <ol class="cycle-list">
-                    <li><span>01 · AI Studio</span><strong>R&amp;D 기술 개발</strong><em>시각지능·생성지능 · YOLO·Edge AI · RAG</em></li>
-                    <li><span>02 · Business</span><strong>시장 중심 제품화</strong><em>B2G·B2B 농축산 · 수익 창출 · 마곡 기반 사업화</em></li>
-                    <li><span>03 · Impact Lab</span><strong>사회적 가치 환원</strong><em>KOICA ODA · ESG 경영 · 몽골·네팔 파이프라인</em></li>
-                    <li class="cycle-return">기술 · 수익 · 현장 데이터의 환류 &mdash; 개도국 현장의 데이터와 경험이 다시 기술 고도화로 이어집니다</li>
-                </ol>
+            <figure class="model-figure" data-aos="fade-up">
+                <img src="assets/aicansmile_impact_circulation.jpg" alt="AICANSMILE 기술·비즈니스·임팩트 선순환 구조도 — R&amp;D 기술 개발(Studio)이 시장 중심 제품화로 이어져 수익을 창출하고, 그 수익과 기술이 Impact Lab의 사회적 가치 환원으로 다시 기술 고도화에 투자되는 순환 구조" loading="lazy">
                 <figcaption><strong>기술·비즈니스·임팩트 선순환</strong> Studio의 R&amp;D 성과가 마곡 기반 사업화로 수익을 만들고, 그 수익과 기술이 Impact Lab의 개도국 문제 해결로 다시 이어져 기술을 고도화합니다.</figcaption>
             </figure>
         </div>
@@ -696,13 +441,13 @@
     <!-- 연락처 -->
     <section id="contact" class="section section-contact">
         <div class="container">
-            <header class="section-head reveal">
-                <p class="eyebrow eyebrow-gold">CONTACT</p>
+            <div class="section-head" data-aos="fade-up">
+                <p class="eyebrow">CONTACT</p>
                 <h2 class="section-title">정부 과제·ODA 협업 문의</h2>
-                <p class="section-lead">과제 제안서 공동 작성, 실증(PoC), ODA 사업 컨소시엄까지 논의 가능합니다.</p>
-            </header>
+                <p class="section-subtitle">과제 제안서 공동 작성, 실증(PoC), ODA 사업 컨소시엄까지 논의 가능합니다.</p>
+            </div>
             <div class="contact-content">
-                <div class="contact-info reveal">
+                <div class="contact-info" data-aos="fade-right">
                     <div class="info-item">
                         <h3>연락처</h3>
                         <p>전화: <a href="tel:010-3201-7076">010-3201-7076</a></p>
@@ -723,12 +468,9 @@
                         <p>지하철: 9호선 등촌역, 9호선 염창역</p>
                         <p>버스: 간선 660, 672, 지선 1002, 6631, 6642, 6712</p>
                     </div>
-                    <a href="consulting.html" class="btn btn-gold contact-cta">
-                        협업 문의서 작성하기
-                        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+                    <a href="consulting.html" class="btn-primary contact-cta">협업 문의서 작성하기</a>
                 </div>
-                <div class="contact-map reveal" data-delay="90">
+                <div class="contact-map" data-aos="fade-left">
                     <iframe
                         src="https://www.google.com/maps?q=서울시+강서구+염창동&output=embed"
                         width="100%"
@@ -743,19 +485,11 @@
             </div>
         </div>
     </section>
-    </main>
 
     <!-- 푸터 -->
     <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <img src="assets/aicansmile_logo_320.png" width="320" height="320" alt="" aria-hidden="true" loading="lazy">
-                <div>
-                    <p class="footer-name">AICANSMILE</p>
-                    <p class="footer-motto">AI can make the world smile.</p>
-                </div>
-            </div>
-            <p class="footer-copy">&copy; 2026 AICANSMILE. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2026 AICANSMILE. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/soyoungpark-aicansmile/" target="_blank" rel="noopener noreferrer" aria-label="링크드인">LinkedIn</a>
                 <a href="https://github.com/psoy" target="_blank" rel="noopener noreferrer" aria-label="깃허브">GitHub</a>
@@ -764,7 +498,22 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // CDN 장애로 애니메이션 스크립트가 로드되지 않아도 본문이 보이도록 처리
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (typeof AOS === 'undefined') {
+                    document.querySelectorAll('[data-aos]').forEach(function (el) {
+                        el.removeAttribute('data-aos');
+                        el.removeAttribute('data-aos-delay');
+                        el.removeAttribute('data-aos-duration');
+                    });
+                }
+            }, 1200);
+        });
+    </script>
+    <script src="script-ko.js"></script>
     <script src="hero-aurora.js"></script>
 </body>
 </html>
