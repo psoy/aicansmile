@@ -19,7 +19,7 @@
     --gold-2: #E8C967;
     --gold-3: #F5E199;
     --gold-grad: linear-gradient(135deg, #C9A227 0%, #E8C967 46%, #F5E199 100%);
-    --gold-grad-deep: linear-gradient(135deg, #98720F 0%, #C9A227 52%, #A8801A 100%);
+    --gold-grad-deep: linear-gradient(135deg, #A87C12 0%, #D2A62F 48%, #B58C1B 100%);
     --gold-line: rgba(232, 201, 103, 0.34);
 
     /* 웜 알라바스터 / 스톤 */
@@ -1464,7 +1464,8 @@ button { font: inherit; color: inherit; }
     .brand-name { font-size: 0.92rem; letter-spacing: 0.16em; }
     .brand-tag { font-size: 0.48rem; letter-spacing: 0.18em; }
 
-    .hero-inner { padding-top: 44px; }
+    .hero-inner { padding-top: 96px; }
+    .hero-title br { display: none; }
     .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.18em; gap: 10px; }
     .hero-title { font-size: clamp(1.82rem, 7.6vw, 2.3rem); line-height: 1.38; }
     .hero-subtitle { margin-top: 20px; font-size: 0.9rem; }
